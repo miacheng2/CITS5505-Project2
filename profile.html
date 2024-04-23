@@ -8,6 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>profile</title>
     <style>
+        /* Get  new font styles from Google Fonts*/
+        @font-face {
+            /* Set the font name as Dosis */
+            font-family: "Dosis";
+            src: url("static/Dosis-Bold.ttf");
+        }
+
         /* initialization */
         * {
             margin: 0;
@@ -15,16 +22,14 @@
             box-sizing: border-box;
         }
 
-        a {
-            text-decoration: none;
-            color: rgb(245, 182, 64);
-            background: none;
+        body {
+            background-color: #f4f4f4;
         }
 
         .sidebar {
             display: flex;
             height: 100%;
-            width: 15vw;
+            width: max(calc(15vw), 200px);
             min-width: 200px;
             position: fixed;
             flex-direction: column;
@@ -38,6 +43,19 @@
             padding: 20px;
         }
 
+        .sidebar a {
+            text-decoration: none;
+            color: #cfefea;
+            background: none;
+            font-family: "Dosis";
+            font-size: 25px;
+            transition: color 0.45s;
+        }
+
+        .sidebar a:hover {
+            color: #15682e;
+        }
+
         .img_container {
             background-color: white;
             height: 10vw;
@@ -46,14 +64,33 @@
             min-width: 150px;
             border-radius: 50%;
             /* makes sure the image covers the space properly */
-            margin-top: 70px;
-            margin-bottom: 70px;
+            margin-top: 60px;
+            margin-bottom: 20px;
             object-fit: cover;
         }
 
         .bar_elem {
             margin-top: 50px;
             margin-bottom: 50px;
+        }
+
+        .contact_main {
+            position: relative;
+            display: flex;
+            left: max(calc(17vw), 220px);
+            top: max(calc(5vw), 20px);
+            width: max(calc(75vw), 500px);
+            height: max(calc(65vh), 500px);
+            background-color: white;
+        }
+
+        .cont_elem {
+            margin: 3rem 3rem;
+            width: max(calc(40vw), 360px);
+        }
+
+        .cont_save {
+            margin: 3rem 3rem;
         }
     </style>
 </head>
@@ -68,8 +105,8 @@
             <a href="#">Manage posts</a>
         </div>
 
-        <div class="message bar_elem">
-            <a href="#">Message</a>
+        <div class="message bar_elem ">
+            <a href="#" class="zebra">Message</a>
         </div>
 
         <div class="sav_search bar_elem">
@@ -79,7 +116,25 @@
         <div class="profile_settings bar_elem">
             <a href="#">Profile Setting</a>
         </div>
+    </div>
 
+    <div class="contact_main">
+        <form action="#">
+            <div class="cont_elem">
+                <label for="cont_name" class="form-label">Contact Name</label>
+                <input type="text" class="form-control" id="cont_name" placeholder="Let community friends know you"
+                    name="name">
+            </div>
+            <div class="cont_elem">
+                <label for="cont_number" class="form-label">Phone number</label>
+                <input type="text" class="form-control" id="cont_number" placeholder="Gorgeous" name="number">
+            </div>
+            <div class="cont_elem">
+                <label for="cont_addr" class="form-label">Location</label>
+                <input type="text" class="form-control" id="cont_addr" placeholder="Wonderful place" name="address">
+            </div>
+            <button type="button" class="btn btn-success cont_save">Save</button>
+        </form>
     </div>
 
 </body>
