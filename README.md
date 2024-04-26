@@ -3,7 +3,9 @@
 # This is the group project, 
 It is a forum-like website allowing user to register, login, post posts, and post replys to the existing posts. 
 This project contains the following folders and files:
+
 -rootDir
+
 |-/deliverables
 
 |--(This is the folder that is the requirement of the submission for tracking the project progress.)
