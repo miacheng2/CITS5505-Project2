@@ -9,6 +9,9 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            background-image: url('../static/pic/signPic.png');
+            background-size: cover;
+            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -86,7 +89,7 @@
 
             const data = { username: username, password: password };
 
-            fetch('http://127.0.0.1:5000/login', {
+            fetch('http://' + window.location.hostname + ':5000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -95,6 +98,10 @@
             })
                 .then(response => {
                     return response.json().then(data => {
+                        console.log(data)
+                        localStorage.setItem('token', data.access_token);
+                        localStorage.setItem('userName', data.userName);
+                        localStorage.setItem('userId', data.userId);
                         return { status: response.status, data: data };
                     });
                 })

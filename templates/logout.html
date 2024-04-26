@@ -13,10 +13,14 @@
 
 <script>
     window.onload = function () {
-        fetch('http://127.0.0.1:5000/logout', {
+
+        var jwtToken = localStorage.getItem("token")
+
+        fetch('http://'+ window.location.hostname +':5000/logout', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwtToken}`, 
+                'Content-Type': 'application/json'     
             },
         })
             .then(response => {
@@ -27,14 +31,22 @@
             .then(result => {
                 if (result.status === 200) {
                     console.log('Success:', result.data);
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('userId');
                     location.href = "./index.html";
                 } else {
                     console.log('Failed:', result.data);
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('userId');
+                    location.href = "./index.html";
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert('Logout Failed');
+                location.href = "./index.html";
             });
 
     }
