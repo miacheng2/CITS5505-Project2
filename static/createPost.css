@@ -2,7 +2,7 @@
 @font-face {
   /* Set the font name as Dosis */
   font-family: "Dosis";
-  src: url("static/Dosis-Bold.ttf");
+  src: url("../static/Dosis-Bold.ttf");
 }
 
 /* Reset and base styles */

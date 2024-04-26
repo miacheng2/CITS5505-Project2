@@ -52,6 +52,7 @@ body {
 }
 
 #signIn {
+    color: white;
     margin: 0 20px;
     display: flex;
     align-items: center;
@@ -59,6 +60,7 @@ body {
 }
 
 #register {
+    color: white;
     margin: 0 20px;
     display: flex;
     align-items: center;
