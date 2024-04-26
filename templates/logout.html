@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+</head>
+
+<body>
+    <p>Logged out, redirecting to the home page.</p>
+</body>
+
+<script>
+    window.onload = function () {
+        fetch('http://127.0.0.1:5000/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                return response.json().then(data => {
+                    return { status: response.status, data: data };
+                });
+            })
+            .then(result => {
+                if (result.status === 200) {
+                    console.log('Success:', result.data);
+                    location.href = "./index.html";
+                } else {
+                    console.log('Failed:', result.data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Logout Failed');
+            });
+
+    }
+
+
+</script>
+
+</html>
