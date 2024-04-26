@@ -64,5 +64,7 @@ This project contains the following folders and files:
 
 ## Flask testing command:
 1. init-db
-    -if you with to recreate the database file and add some testing data, you can run "flask init-db" to create the database and some sample posts, replys and 1 admin user with login credential as follows "Username: admin; Password: admin123". 
-    REMEBER: only run this command if there is no existing pagedata.db in the /instance folder. Otherwise, sample data and user will be added to exisiting db file.
+    
+-if you with to recreate the database file and add some testing data, you can run "flask init-db" to create the database and some sample posts, replys and 1 admin user with login credential as follows "Username: admin; Password: admin123". 
+
+REMEBER: only run this command if there is no existing pagedata.db in the /instance folder. Otherwise, sample data and user will be added to exisiting db file.
