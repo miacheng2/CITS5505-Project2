@@ -54,7 +54,7 @@
                         console.log('Success:', result.data);
                         for(var i = 0; i < result.data.post.length;i++){
                             var temp_content = '<h2>' + result.data.post[i].authorName + ' posted on: ' + result.data.post[i].date + ', Said: ' + result.data.post[i].title +'</h2><h5>' + result.data.post[i].content + '</h5>';
-                            var temp_input = '<input type="text" id=' + result.data.post[i].id + ' placeholder="Comment Here~" />'
+                            var temp_input = '<input type="text" id=' + result.data.post[i].id + ' placeholder="Comment Here~" required/>'
                             var temp_btn = '<button type="submit">Post Comment</button>'
                             var temp_replys = ''
                             for (var n = 0; n < result.data.post[i].replyData.length; n++){
