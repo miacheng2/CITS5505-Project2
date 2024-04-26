@@ -17,10 +17,15 @@
         }
 
         form {
+            padding: 3em;
+            min-width: 300px;
             background-color: white;
-            padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form div {
+            position: inherit;
         }
 
         h2 {
@@ -42,6 +47,7 @@
         }
 
         button {
+            margin: 1em;
             width: 100%;
             padding: 10px;
             background-color: #007BFF;
@@ -62,14 +68,16 @@
         <h2>Login</h2>
         <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" required>
         </div>
         <div>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" required>
         </div>
         <button type="submit">Login</button>
+        <button onclick="location.href='./signup.html';">Sign up Here!</button>
     </form>
+
 
     <script>
         function sendData() {
@@ -85,12 +93,20 @@
                 },
                 body: JSON.stringify(data)
             })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    alert('Login Successful: ' + data.message);
+                .then(response => {
+                    return response.json().then(data => {
+                        return { status: response.status, data: data };
+                    });
                 })
-                .catch((error) => {
+                .then(result => {
+                    if (result.status === 200) {
+                        console.log('Success:', result.data);
+                        location.href = "./index.html";
+                    } else {
+                        console.log('Failed:', result.data);
+                    }
+                })
+                .catch(error => {
                     console.error('Error:', error);
                     alert('Login Failed');
                 });

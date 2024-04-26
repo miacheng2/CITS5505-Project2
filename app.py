@@ -8,6 +8,9 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from datetime import datetime
+
+
 
 
 
@@ -27,7 +30,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
     authorId = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
     content = db.Column(db.String(1000), nullable=False)
 
     def __repr__(self):
@@ -44,7 +47,7 @@ class Reply(db.Model):
     def __repr__(self):
         return f'<Reply {self.title}>'
         
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     userName = db.Column(db.String(80), nullable=False)
     passWord = db.Column(db.String(80), nullable=False)
@@ -55,6 +58,17 @@ class User(db.Model):
 @app.cli.command("init_db")
 def create_tables():
     db.create_all()
+    # Check if the admin user already exists
+        # Create a new admin user instance
+    new_admin = User(userName='admin', passWord='admin123')
+    new_post = Post(title='Testing post', authorId=1, date=datetime.now(), content="This is the testing content")
+    new_reply = Reply(title='Testing reply', authorId=1, replyToPostId = 1, date=datetime.now(), content="This is the testing content")
+    db.session.add(new_admin)
+    db.session.add(new_post)
+    db.session.add(new_reply)
+    db.session.commit()
+    print('Added default admin user')
+
 
 
 app.config['SECRET_KEY'] = 'R^F&TUYH&^'
@@ -77,31 +91,31 @@ def load_user(user_id):
     print(User.query.get(user_id).id)
     return User.query.get(user_id)
 
-class User(UserMixin):
-    @staticmethod
-    def query(user_id):
-        user_database = {
-            "sosAdminUser!@#": {"id": "sosAdminUser!@#", "username": "sosAdminUser!@#", "password": "PaS5W0r6"}
-        }
-        user_info = user_database.get(user_id)
-        if user_info:
-            user = User()
-            user.id = user_info['id']
-            user.password = user_info['password']
-            return user
-        return None
+# class User(UserMixin):
+#     @staticmethod
+#     def query(user_id):
+#         user_database = {
+#             "sosAdminUser!@#": {"id": "sosAdminUser!@#", "username": "sosAdminUser!@#", "password": "PaS5W0r6"}
+#         }
+#         user_info = user_database.get(user_id)
+#         if user_info:
+#             user = User()
+#             user.id = user_info['id']
+#             user.password = user_info['password']
+#             return user
+#         return None
 
-    def is_authenticated(self):
-        return True
+#     def is_authenticated(self):
+#         return True
 
-    def is_active(self):
-        return True
+#     def is_active(self):
+#         return True
 
-    def is_anonymous(self):
-        return False
+#     def is_anonymous(self):
+#         return False
+#     def get_id(self):
 
-    def get_id(self):
-        return self.id
+#         return self.id
     
 
 # @app.route('/submitform', methods=['POST'])
@@ -142,44 +156,56 @@ def login():
     print("password:", password)
     print("Username:", username)
 
-    # user = User.query(username)
+    user = User.query.filter_by(userName=username).first()
+
     
-    # if user == None or user.password != password:
-    #     return jsonify({"msg": "Bad username or password"}), 401
+    if user == None:
+        print("invalid UserName")
+        return jsonify({"msg": "invalid UserName"}), 401
+    elif user.passWord != password:
+        print("Incorrect Password")
+        return jsonify({"msg": "Bad password"}), 401
+    else:
+        access_token = create_access_token(identity=username)
+        login_user(user)
+        response = jsonify(access_token=access_token)
+        set_access_cookies(response, access_token)
+        return response, 200
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+    print("password:", password)
+    print("Username:", username)
+
+    user = User.query.filter_by(userName=username).first()
+
+    if user == None:
+        user = User(userName = username, passWord = password)
+        db.session.add(user)
+        db.session.commit()
+        print("User Created")
+        return jsonify({"msg": "User Created"}), 200
+    else:
+        print("invalid UserName")
+        return jsonify({"msg": "Username exist, try another"}), 401
     
-    access_token = create_access_token(identity=username)
+@login_required
+@app.route('/posts', methods=['GET'])
+def posts():
+    allPost = Post.query
+    returnData = []
+    for item in allPost:
+        item_data = {'id': item.id, 'title': item.title, 'authorId': item.authorId, 'date': item.date, 'content': item.content}
+        returnData.append(item_data)
+    return jsonify({"data": returnData})
 
-    #login_user(User.query(username))
-    response = jsonify(access_token=access_token)
-    set_access_cookies(response, access_token)
-    return response, 200
-
-# @app.route('/logout')
-# @jwt_required()
-# def logout():
-#     jti = get_jwt_identity()
-#     # print(jti)
-#     blacklist.add(jti)
-#     return jsonify({'msg': 'Logged out'}), 200
-
-# def check_if_token_in_blacklist(decrypted_token):
-#     jti = decrypted_token['jti']
-#     if jti in blacklist:
-#         return True
-#     else:
-#         return False
-
-# @app.cli.command("import-data")
-# def import_data():
-#     filename = 'output.txt'
-#     with open(filename, 'r', encoding='utf-8') as file:
-#         for line in file:
-#             title, description, category, img_name, mainCategory = line.strip().split(',;,')
-#             image_url = f'/uploads/{img_name}'
-#             product = Item(title=title, category=category, description=description, image_url=image_url, mainCategory=mainCategory)
-#             db.session.add(product)
-#     db.session.commit()
-#     print("Data imported successfully!")
+@login_required
+@app.route('/logout', methods=['POST'])
+def logout():
+    logout_user()
+    return jsonify({"msg": "Logged out"}), 200
 
 # @app.route('/items', methods=['GET'])
 # def items():
