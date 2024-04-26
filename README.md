@@ -5,28 +5,51 @@ It is a forum-like website allowing user to register, login, post posts, and pos
 This project contains the following folders and files:
 -rootDir
 |-/deliverables
+
 |--(This is the folder that is the requirement of the submission for tracking the project progress.)
+
 |-/instance
+
 |--(This is the folder contains the database file which stores all posts, replys, and user details)
+
 |--pagedata.db
+
 |-/static
+
 |--(This is the folder for the static medias, js, and css files.)
+
 |--/pic
+
 |-/templates
+
 |--(This folder contains all front-end files, such as index.html, login, and logout pages)
+
 |-- index.html
+
 |-- login.html
+
 |-- logout.html
+
 |-- signup.html
+
 |-- ... Others to be updated
+
 |-.gitignore
+
 |--(This is the file that specify which directories or files to be ignored while pushing the files to Github)
+
 |--(It mainly used for ignoring large envrionment-related packages, which can be installed based on the requirement.txt)
+
 |-app.py
+
 |--(The backend file based on flask, which requires packages from requirement.txt to execute.)
+
 |-README.md
+
 |--(This file, explaing everything of this project)
+
 |-requirement.txt
+
 |--(This file is a record of used packages with their version details. For first-time runners, you have to run "pip install -r requirement.txt" to install these packages for running the backend file.)
 
 ## To run this project:
