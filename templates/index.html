@@ -14,11 +14,11 @@
     <a href="./logout.html">Logout</a>
     <form onsubmit="sendPost()" return false;>
         <h3>Create a new post here:</h3>
-        <input type="text" id="new_post_title" placeholder="Title goes Here~" required/>
-        <input type="text" id="new_post_content" placeholder="Post content goes Here~" requied/>
+        <input type="text" id="new_post_title" placeholder="Title goes Here~" required />
+        <input type="text" id="new_post_content" placeholder="Post content goes Here~" requied />
         <button type="submit" id="post_btn" disabled>Post Comment</button>
         <p id="login_warning">You have to login to Post! </p>
-    </form> 
+    </form>
 
     <div id="postsBox"></div>
 
@@ -26,43 +26,47 @@
 
 <script>
 
-    window.onload = function(){
+    window.onload = function () {
         var jwtToken = localStorage.getItem("token")
         var userId = localStorage.getItem("userId")
         var userName = localStorage.getItem("userName")
 
 
-        if(jwtToken != null || jwtToken != undefined){
+        if (jwtToken != null || jwtToken != undefined) {
             document.getElementById("post_btn").disabled = false;
             document.getElementById("login_warning").style.display = "none";
             document.getElementById("currentUser").innerHTML = "Hi," + userName
-            fetch('http://'+ window.location.hostname +':5000/posts', {
+
+            var apiAddress = window.location.hostname
+            if (apiAddress == "") {
+                apiAddress = "127.0.0.1"
+            }
+            fetch('http://' + apiAddress + ':5000/posts', {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${jwtToken}`, 
-                    'Content-Type': 'application/json'     
+                    'Authorization': `Bearer ${jwtToken}`,
+                    'Content-Type': 'application/json'
                 },
             })
                 .then(response => {
                     return response.json().then(data => {
-                        console.log(data)
                         return { status: response.status, data: data };
                     });
                 })
                 .then(result => {
                     if (result.status === 200) {
                         console.log('Success:', result.data);
-                        for(var i = 0; i < result.data.post.length;i++){
-                            var temp_content = '<h2>' + result.data.post[i].authorName + ' posted on: ' + result.data.post[i].date + ', Said: ' + result.data.post[i].title +'</h2><h5>' + result.data.post[i].content + '</h5>';
+                        for (var i = 0; i < result.data.post.length; i++) {
+                            var temp_content = '<h2>' + result.data.post[i].authorName + ' posted on: ' + result.data.post[i].date + ', Said: ' + result.data.post[i].title + '</h2><h5>' + result.data.post[i].content + '</h5>';
                             var temp_input = '<input type="text" id=' + result.data.post[i].id + ' placeholder="Comment Here~" required/>'
                             var temp_btn = '<button type="submit">Post Comment</button>'
                             var temp_replys = ''
-                            for (var n = 0; n < result.data.post[i].replyData.length; n++){
+                            for (var n = 0; n < result.data.post[i].replyData.length; n++) {
                                 temp_replys += '<p>At ' + result.data.post[i].replyData[n].date + ' ' + result.data.post[i].replyData[n].authorName + ' commented:</p> <p> ' + result.data.post[i].replyData[n].content + ' </p>'
                             }
                             document.getElementById("postsBox").innerHTML += '<div><form onsubmit="sendReply(' + result.data.post[i].id + '); return false;">' + temp_content + temp_replys + temp_input + temp_btn + '</form></div>'
                         }
-                        
+
                     } else {
                         console.log("You are not logged in, log in first")
                     }
@@ -72,26 +76,29 @@
                 });
 
         }
-        else{
+        else {
             console.log("You are not logged in, log in first")
         }
-        
+
     }
 
-    function sendReply (replyToPostId){
+    function sendReply(replyToPostId) {
         var jwtToken = localStorage.getItem("token")
-    
+
         const authorId = localStorage.getItem("userId");
         const content = document.getElementById(replyToPostId).value;
-        
+
         const data = { authorId: authorId, replyToPostId: replyToPostId, content: content };
 
-
-        fetch('http://'+ window.location.hostname +':5000/postReply', {
+        var apiAddress = window.location.hostname
+        if (apiAddress == "") {
+            apiAddress = "127.0.0.1"
+        }
+        fetch('http://' + apiAddress + ':5000/postReply', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${jwtToken}`, 
-                'Content-Type': 'application/json'     
+                'Authorization': `Bearer ${jwtToken}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
@@ -113,21 +120,24 @@
             });
     }
 
-    function sendPost (){
+    function sendPost() {
         var jwtToken = localStorage.getItem("token")
-    
+
         const authorId = localStorage.getItem("userId");
         const title = document.getElementById("new_post_title").value;
         const content = document.getElementById("new_post_content").value;
-        
+
         const data = { authorId: authorId, title: title, content: content };
+        var apiAddress = window.location.hostname
+        if (apiAddress == "") {
+            apiAddress = "127.0.0.1"
+        }
 
-
-        fetch('http://'+ window.location.hostname +':5000/postPost', {
+        fetch('http://' + apiAddress + ':5000/postPost', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${jwtToken}`, 
-                'Content-Type': 'application/json'     
+                'Authorization': `Bearer ${jwtToken}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
@@ -145,7 +155,6 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Logout Failed');
             });
     }
 

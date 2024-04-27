@@ -16,11 +16,16 @@
 
         var jwtToken = localStorage.getItem("token")
 
-        fetch('http://'+ window.location.hostname +':5000/logout', {
+        var apiAddress = window.location.hostname
+        if (apiAddress == "") {
+            apiAddress = "127.0.0.1"
+        }
+
+        fetch('http://' + apiAddress + ':5000/logout', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${jwtToken}`, 
-                'Content-Type': 'application/json'     
+                'Authorization': `Bearer ${jwtToken}`,
+                'Content-Type': 'application/json'
             },
         })
             .then(response => {

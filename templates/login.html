@@ -89,7 +89,12 @@
 
             const data = { username: username, password: password };
 
-            fetch('http://' + window.location.hostname + ':5000/login', {
+            var apiAddress = window.location.hostname
+            if (apiAddress == "") {
+                apiAddress = "127.0.0.1"
+            }
+
+            fetch('http://' + apiAddress + ':5000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
