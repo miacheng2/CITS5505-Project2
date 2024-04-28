@@ -17,7 +17,7 @@ a {
     text-decoration: none;
 }
 
-body {
+.pro_body {
     background-color: #f4f4f4;
     display: flex;
     height: 100vh;
@@ -146,38 +146,68 @@ body {
     color: white;
 }
 
-/* .bar_elem {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.contact_main {
-    position: relative;
+/* style of edit profile part */
+.pro_edit {
+    position: fixed;
     display: flex;
-    left: max(calc(17vw), 220px);
-    top: max(calc(5vw), 20px);
+    left: 25%;
+    top: 15%;
     width: max(calc(60vw), 500px);
     height: max(calc(65vh), 500px);
     background-color: white;
+    border: black 1px solid;
+    border-radius: 3%;
+    box-shadow: 10px 10px 5px lightblue;
+    overflow-y: auto;
+}
+
+/* style the width of form */
+.edit_form {
+    width: 100%;
+}
+
+/* style top side of form which contains close and save button*/
+.pro_edit_header {
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    height: 3rem;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    background-color: aliceblue;
+    opacity: 80%;
+}
+
+/* The save button */
+.cont_save {
+    line-height: 100%;
+    margin-right: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* The close button */
+.close_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: grey;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 2rem;
+    transition: background 0.3s;
+}
+
+.close_button:hover {
+    background-color: rgb(144, 144, 228);
 }
 
 .cont_elem {
     margin: 3rem 3rem;
     width: max(calc(40vw), 360px);
 }
-
-.cont_save {
-    margin: 3rem 3rem;
-}
-
-.money_cont {
-    background-color: #0e1117;
-    position: absolute;
-    width: max(calc(10vw), 50px);
-    height: max(calc(65vh), 500px);
-    left: max(calc(85vw), 740px);
-    right: max(calc(17vw), 220px);
-    top: max(calc(5vw), 20px);
-    border-radius: 5%;
-    color: gold;
-} */
