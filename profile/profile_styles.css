@@ -1,0 +1,183 @@
+/* Get  new font styles from Google Fonts*/
+@font-face {
+    /* Set the font name as Dosis */
+    font-family: "Dosis";
+    src: url("static/Dosis-Bold.ttf");
+}
+
+/* initialization */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    height: 100vh;
+}
+
+/* style the front color of small ones */
+.small_color {
+    color: rgb(124 136 146);
+}
+
+.sidebar {
+    width: 30%;
+    height: 100vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* set the style of right part in profile page */
+.main {
+    width: 70%;
+    height: 100vh;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.pro_header {
+    padding-left: 1rem;
+}
+
+.pro_arrow {
+    float: left;
+    display: flex;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+}
+
+
+/* make arrow's background as a circle */
+.arrow_i {
+    border-radius: 50%;
+    padding: 0.5rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* change background color of arrow */
+.arrow_i:hover {
+    background-color: rgb(144, 144, 228);
+    color: white;
+}
+
+
+/* the area include selfi image */
+.pro_selfi {
+    position: relative;
+    margin-top: 1rem;
+    background-color: rgba(196, 226, 26, 0.199);
+    height: 12rem;
+}
+
+/* selfi image */
+.img_container {
+    position: absolute;
+    top: 8rem;
+    margin-left: 2rem;
+    background-color: white;
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: aquamarine;
+}
+
+/* The box contain user info and edit button */
+.pro_info_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    height: 12rem;
+}
+
+/*style edit profile button */
+.edit_button {
+    position: relative;
+    margin-right: 5rem;
+    bottom: 3rem;
+}
+
+/* style user info area */
+.pro_info {
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+/* style join time area */
+.join_time {
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+/* style the function bar */
+.profile_function {
+    display: flex;
+    border-top: rgb(194, 192, 192) 1px solid;
+    border-bottom: rgb(194, 192, 192) 1px solid;
+    height: 3rem;
+}
+
+/* style function elements */
+.profile_function * {
+    display: block;
+    width: 33.33%;
+    text-align: center;
+    line-height: 3rem;
+    transition: background 0.3s, color 0.3s;
+}
+
+.profile_function *:hover {
+    background-color: rgb(144, 144, 228);
+    color: white;
+}
+
+/* .bar_elem {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.contact_main {
+    position: relative;
+    display: flex;
+    left: max(calc(17vw), 220px);
+    top: max(calc(5vw), 20px);
+    width: max(calc(60vw), 500px);
+    height: max(calc(65vh), 500px);
+    background-color: white;
+}
+
+.cont_elem {
+    margin: 3rem 3rem;
+    width: max(calc(40vw), 360px);
+}
+
+.cont_save {
+    margin: 3rem 3rem;
+}
+
+.money_cont {
+    background-color: #0e1117;
+    position: absolute;
+    width: max(calc(10vw), 50px);
+    height: max(calc(65vh), 500px);
+    left: max(calc(85vw), 740px);
+    right: max(calc(17vw), 220px);
+    top: max(calc(5vw), 20px);
+    border-radius: 5%;
+    color: gold;
+} */
