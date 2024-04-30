@@ -14,9 +14,11 @@
     <a href="./logout.html">Logout</a>
     <form onsubmit="sendPost()" return false;>
         <h3>Create a new post here:</h3>
+        <!-- required means the input box has to have a value before submission. -->
         <input type="text" id="new_post_title" placeholder="Title goes Here~" required />
         <input type="text" id="new_post_content" placeholder="Post content goes Here~" requied />
-        <button type="submit" id="post_btn" disabled>Post Comment</button>
+
+        <button type="submit" id="post_btn" disabled>Post post</button>
         <p id="login_warning">You have to login to Post! </p>
     </form>
 
@@ -25,7 +27,7 @@
 </body>
 
 <script>
-
+    // When the page is loaded, do following things
     window.onload = function () {
         var jwtToken = localStorage.getItem("token")
         var userId = localStorage.getItem("userId")
@@ -41,9 +43,10 @@
             if (apiAddress == "") {
                 apiAddress = "127.0.0.1"
             }
-            fetch('http://' + apiAddress + ':5000/posts', {
+            fetch('http://' + apiAddress + ':5000/getPosts', {
                 method: 'GET',
                 headers: {
+                    // Pass the local JWT tocken to the backend
                     'Authorization': `Bearer ${jwtToken}`,
                     'Content-Type': 'application/json'
                 },
@@ -81,7 +84,7 @@
         }
 
     }
-
+    // The following function works for posting the reply.
     function sendReply(replyToPostId) {
         var jwtToken = localStorage.getItem("token")
 
@@ -89,7 +92,7 @@
         const content = document.getElementById(replyToPostId).value;
 
         const data = { authorId: authorId, replyToPostId: replyToPostId, content: content };
-
+        // <!--If your flask server is running on different device, your apiAdress should be the remote server address.Otherwise, it should be the loopback address. -->
         var apiAddress = window.location.hostname
         if (apiAddress == "") {
             apiAddress = "127.0.0.1"
@@ -110,16 +113,17 @@
             .then(result => {
                 if (result.status === 200) {
                     console.log('Success:', result.data);
+                    location.href = "./index.html";
                 } else {
                     console.log('Failed:', result.data);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Logout Failed');
+                alert('Reply Failed');
             });
     }
-
+    // The following function works for posting the post.
     function sendPost() {
         var jwtToken = localStorage.getItem("token")
 
