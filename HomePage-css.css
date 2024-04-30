@@ -1,0 +1,224 @@
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 18px;
+}
+
+body * {
+    box-sizing: border-box;
+    border: white solid 1px;
+    color: white;
+}
+
+#navigation-area {
+    height:100%;
+    width: 300px;
+}
+
+#navigation-area img {
+    width: 50px;
+}
+
+#navigation ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#navigation li {
+    display: flex;
+    align-items: center;
+}
+
+#navigation li img {
+    margin-right: 10px;
+}
+
+.default-button {
+    display: inline-block;
+    padding: 15px 90px;
+    background-color: lightskyblue;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+.default-button:hover {
+background-color: lightblue;
+}
+
+#profile a {
+    display: flex;
+    padding: 15px 50px;
+    background-color: black;
+}
+
+#profile a:hover {
+    background-color: grey;
+}
+
+#content-area {
+    height: 100%;
+    width: 800px;
+}
+
+#content-area img {
+    width: 50px;
+}
+
+#header {
+    display: flex;
+}
+
+#header div {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+#header-post div:nth-child(1) {
+    display: flex
+}
+
+#header-post input {
+    width: 100%;
+    background-color: black;
+}
+
+#replyoption {
+    display: none;
+    position: relative;
+    align-items: center;
+    margin-left: 50px;
+    background-color: black;
+}
+
+#replyoption img{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#header-post div:nth-child(3) {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#header-post div:nth-child(3) img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#header-post div:nth-child(3) a {
+    padding: 10px 20px;
+    font-size: 15px;
+    margin-left: auto;
+}
+
+.content div:nth-child(1) {
+    display: flex;
+}
+
+.user-name {
+    display: flex;
+    align-items: center;
+}
+
+.user-name div {
+    width: 20px;
+    height: 20px;
+}
+
+.post-date {
+    color: gray;
+    font-size: 15px;
+}
+
+.user-content {
+    margin-left: 50px;
+}
+
+
+#side-area {
+    height: 100%;
+    width: 300px;
+}
+
+#search input {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(32,34,38);
+    border-radius: 20px;
+}
+
+#subscribe h1 {
+    font-size: 25px;
+}
+
+#subscribe .default-button{
+    padding: 10px 20px;
+}
+
+#rank1 {
+    display: flex;
+}
+
+#rank1 img {
+    width: 70px;
+}
+
+.post-counts {
+    font-size: 15px;
+    color: gray;
+}
+
+.rank {
+    display: flex;
+}
+
+.rank-more {
+    margin-left: auto;
+}
+.rank img {
+    width: 30px;
+}
+
+#showmore {
+    color: lightblue;
+}
+
+.follow-area {
+    display: flex;
+}
+
+.follow-area img{
+    width: 50px;
+}
+
+.follow-area div {
+    display: flex;
+}
+
+.follow-area div img {
+    width: 20px;
+    height: 20px;
+}
+
+.follow-area .default-button {
+    padding: 15px 15px;
+    color: black;
+    background-color: white;
+}
+
+.follow-user {
+    margin-left: auto;
+}
+
+
+#about-us div{
+    color: gray;
+}
