@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, set_access_cookies, get_jwt, get_jwt_identity
@@ -66,6 +66,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'<User {self.userName}>'
 
+
 @app.route('/login', methods=['POST'])
 def login():
     username = request.json.get('username', None)
@@ -114,6 +115,7 @@ def logout():
     print(jti)
     blacklist.add(jti)
     return jsonify({'msg': 'Logged out'}), 200
+    
 
 def check_if_token_in_blacklist(decrypted_token):
     jti = decrypted_token['jti']
@@ -196,4 +198,4 @@ def get_token():
 
 if __name__ == "__main__":
     db.create_all()
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run()
