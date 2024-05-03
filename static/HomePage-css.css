@@ -59,6 +59,8 @@ background-color: lightblue;
     background-color: grey;
 }
 
+/* contentarea */
+
 #content-area {
     height: 100%;
     width: 800px;
@@ -82,6 +84,10 @@ background-color: lightblue;
     display: flex
 }
 
+#header-post div:nth-child(2) {
+    margin-left: 50px;
+}
+
 #header-post input {
     width: 100%;
     background-color: black;
@@ -101,23 +107,25 @@ background-color: lightblue;
     margin-right: 10px;
 }
 
-#header-post div:nth-child(3) {
+#header-post div:nth-child(4) {
     margin-left: 50px;
     display: flex;
     align-items: center;
 }
 
-#header-post div:nth-child(3) img {
+#header-post div:nth-child(4) img {
     width: 20px;
     height: 20px;
     margin-right: 10px;
 }
 
-#header-post div:nth-child(3) a {
+#header-post div:nth-child(4) button {
     padding: 10px 20px;
     font-size: 15px;
     margin-left: auto;
 }
+
+/* temp */
 
 .content div:nth-child(1) {
     display: flex;
@@ -141,6 +149,60 @@ background-color: lightblue;
 .user-content {
     margin-left: 50px;
 }
+
+/* temp */
+
+#postsBox {
+    /* background-color: green; */
+}
+
+#postsBox h2 {
+    color: yellow;
+}
+
+
+#postsBox div:nth-child(1) {
+    display: flex;
+}
+
+.user-name {
+    display: flex;
+    align-items: center;
+}
+
+.user-name div {
+    width: 20px;
+    height: 20px;
+}
+
+.post-date {
+    color: gray;
+    font-size: 15px;
+}
+
+.user-title {
+    color: yellow;
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+.user-content {
+    margin-left: 50px;
+}
+
+.comment-area {
+    margin-left: 50px;
+}
+
+.comment-content {
+    color: red;
+}
+
+.comment-textbox {
+    margin-left: 50px;
+    background-color: orange;
+}
+
 
 
 #side-area {
