@@ -43,13 +43,14 @@
       <div id="post"><a href="" class="default-button">Post</a></div>
       <div id="profile">
         <a href="" class="default-button"
-          ><img src="/static/pic/HomePage-image/avatar.png" alt="" />
+          ><div><img src="/static/pic/HomePage-image/avatar.png" alt="" /></div>
           <div><p id="currentUser"></p></div>
-          <img src="/static/pic/HomePage-image/dotdotdot.png" alt=""
-        /></a>
+          <div>
+            <img src="/static/pic/HomePage-image/dotdotdot.png" alt="" /></div
+        ></a>
       </div>
-      <a href="./login.html">Login</a>
-      <a href="./logout.html">Logout</a>
+      <div><a href="./login.html">Login</a></div>
+      <div id="homepagelogout"><a href="./logout.html">Logout</a></div>
     </div>
     <div id="content-area">
       <div id="header">
@@ -118,12 +119,19 @@
             autoplay
             loop
           ></video>
+          <!-- <button id="showcomment">click here</button> -->
         </div>
       </div>
       <div id="postsBox"></div>
     </div>
     <div id="side-area">
       <div id="search">
+        <div>
+          <img
+            src="/static/pic/HomePage-image/magnifying-glass-white.png"
+            alt=""
+          />
+        </div>
         <input type="text" placeholder="search" />
       </div>
       <div id="subscribe">

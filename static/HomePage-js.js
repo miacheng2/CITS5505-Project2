@@ -40,40 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//testing
-document.addEventListener("DOMContentLoaded", function () {
-  // Your existing code for handling DOM content loading
-
-  // Call a function to populate the testingforme div with post information
-  populatePostInfo();
-});
-
-function populatePostInfo() {
-  // Assuming you have this data available
-  var authorName = "Edward";
-  var postDate = "14:12 Apr 27";
-  var postTitle = "Title of the Post";
-  var postContent = "Content of the Post goes here...";
-
-  // Select the testingforme div
-  var testingformeDiv = document.getElementById("testingforme");
-
-  // Create HTML content dynamically
-  var postHTML = `
-    <div>
-      <p>Author: ${authorName}</p>
-      <p>Post Date: ${postDate}</p>
-      <h2>${postTitle}</h2>
-      <p>${postContent}</p>
-    </div>
-  `;
-
-  // Append the HTML content to the testingforme div
-  testingformeDiv.innerHTML = postHTML;
-}
-
-//testing
-
 // below is what xiacheng done
 
 // When the page is loaded, do following things
@@ -252,3 +218,24 @@ function sendPost() {
       console.error("Error:", error);
     });
 }
+
+// testing
+
+// When click "Show Comment", comment-area display
+// document.addEventListener("DOMContentLoaded", function () {
+//   document.getElementById("showcomment").addEventListener("click", function () {
+//     var commentAreas = document.getElementsByClassName("comment-area");
+//     for (var i = 0; i < 300; i++) {
+//       commentAreas[i].style.display = "block";
+//     }
+//   });
+// });
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   document.getElementById("showcomment").addEventListener("click", function () {
+//     var commentAreas = document.getElementsByClassName("comment-area");
+//     for (var i = 0; i < commentAreas.length; i++) {
+//       commentAreas[i].style.display = "block";
+//     }
+//   });
+// });
