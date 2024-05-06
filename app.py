@@ -5,6 +5,8 @@ from flask_jwt_extended import JWTManager, jwt_required, create_access_token, se
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 from config import Config, TestConfig
 from models import db, User, Post, Reply
+from datetime import datetime, timedelta
+from sqlalchemy import func
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pagedata.db'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -151,12 +153,30 @@ def create_app(test_config=False):
         db.session.commit()
         return jsonify({'msg': 'Reply Posted!'}), 200
 
-
+    @app.route('/getUserDetails', methods=['GET'])
+    @jwt_required()
+    def get_user_details():
+        current_user = get_jwt_identity()
+        user = User.query.filter_by(userName=current_user).first()
+        if user:
+            register_days = (datetime.now() - user.registerDate).days
+            number_of_posts = Post.query.filter_by(authorId=user.id).count()
+            number_of_comments = Reply.query.filter_by(authorId=user.id).count()
+            
+            user_details = {
+                'username': user.userName,
+                'register_days': register_days,
+                'number_of_posts': number_of_posts,
+                'number_of_comments': number_of_comments
+            }
+            return jsonify(user_details), 200
+        else:
+            return jsonify({'msg': 'User not found'}), 404
 
     @app.cli.command("init_db") 
     def create_tables():
         db.create_all()
-        new_admin = User(userName='admin', passWord='admin123')
+        new_admin = User(userName='admin', passWord='admin123', registerDate='2024-01-01 00:00:00.000000')
         new_post = Post(title='Testing post', authorId=1, date=datetime.now(), content="This is the testing content")
         new_reply = Reply(title='Testing reply', authorId=1, replyToPostId = 1, date=datetime.now(), content="This is the testing content")
         db.session.add(new_admin)
