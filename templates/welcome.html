@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet">
+    <title>Welcome to HoodHub!</title>
+    <style>
+        @font-face {
+        font-family: 'Dosis';
+        src: url('../static/Dosis-Bold.ttf');
+        }
+        body {
+            font-family: 'Dosis', sans-serif;
+        }
+        .logo img {
+            width: 50%; 
+            position: absolute;
+            top: 7.5vh;
+            left: 10vw;
+        }
+        @keyframes floatIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .float-in-text {
+            position: absolute;
+            left: 10vw;
+            color: #4CAF50; 
+            font-size: 26px;
+            opacity: 0;
+            font-family: 'Dosis', sans-serif;
+            animation: floatIn 1s ease forwards; 
+        }
+        #line1 { top: 55vh; animation-delay: 2s; }
+        #line2 { top: 65vh; animation-delay: 4s; }
+        #line3 { top: 75vh; animation-delay: 6s; }
+        #line4 { top: 85vh; animation-delay: 8s; }
+        .float-in-text.visible { opacity: 1; }
+        .link {
+            position: fixed; 
+            font-size: 20px;
+            right: 7vw; 
+            bottom: 7vh; 
+            text-decoration: none; 
+            color: #72af4c; 
+            animation: floatIn 3s ease forwards; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="logo">
+    <img src="../static/logo.gif" id="logo">
+    </div>
+    <div class="float-in-text" id="line1"></div>
+    <div class="float-in-text" id="line2"></div>
+    <div class="float-in-text" id="line3"></div>
+    <div class="float-in-text" id="line4"></div>
+    <div><a class="link" href="./index.html">Back</a></div>
+    <script>
+        window.onload = function () {
+        var jwtToken = localStorage.getItem("token");
+        var apiAddress = window.location.hostname || "127.0.0.1";
+
+        fetch('http://' + apiAddress + ':5000/getUserDetails', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`,
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("line1").textContent = `Hello, ${data.username}!`;
+            document.getElementById("line2").textContent = `It has been ${data.register_days} day since you join the hub.`;
+            const numberOfPosts = data.number_of_posts;
+            const numberOfComments = data.number_of_comments;
+
+            let postsText = "posts";
+            if (numberOfPosts === 0||1) {
+            postsText = "post";
+            }
+
+            let commentsText = "comments";
+            if (numberOfComments === 0||1) {
+            commentsText = "comment";
+            }
+            document.getElementById("line3").textContent = `You have contributed ${numberOfPosts} ${postsText} and ${numberOfComments} ${commentsText} towards the hub community.`;
+            document.getElementById("line4").textContent = `Each and every one of you brings vitality to our thriving hub!`;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
+    </script>
+</body>
+</html>
