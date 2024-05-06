@@ -12,66 +12,200 @@
     box-sizing: border-box;
 }
 
-body {
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.pro_body {
     background-color: #f4f4f4;
+    display: flex;
+    height: 100vh;
+}
+
+/* style the front color of small ones */
+.small_color {
+    color: rgb(124 136 146);
 }
 
 .sidebar {
-    display: flex;
-    height: 100%;
-    width: max(calc(15vw), 200px);
-    min-width: 200px;
-    position: fixed;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    text-align: center;
-    overflow: hidden;
+    width: 30%;
+    height: 100vh;
+    background-color: #f8f9fa;
     padding: 20px;
+    overflow: hidden;
 }
 
-.sidebar a {
-    text-decoration: none;
-    color: #cfefea;
-    background: none;
-    font-family: "Dosis";
-    font-size: 25px;
-    transition: color 0.45s;
+/* set the style of right part in profile page */
+.main {
+    width: 70%;
+    height: 100vh;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    padding: 0;
 }
 
-.sidebar a:hover {
-    color: #15682e;
+.pro_header {
+    padding-left: 1rem;
 }
 
-.img_container {
-    background-color: white;
-    height: 10vw;
-    min-height: 150px;
-    width: 10vw;
-    min-width: 150px;
-    border-radius: 50%;
-    /* makes sure the image covers the space properly */
-    margin-top: 60px;
-    margin-bottom: 20px;
-    object-fit: cover;
-}
-
-.bar_elem {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.contact_main {
-    position: relative;
+.pro_arrow {
+    float: left;
     display: flex;
-    left: max(calc(17vw), 220px);
-    top: max(calc(5vw), 20px);
-    width: max(calc(75vw), 500px);
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+}
+
+
+/* make arrow's background as a circle */
+.arrow_i {
+    border-radius: 50%;
+    padding: 0.5rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* change background color of arrow */
+.arrow_i:hover {
+    background-color: rgb(144, 144, 228);
+    color: white;
+}
+
+
+/* the area include selfi image */
+.pro_selfi {
+    position: relative;
+    margin-top: 1rem;
+    background-color: rgba(196, 226, 26, 0.199);
+    height: 12rem;
+}
+
+/* selfi image */
+.img_container {
+    position: absolute;
+    top: 8rem;
+    margin-left: 2rem;
+    background-color: white;
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: aquamarine;
+}
+
+/* The box contain user info and edit button */
+.pro_info_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    height: 12rem;
+}
+
+/*style edit profile button */
+.edit_button {
+    position: relative;
+    margin-right: 5rem;
+    bottom: 3rem;
+}
+
+/* style user info area */
+.pro_info {
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+/* style join time area */
+.join_time {
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+/* style the function bar */
+.profile_function {
+    display: flex;
+    border-top: rgb(194, 192, 192) 1px solid;
+    border-bottom: rgb(194, 192, 192) 1px solid;
+    height: 3rem;
+}
+
+/* style function elements */
+.profile_function * {
+    display: block;
+    width: 33.33%;
+    text-align: center;
+    line-height: 3rem;
+    transition: background 0.3s, color 0.3s;
+}
+
+.profile_function *:hover {
+    background-color: rgb(144, 144, 228);
+    color: white;
+    cursor: pointer;
+}
+
+/* style of edit profile part */
+.pro_edit {
+    position: fixed;
+    display: flex;
+    left: 25%;
+    top: 15%;
+    width: max(calc(60vw), 500px);
     height: max(calc(65vh), 500px);
     background-color: white;
+    border: black 1px solid;
+    border-radius: 3%;
+    box-shadow: 10px 10px 5px lightblue;
+    overflow-y: auto;
+}
+
+/* style the width of form */
+.edit_form {
+    width: 100%;
+}
+
+/* style top side of form which contains close and save button*/
+.pro_edit_header {
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    height: 3rem;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    background-color: aliceblue;
+    opacity: 80%;
+}
+
+/* The save button */
+.cont_save {
+    line-height: 100%;
+    margin-right: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* The close button */
+.close_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: grey;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 2rem;
+    transition: background 0.3s;
+}
+
+.close_button:hover {
+    background-color: rgb(144, 144, 228);
 }
 
 .cont_elem {
@@ -79,6 +213,30 @@ body {
     width: max(calc(40vw), 360px);
 }
 
-.cont_save {
-    margin: 3rem 3rem;
+.pro_post {
+    padding: 2rem;
+}
+
+.pro_date {
+    color: grey;
+    font-size: small;
+}
+
+#pro_conatiner {
+    position: relative;
+}
+
+#pro_postsBox {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+#pro_replybox {
+    position: absolute;
+    z-index: -1;
+    visibility: hidden;
+    top: 0;
+    left: 0;
 }

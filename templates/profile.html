@@ -8,50 +8,99 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>profile</title>
     <link rel="stylesheet" href="../static/profile_styles.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="img_container">
-            <img src="#" alt="self-img">
+    <div class="pro_body">
+        <div class="sidebar">
+            <a href="./login.html">Login</a>
+            <a href="./logout.html">Logout</a>
+
         </div>
 
-        <div class="man_posts bar_elem">
-            <a href="#">Manage posts</a>
-        </div>
+        <div class="main">
+            <div class="pro_header">
+                <!-- arrow in the profile header -->
+                <div class="pro_arrow"><a href="#" class="arrow_a"><i class="fas fa-arrow-left arrow_i"></i></a></div>
+                <div class="currentUser"></div>
+                <div class="small_color small" id="pro_postNum"></div>
+            </div>
 
-        <div class="message bar_elem ">
-            <a href="#" class="zebra">Message</a>
-        </div>
+            <div class="pro_selfi">
+                <div class="img_container">
+                    <img src="#" alt="self-img">
+                </div>
+            </div>
 
-        <div class="sav_search bar_elem">
-            <a href="#">Saved Searches</a>
-        </div>
+            <div class="pro_info_box">
+                <div class="pro_info  small_color">
+                    <div class="currentUser"></div>
+                    <div class="pro_nickname small">@ This is nick name</div>
+                    <div class="join_time small">This is joined time</div>
+                    <div class="follow small"><span>n following</span> <span>n followers</span></div>
+                </div>
 
-        <div class="profile_settings bar_elem">
-            <a href="#">Profile Setting</a>
+                <button type="button" class="btn btn-outline-dark edit_button">Edit Profile</button>
+
+            </div>
+
+            <!-- The part of edit profile which is hidden for the first -->
+            <div class="pro_edit" style="display: none;">
+                <form action="#" class="edit_form">
+                    <div class="pro_edit_header">
+                        <button class="close_button">X</button>
+                        <button type="button" class="btn btn-success cont_save">Save</button>
+                    </div>
+
+                    <div class="cont_elem">
+                        <label for="cont_name" class="form-label">Contact Name</label>
+                        <input type="text" class="form-control" id="cont_name"
+                            placeholder="Let community friends know you" name="name">
+                    </div>
+                    <div class="cont_elem">
+                        <label for="cont_number" class="form-label">Phone number</label>
+                        <input type="text" class="form-control" id="cont_number" placeholder="Gorgeous" name="number">
+                    </div>
+                    <div class="cont_elem">
+                        <label for="cont_addr" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="cont_addr" placeholder="Wonderful place"
+                            name="address">
+                    </div>
+                    <div class="test">
+                        sdqwo
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br><br>
+                        <br>
+                        <br><br>
+                        dwqdq
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="profile_function">
+                <div id="pro_posts">POSTS</div>
+                <div id="pro_replies">REPLIES</div>
+                <div id="pro_likes">LIKES</div>
+            </div>
+
+            <div id='pro_conatiner'>
+                <div id="pro_postsBox"></div>
+                <div id="pro_replybox"></div>
+            </div>
+
         </div>
     </div>
 
-    <div class="contact_main">
-        <form action="#">
-            <div class="cont_elem">
-                <label for="cont_name" class="form-label">Contact Name</label>
-                <input type="text" class="form-control" id="cont_name" placeholder="Let community friends know you"
-                    name="name">
-            </div>
-            <div class="cont_elem">
-                <label for="cont_number" class="form-label">Phone number</label>
-                <input type="text" class="form-control" id="cont_number" placeholder="Gorgeous" name="number">
-            </div>
-            <div class="cont_elem">
-                <label for="cont_addr" class="form-label">Location</label>
-                <input type="text" class="form-control" id="cont_addr" placeholder="Wonderful place" name="address">
-            </div>
-            <button type="button" class="btn btn-success cont_save">Save</button>
-        </form>
-    </div>
+
+    <script src="../static/profile_js.js"></script>
 
 </body>
 
