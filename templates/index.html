@@ -12,11 +12,12 @@
     <p id="currentUser"></p>
     <a href="./login.html">Login</a>
     <a href="./logout.html">Logout</a>
+    <a href="./welcome.html">Welcome!</a> 
     <form onsubmit="sendPost()" return false;>
         <h3>Create a new post here:</h3>
         <!-- required means the input box has to have a value before submission. -->
         <input type="text" id="new_post_title" placeholder="Title goes Here~" required />
-        <input type="text" id="new_post_content" placeholder="Post content goes Here~" requied />
+        <input type="text" id="new_post_content" placeholder="Post content goes Here~" required />
 
         <button type="submit" id="post_btn" disabled>Post post</button>
         <p id="login_warning">You have to login to Post! </p>
@@ -131,7 +132,7 @@
         const title = document.getElementById("new_post_title").value;
         const content = document.getElementById("new_post_content").value;
 
-        const data = { authorId: authorId, title: title, content: content };
+        const data = { title: title, authorId: authorId, content: content};
         var apiAddress = window.location.hostname
         if (apiAddress == "") {
             apiAddress = "127.0.0.1"
