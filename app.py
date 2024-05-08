@@ -183,9 +183,6 @@ def create_app(test_config=False):
     def get_profile():
         return render_template('profile.html')
 
-
-    
-
     def get_token():
         auth_header = request.headers.get('Authorization')
         if auth_header and auth_header.startswith('Bearer '):

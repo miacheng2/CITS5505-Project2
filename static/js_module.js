@@ -87,7 +87,7 @@ export function sendReply(replyToPostId) {
             console.error('Error:', error);
             alert('Reply Failed');
         });
-}
+}  
 
 export function sendPost() {
     var jwtToken = localStorage.getItem("token")
