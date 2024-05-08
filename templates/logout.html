@@ -45,13 +45,13 @@
                     localStorage.removeItem('token');
                     localStorage.removeItem('userName');
                     localStorage.removeItem('userId');
-                    location.href = "./index.html";
+                    location.href = "/index";
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert('Logout Failed');
-                location.href = "./index.html";
+                location.href = "/index";
             });
 
     }

@@ -10,8 +10,9 @@
 <body>
     <p>This is the home page</p>
     <p id="currentUser"></p>
-    <a href="./login.html">Login</a>
-    <a href="./logout.html">Logout</a>
+    <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
+    <a href="/profile">Profile</a>
     <form onsubmit="sendPost()" return false;>
         <h3>Create a new post here:</h3>
         <!-- required means the input box has to have a value before submission. -->
@@ -29,6 +30,7 @@
 <script>
     // When the page is loaded, do following things
     window.onload = function () {
+
         var jwtToken = localStorage.getItem("token")
         var userId = localStorage.getItem("userId")
         var userName = localStorage.getItem("userName")
@@ -113,7 +115,7 @@
             .then(result => {
                 if (result.status === 200) {
                     console.log('Success:', result.data);
-                    location.href = "./index.html";
+                    location.href = "/index";
                 } else {
                     console.log('Failed:', result.data);
                 }

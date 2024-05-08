@@ -1,8 +1,6 @@
+import { jwtToken, userId, userName } from '../static/js_module.js';
 $(document).ready(function () {
 
-    let jwtToken = localStorage.getItem("token")
-    let userId = localStorage.getItem("userId")
-    let userName = localStorage.getItem("userName")
     let post_num = 0
 
 

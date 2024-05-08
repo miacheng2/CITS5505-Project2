@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, set_access_cookies, get_jwt, get_jwt_identity
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
@@ -36,8 +36,9 @@ def create_app(test_config=False):
     login_manager.login_view = 'login'
 
     @app.route('/', methods=['GET'])
+    @app.route('/index', methods=['GET'])
     def testMsg():
-        return jsonify({"msg": "testing"}), 200
+        return render_template('index.html')
 
 
     @login_manager.user_loader
@@ -45,54 +46,67 @@ def create_app(test_config=False):
         print(User.query.get(user_id).id)
         return User.query.get(user_id)
     
-    @app.route('/login', methods=['POST'])
+    @app.route('/login', methods=['POST', 'GET'])
     def login():
-        username = request.json.get('username', None)
-        password = request.json.get('password', None)
-        user = User.query.filter_by(userName=username).first()
-        print("password:", password)
-        print("Username:", username)
+        if request.method == 'POST':
+            username = request.json.get('username', None)
+            password = request.json.get('password', None)
+            user = User.query.filter_by(userName=username).first()
+            print("password:", password)
+            print("Username:", username)
 
-        if user == None:
-            print("invalid UserName")
-            return jsonify({"msg": "invalid UserName"}), 401
-        elif user.passWord != password:
-            print("Incorrect Password")
-            return jsonify({"msg": "Bad password"}), 401
+            if user == None:
+                print("invalid UserName")
+                return jsonify({"msg": "invalid UserName"}), 401
+            elif user.passWord != password:
+                print("Incorrect Password")
+                return jsonify({"msg": "Bad password"}), 401
+            else:
+                access_token = create_access_token(identity=username)
+                login_user(user)
+                response = jsonify(access_token=access_token, userName=username, userId=user.id)
+                set_access_cookies(response, access_token)
+                return response, 200
         else:
-            access_token = create_access_token(identity=username)
-            login_user(user)
-            response = jsonify(access_token=access_token, userName=username, userId=user.id)
-            set_access_cookies(response, access_token)
-            return response, 200
+            return render_template('login.html')
 
-    @app.route('/signup', methods=['POST'])
+    @app.route('/signup', methods=['POST', 'GET'])
     def signup():
-        username = request.json.get('username', None)
-        password = request.json.get('password', None)
-        print("password:", password)
-        print("Username:", username)
+        if request.method == 'POST':
+            username = request.json.get('username', None)
+            password = request.json.get('password', None)
+            print("password:", password)
+            print("Username:", username)
 
-        user = User.query.filter_by(userName=username).first()
+            user = User.query.filter_by(userName=username).first()
 
-        if user == None:
-            user = User(userName = username, passWord = password)
-            db.session.add(user)
-            db.session.commit()
-            print("User Created")
-            return jsonify({"msg": "User Created"}), 200
+            if user == None:
+                user = User(userName = username, passWord = password)
+                db.session.add(user)
+                db.session.commit()
+                print("User Created")
+                return jsonify({"msg": "User Created"}), 200
+            else:
+                print("invalid UserName")
+                return jsonify({"msg": "Username exist, try another"}), 401
         else:
-            print("invalid UserName")
-            return jsonify({"msg": "Username exist, try another"}), 401
+            return render_template('signup.html')
+
 
 
     @app.route('/logout',  methods=['POST'])
     @jwt_required()
     def logout():
-        jti = get_token()
-        print(jti)
-        blacklist.add(jti)
-        return jsonify({'msg': 'Logged out'}), 200
+            jti = get_token()
+            print(jti)
+            blacklist.add(jti)
+            return jsonify({'msg': 'Logged out'}), 200
+
+    @app.route('/logout', methods=['GET'])
+    def show_logout():
+        return render_template('logout.html')
+       
+
 
     def check_if_token_in_blacklist(decrypted_token):
         jti = decrypted_token['jti']
@@ -164,6 +178,11 @@ def create_app(test_config=False):
         db.session.add(new_reply)
         db.session.commit()
         print('Added default admin user')
+
+    @app.route('/profile', methods=['GET'])
+    def get_profile():
+        return render_template('profile.html')
+
 
     
 
