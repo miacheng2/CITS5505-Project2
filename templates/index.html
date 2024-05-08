@@ -38,7 +38,7 @@
             document.getElementById("login_warning").style.display = "none";
             document.getElementById("currentUser").innerHTML = "Hi," + userName;
 
-            for (var i = 0; i < post_array.length; i++) {
+            for (var i = post_array.length - 1; i >= 0; i--) {
                 var temp_content = '<h2>' + post_array[i].authorName + ' posted on: ' + post_array[i].date + ', Said: ' + post_array[i].title + '</h2><h5>' + post_array[i].content + '</h5>';
                 var temp_input = '<input type="text" id=' + post_array[i].id + ' placeholder="Comment Here~" required/>'
                 var temp_btn = '<button type="submit">Post Comment</button>'
