@@ -64,11 +64,30 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        #warning {
+            background-color: #ffe1e1;
+            border-bottom: 1px solid #ccc !important;
+            border-color: red !important;
+            padding: 0.2em;
+        }
+
+        #warning p {
+            text-align: center;
+        }
+
+        .displayNone {
+            display: none;
+        }
+
+        .displayBlock {
+            display: block;
+        }
     </style>
 </head>
 
 <body>
-    <form onsubmit="sendData(); return false;">
+    <form method="post" onsubmit="sendData(); return false;">
         <h2>Sign Up</h2>
         <div>
             <label for="username">Username:</label>
@@ -85,6 +104,8 @@
         <div>
             <label for="password">Confirm password:</label>
             <input type="password" id="passwordConfirm" name="password" placeholder="Enter your password AGAIN!!!">
+        </div>
+        <div id="warning" class="displayNone">
         </div>
         <button type="submit" id="signupBTN">Sign Up</button>
     </form>
@@ -147,9 +168,12 @@
                     .then(result => {
                         if (result.status === 200) {
                             console.log('Success:', result.data);
-                            location.href = "./login.html";
+                            location.href = "/login";
+                            // location.href = "./login.html";
                         } else {
                             console.log('Failed:', result.data);
+                            document.getElementById("warning").innerHTML = '<p>' + result.data.msg + '</p> <p>Or you can <a href="/login">login here</a>.</p>';
+                            document.getElementById("warning").classList.add("displayBlock")
                         }
                     })
                     .catch(error => {

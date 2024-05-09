@@ -10,8 +10,8 @@
 <body>
     <p>This is the home page</p>
     <p id="currentUser"></p>
-    <a href="./login.html">Login</a>
-    <a href="./logout.html">Logout</a>
+    <a href="/login">Login</a>
+    <button onclick="logout()">Logout</button>
     <form onsubmit="sendPost()" return false;>
         <h3>Create a new post here:</h3>
         <!-- required means the input box has to have a value before submission. -->
@@ -19,6 +19,7 @@
         <input type="text" id="new_post_content" placeholder="Post content goes Here~" requied />
 
         <button type="submit" id="post_btn" disabled>Post post</button>
+        <button type="submit" id="deletePost_btn">Delete post</button>
         <p id="login_warning">You have to login to Post! </p>
     </form>
 
@@ -58,16 +59,30 @@
                 })
                 .then(result => {
                     if (result.status === 200) {
-                        console.log('Success:', result.data);
+                        console.log('Success:', result.data.post);
                         for (var i = 0; i < result.data.post.length; i++) {
-                            var temp_content = '<h2>' + result.data.post[i].authorName + ' posted on: ' + result.data.post[i].date + ', Said: ' + result.data.post[i].title + '</h2><h5>' + result.data.post[i].content + '</h5>';
                             var temp_input = '<input type="text" id=' + result.data.post[i].id + ' placeholder="Comment Here~" required/>'
                             var temp_btn = '<button type="submit">Post Comment</button>'
+                            if (result.data.post[i].authorName == userName) {
+                                var temp_deletePost = '<button onclick="deletePost(' + result.data.post[i].id + ')">Delete Post</button>';
+                            }
+                            else {
+                                var temp_deletePost = "";
+                            }
+                            var temp_content = '<h2>' + result.data.post[i].authorName + ' posted on: ' + result.data.post[i].date + ', Said: ' + result.data.post[i].title + '</h2><h5>' + result.data.post[i].content + '</h5>' + temp_deletePost;
+
                             var temp_replys = ''
                             for (var n = 0; n < result.data.post[i].replyData.length; n++) {
-                                temp_replys += '<p>At ' + result.data.post[i].replyData[n].date + ' ' + result.data.post[i].replyData[n].authorName + ' commented:</p> <p> ' + result.data.post[i].replyData[n].content + ' </p>'
+                                if (result.data.post[i].replyData[n].authorName == userName) {
+                                    var deleteReply_btn = '<button onclick="deleteReply(' + result.data.post[i].replyData[n].id + ')">Delete Reply</button>';
+                                }
+                                else {
+                                    var deleteReply_btn = "";
+                                }
+
+                                temp_replys += '<p>At ' + result.data.post[i].replyData[n].date + ' ' + result.data.post[i].replyData[n].authorName + ' commented:</p> <p> ' + result.data.post[i].replyData[n].content + ' </p>' + deleteReply_btn
                             }
-                            document.getElementById("postsBox").innerHTML += '<div><form onsubmit="sendReply(' + result.data.post[i].id + '); return false;">' + temp_content + temp_replys + temp_input + temp_btn + '</form></div>'
+                            document.getElementById("postsBox").innerHTML += '<div>' + temp_content + temp_replys + '<form onsubmit="sendReply(' + result.data.post[i].id + '); return false;">' + temp_input + temp_btn + '</form></div>'
                         }
 
                     } else {
@@ -84,13 +99,63 @@
         }
 
     }
+
+
+    // 删除帖子的函数
+    function deletePost(postId) {
+        var jwtToken = localStorage.getItem("token");
+        fetch(`/posts/${postId}`, {
+            method: 'DELETE', // 使用 DELETE 方法
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Post deleted successfully");
+                    window.location.reload(); // 刷新页面以更新内容
+                } else {
+                    console.error("Failed to delete post");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // 删除回复的函数
+    function deleteReply(replyId) {
+        var jwtToken = localStorage.getItem("token");
+
+        fetch(`/replies/${replyId}`, {
+            method: 'DELETE', // 使用 DELETE 方法
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`,
+                'Content-Type': 'application/json'
+            }
+
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Reply deleted successfully");
+                    window.location.reload(); // 刷新页面以更新内容
+                } else {
+                    console.error("Failed to delete reply");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+
     // The following function works for posting the reply.
     function sendReply(replyToPostId) {
         var jwtToken = localStorage.getItem("token")
 
         const authorId = localStorage.getItem("userId");
         const content = document.getElementById(replyToPostId).value;
-
         const data = { authorId: authorId, replyToPostId: replyToPostId, content: content };
         // <!--If your flask server is running on different device, your apiAdress should be the remote server address.Otherwise, it should be the loopback address. -->
         var apiAddress = window.location.hostname
@@ -113,7 +178,7 @@
             .then(result => {
                 if (result.status === 200) {
                     console.log('Success:', result.data);
-                    location.href = "./index.html";
+                    location.href = "/index";
                 } else {
                     console.log('Failed:', result.data);
                 }
@@ -159,6 +224,52 @@
             })
             .catch(error => {
                 console.error('Error:', error);
+            });
+    }
+
+    function logout() {
+
+        var jwtToken = localStorage.getItem("token")
+        var apiAddress = window.location.hostname
+        console.log(jwtToken)
+
+        if (apiAddress == "") {
+            apiAddress = "127.0.0.1"
+        }
+
+        fetch('/logout', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`,
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => {
+                return response.json().then(data => {
+                    return { status: response.status, data: data };
+                });
+            })
+            .then(result => {
+                if (result.status === 200) {
+                    console.log('Success:', result.data);
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('userId');
+                    location.href = "./index.html";
+                } else {
+                    console.log('Failed:', result.data);
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userName');
+                    localStorage.removeItem('userId');
+                    location.href = "/index";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                localStorage.removeItem('token');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userId');
+                location.href = "/index";
             });
     }
 

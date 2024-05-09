@@ -1,14 +1,18 @@
 from datetime import datetime
-from flask import Flask, request, jsonify, send_from_directory
+from operator import index
+from flask import Flask, redirect, render_template, request, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, set_access_cookies, get_jwt, get_jwt_identity
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
+#from flask_sqlalchemy import SQLAlchemy
 from config import Config, TestConfig
 from models import db, User, Post, Reply
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pagedata.db'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #db = SQLAlchemy()
+CORS()
+
 
 def create_app(test_config=False):
     app = Flask(__name__)
@@ -36,8 +40,11 @@ def create_app(test_config=False):
     login_manager.login_view = 'login'
 
     @app.route('/', methods=['GET'])
+    @app.route('/index', methods=['GET'])
+    #@app.route('/login', methods=['POST'])
     def testMsg():
-        return jsonify({"msg": "testing"}), 200
+        return render_template('index.html')
+        #return jsonify({"msg": "testing"}), 200
 
 
     @login_manager.user_loader
@@ -45,54 +52,64 @@ def create_app(test_config=False):
         print(User.query.get(user_id).id)
         return User.query.get(user_id)
     
-    @app.route('/login', methods=['POST'])
+    @app.route('/login', methods=['POST','GET'])
     def login():
-        username = request.json.get('username', None)
-        password = request.json.get('password', None)
-        user = User.query.filter_by(userName=username).first()
-        print("password:", password)
-        print("Username:", username)
+        if request.method == "POST":
+            username = request.json.get('username', None)
+            password = request.json.get('password', None)
+            user = User.query.filter_by(userName=username).first()
+            print("password:", password)
+            print("Username:", username)
 
-        if user == None:
-            print("invalid UserName")
-            return jsonify({"msg": "invalid UserName"}), 401
-        elif user.passWord != password:
-            print("Incorrect Password")
-            return jsonify({"msg": "Bad password"}), 401
+            if user == None:
+                print("invalid UserName")
+                return jsonify({"msg": "invalid UserName"}), 401
+            elif user.passWord != password:
+                print("Incorrect Password")
+                return jsonify({"msg": "Bad password"}), 401
+            else:
+                access_token = create_access_token(identity=username)
+                login_user(user)
+                response = jsonify(access_token=access_token, userName=username, userId=user.id)
+                set_access_cookies(response, access_token)
+                return response, 200
         else:
-            access_token = create_access_token(identity=username)
-            login_user(user)
-            response = jsonify(access_token=access_token, userName=username, userId=user.id)
-            set_access_cookies(response, access_token)
-            return response, 200
+            return render_template('login.html')
 
-    @app.route('/signup', methods=['POST'])
+    @app.route('/signup', methods=['POST','GET'])
     def signup():
-        username = request.json.get('username', None)
-        password = request.json.get('password', None)
-        print("password:", password)
-        print("Username:", username)
+        if request.method == "POST":
+            username = request.json.get('username', None)
+            password = request.json.get('password', None)
+            print("password:", password)
+            print("Username:", username)
 
-        user = User.query.filter_by(userName=username).first()
+            user = User.query.filter_by(userName=username).first()
 
-        if user == None:
-            user = User(userName = username, passWord = password)
-            db.session.add(user)
-            db.session.commit()
-            print("User Created")
-            return jsonify({"msg": "User Created"}), 200
+            if user == None:
+                user = User(userName = username, passWord = password)
+                db.session.add(user)
+                db.session.commit()
+                print("User Created")
+                return jsonify({"msg": "User Created"}), 200
+            else:
+                print("invalid UserName")
+                return jsonify({"msg": "Username exist, try another"}), 401
         else:
-            print("invalid UserName")
-            return jsonify({"msg": "Username exist, try another"}), 401
+            return render_template('signup.html')
 
 
-    @app.route('/logout',  methods=['POST'])
+    @app.route('/logout',  methods=['GET'])
     @jwt_required()
     def logout():
         jti = get_token()
         print(jti)
         blacklist.add(jti)
-        return jsonify({'msg': 'Logged out'}), 200
+        return render_template('index.html'), 200
+    
+    # @app.route('/logout', methods=['GET'])
+    # def show_logout():
+    #     return render_template('login.html')
 
     def check_if_token_in_blacklist(decrypted_token):
         jti = decrypted_token['jti']
@@ -133,6 +150,7 @@ def create_app(test_config=False):
         new_post = Post(title=title, authorId=authorId, date=date, content=content)
         db.session.add(new_post)
         db.session.commit()
+        print(new_post.content)
         return jsonify({'msg': 'Post Posted!'}), 200
 
 
@@ -150,7 +168,44 @@ def create_app(test_config=False):
         db.session.add(new_reply)
         db.session.commit()
         return jsonify({'msg': 'Reply Posted!'}), 200
+    
 
+    @app.route('/posts/<int:post_id>', methods=['DELETE'])
+    @jwt_required()
+    def delete_post(post_id):
+
+        current_user = get_jwt_identity()
+        post = Post.query.get(post_id)
+
+        print(current_user)
+
+        if post is None:
+            return jsonify({'msg': 'Post not found'}), 404
+
+        if User.query.get(post.authorId).userName != current_user and current_user != 'admin':
+            return jsonify({'msg': 'Unauthorized'}), 403
+
+        db.session.delete(post)
+        db.session.commit()
+        return jsonify({'msg': 'Post deleted'}), 200
+
+    @app.route('/replies/<int:reply_id>', methods=['DELETE'])
+    @jwt_required()
+    def delete_reply(reply_id):
+        current_user = get_jwt_identity()
+        reply = Reply.query.get(reply_id)
+
+        print(User.query.get(reply.authorId).userName)
+
+        if reply is None:
+            return jsonify({'msg': 'Reply not found'}), 404
+        if User.query.get(reply.authorId).userName != current_user and current_user != 'admin':
+            return jsonify({'msg': 'Unauthorized'}), 403
+
+        db.session.delete(reply)
+        db.session.commit()
+        return jsonify({'msg': 'Reply deleted'}), 200
+    
 
 
     @app.cli.command("init_db") 
@@ -178,4 +233,5 @@ def create_app(test_config=False):
 
 if __name__ == "__main__":
     db.create_all()
-    app.run(host='0.0.0.0', port=5000, debug=False)
+
+
