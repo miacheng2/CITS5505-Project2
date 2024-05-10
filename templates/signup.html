@@ -169,7 +169,10 @@
                         if (result.status === 200) {
                             console.log('Success:', result.data);
                             location.href = "/login";
+<<<<<<< HEAD
                             // location.href = "./login.html";
+=======
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
                         } else {
                             console.log('Failed:', result.data);
                             document.getElementById("warning").innerHTML = '<p>' + result.data.msg + '</p> <p>Or you can <a href="/login">login here</a>.</p>';

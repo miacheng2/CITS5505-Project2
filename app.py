@@ -1,6 +1,10 @@
 from datetime import datetime
+<<<<<<< HEAD
 from operator import index
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory
+=======
+from flask import Flask, request, jsonify, send_from_directory, render_template
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, set_access_cookies, get_jwt, get_jwt_identity
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
@@ -41,10 +45,15 @@ def create_app(test_config=False):
 
     @app.route('/', methods=['GET'])
     @app.route('/index', methods=['GET'])
+<<<<<<< HEAD
     #@app.route('/login', methods=['POST'])
     def testMsg():
         return render_template('index.html')
         #return jsonify({"msg": "testing"}), 200
+=======
+    def testMsg():
+        return render_template('index.html')
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
 
 
     @login_manager.user_loader
@@ -52,9 +61,15 @@ def create_app(test_config=False):
         print(User.query.get(user_id).id)
         return User.query.get(user_id)
     
+<<<<<<< HEAD
     @app.route('/login', methods=['POST','GET'])
     def login():
         if request.method == "POST":
+=======
+    @app.route('/login', methods=['POST', 'GET'])
+    def login():
+        if request.method == 'POST':
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
             username = request.json.get('username', None)
             password = request.json.get('password', None)
             user = User.query.filter_by(userName=username).first()
@@ -76,9 +91,15 @@ def create_app(test_config=False):
         else:
             return render_template('login.html')
 
+<<<<<<< HEAD
     @app.route('/signup', methods=['POST','GET'])
     def signup():
         if request.method == "POST":
+=======
+    @app.route('/signup', methods=['POST', 'GET'])
+    def signup():
+        if request.method == 'POST':
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
             username = request.json.get('username', None)
             password = request.json.get('password', None)
             print("password:", password)
@@ -97,11 +118,16 @@ def create_app(test_config=False):
                 return jsonify({"msg": "Username exist, try another"}), 401
         else:
             return render_template('signup.html')
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
 
 
     @app.route('/logout',  methods=['GET'])
     @jwt_required()
     def logout():
+<<<<<<< HEAD
         jti = get_token()
         print(jti)
         blacklist.add(jti)
@@ -110,6 +136,18 @@ def create_app(test_config=False):
     # @app.route('/logout', methods=['GET'])
     # def show_logout():
     #     return render_template('login.html')
+=======
+            jti = get_token()
+            print(jti)
+            blacklist.add(jti)
+            return jsonify({'msg': 'Logged out'}), 200
+
+    @app.route('/logout', methods=['GET'])
+    def show_logout():
+        return render_template('logout.html')
+       
+
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
 
     def check_if_token_in_blacklist(decrypted_token):
         jti = decrypted_token['jti']
@@ -220,7 +258,9 @@ def create_app(test_config=False):
         db.session.commit()
         print('Added default admin user')
 
-    
+    @app.route('/profile', methods=['GET'])
+    def get_profile():
+        return render_template('profile.html')
 
     def get_token():
         auth_header = request.headers.get('Authorization')

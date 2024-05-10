@@ -11,7 +11,12 @@
     <p>This is the home page</p>
     <p id="currentUser"></p>
     <a href="/login">Login</a>
+<<<<<<< HEAD
     <button onclick="logout()">Logout</button>
+=======
+    <a href="/logout">Logout</a>
+    <a href="/profile">Profile</a>
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
     <form onsubmit="sendPost()" return false;>
         <h3>Create a new post here:</h3>
         <!-- required means the input box has to have a value before submission. -->
@@ -27,23 +32,28 @@
 
 </body>
 
-<script>
+<script type="module">
+    import { jwtToken, userId, userName, post_array, getPost, sendReply, sendPost } from '../static/js_module.js';
     // When the page is loaded, do following things
+
     window.onload = function () {
-        var jwtToken = localStorage.getItem("token")
-        var userId = localStorage.getItem("userId")
-        var userName = localStorage.getItem("userName")
 
-
-        if (jwtToken != null || jwtToken != undefined) {
+        getPost(jwtToken).then(() => {
             document.getElementById("post_btn").disabled = false;
             document.getElementById("login_warning").style.display = "none";
-            document.getElementById("currentUser").innerHTML = "Hi," + userName
+            document.getElementById("currentUser").innerHTML = "Hi," + userName;
 
-            var apiAddress = window.location.hostname
-            if (apiAddress == "") {
-                apiAddress = "127.0.0.1"
+            for (var i = post_array.length - 1; i >= 0; i--) {
+                var temp_content = '<h2>' + post_array[i].authorName + ' posted on: ' + post_array[i].date + ', Said: ' + post_array[i].title + '</h2><h5>' + post_array[i].content + '</h5>';
+                var temp_input = '<input type="text" id=' + post_array[i].id + ' placeholder="Comment Here~" required/>'
+                var temp_btn = '<button type="submit">Post Comment</button>'
+                var temp_replys = ''
+                for (var n = 0; n < post_array[i].replyData.length; n++) {
+                    temp_replys += '<p>At ' + post_array[i].replyData[n].date + ' ' + post_array[i].replyData[n].authorName + ' commented:</p> <p> ' + post_array[i].replyData[n].content + ' </p>'
+                }
+                document.getElementById("postsBox").innerHTML += '<div><form onsubmit="sendReply(' + post_array[i].id + '); return false;">' + temp_content + temp_replys + temp_input + temp_btn + '</form></div>'
             }
+<<<<<<< HEAD
             fetch('http://' + apiAddress + ':5000/getPosts', {
                 method: 'GET',
                 headers: {
@@ -97,8 +107,14 @@
         else {
             console.log("You are not logged in, log in first")
         }
+=======
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
 
+        }).catch(error => {
+            console.error("An error occurred:", error);
+        });
     }
+<<<<<<< HEAD
 
 
     // 删除帖子的函数
@@ -226,6 +242,12 @@
                 console.error('Error:', error);
             });
     }
+=======
+
+    window.sendReply = sendReply;
+
+    window.sendPost = sendPost;
+>>>>>>> b4217d08ad9f2aa69a095531e9759fc3708baad0
 
     function logout() {
 
