@@ -43,7 +43,9 @@
       <div id="post"><a href="" class="default-button">Post</a></div>
       <div id="profile">
         <a href="" class="default-button"
-          ><div><img src="/static/pic/HomePage-image/avatar.png" alt="" /></div>
+          ><div>
+            <img class="avatarImg" src="" alt="" />
+          </div>
           <div><p id="currentUser"></p></div>
           <div>
             <img src="/static/pic/HomePage-image/dotdotdot.png" alt="" /></div
@@ -60,11 +62,11 @@
       <div id="header-post">
         <form onsubmit="sendPost()" return false;>
           <div>
-            <img src="/static/pic/HomePage-image/avatar.png" alt="" />
+            <img class="avatarImg" src="" alt="" />
             <input
               type="text"
               id="new_post_title"
-              placeholder="Title goes Here~"
+              placeholder="Title Goes Here~"
               required
             />
           </div>
@@ -72,7 +74,7 @@
             <input
               type="text"
               id="new_post_content"
-              placeholder="Post content goes Here~"
+              placeholder="Post Content Goes Here~"
               requied
             />
           </div>
@@ -119,7 +121,6 @@
             autoplay
             loop
           ></video>
-          <!-- <button id="showcomment">click here</button> -->
         </div>
       </div>
       <div id="postsBox"></div>
@@ -132,29 +133,38 @@
             alt=""
           />
         </div>
-        <input type="text" placeholder="search" />
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="search"
+          onkeypress="handleKeyPress(event)"
+        />
+      </div>
+      <div id="searchResults">
+        <!-- 搜索结果将显示在这里 -->
       </div>
       <div id="subscribe">
         <h1>Subscribe to Premium</h1>
-        <p>
-          Subscribe to unlock new features and if eligible, receive a share of
-          ads revenue.
-        </p>
-        <div id="post"><a href="" class="default-button">Subscribe</a></div>
+        <p>Subscribe to unlock new features and never miss any news.</p>
+        <form id="subscribeForm">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <button type="submit" class="default-button">Subscribe</button>
+        </form>
       </div>
       <div id="whatshappening">
         <h1>What's happening</h1>
         <div id="rank1">
-          <div><img src="/static/pic/HomePage-image/clothes.png" alt="" /></div>
+          <div><img src="/static/pic/HomePage-image/hot.png" alt="" /></div>
           <div>
-            <div>Second-hand</div>
-            <div class="post-counts">1,509 posts</div>
+            <div id="topic1"></div>
+            <div id="topicPost1" class="post-counts"></div>
           </div>
         </div>
         <div class="rank">
           <div>
-            <div>Repairing thins</div>
-            <div class="post-counts">1,239 posts</div>
+            <div id="topic2"></div>
+            <div id="topicPost2" class="post-counts"></div>
           </div>
           <div class="rank-more">
             <img src="/static/pic/HomePage-image/dotdotdot.png" alt="" />
@@ -162,8 +172,8 @@
         </div>
         <div class="rank">
           <div>
-            <div>Hobbies</div>
-            <div class="post-counts">1,050 posts</div>
+            <div id="topic3"></div>
+            <div id="topicPost3" class="post-counts"></div>
           </div>
           <div class="rank-more">
             <img src="/static/pic/HomePage-image/dotdotdot.png" alt="" />
@@ -171,8 +181,8 @@
         </div>
         <div class="rank">
           <div>
-            <div>Dates</div>
-            <div class="post-counts">820 posts</div>
+            <div id="topic4"></div>
+            <div id="topicPost4" class="post-counts"></div>
           </div>
           <div class="rank-more">
             <img src="/static/pic/HomePage-image/dotdotdot.png" alt="" />
@@ -180,8 +190,8 @@
         </div>
         <div class="rank">
           <div>
-            <div>Movies</div>
-            <div class="post-counts">429 posts</div>
+            <div id="topic5"></div>
+            <div id="topicPost5" class="post-counts"></div>
           </div>
           <div class="rank-more">
             <img src="/static/pic/HomePage-image/dotdotdot.png" alt="" />
@@ -189,8 +199,8 @@
         </div>
         <div class="rank">
           <div>
-            <div>Foodie</div>
-            <div class="post-counts">170 posts</div>
+            <div id="topic6"></div>
+            <div id="topicPost6" class="post-counts"></div>
           </div>
           <div class="rank-more">
             <img src="/static/pic/HomePage-image/dotdotdot.png" alt="" />
@@ -202,33 +212,54 @@
         <div>
           <h1>Who to follow</h1>
           <div class="follow-area">
-            <img src="/static/pic/HomePage-image/content-avatar1.png" alt="" />
-            <div>
-              <div>Edward</div>
-              <img src="/static/pic/HomePage-image/medal1.png" alt="" />
+            <img
+              id="rank1avatar"
+              src="/static/pic/HomePage-image/content-avatar1.png"
+              alt=""
+            />
+            <div class="rankAndposts">
+              <div>
+                <div id="rank1author"></div>
+                <img src="/static/pic/HomePage-image/medal1.png" alt="" />
+              </div>
+              <div id="rank1post" class="post-counts">post</div>
             </div>
             <div class="follow-user">
-              <a href="" class="default-button">Follow</a>
+              <button class="default-button">Follow</button>
             </div>
           </div>
           <div class="follow-area">
-            <img src="/static/pic/HomePage-image/content-avatar2.png" alt="" />
-            <div>
-              <div>Andy</div>
-              <img src="/static/pic/HomePage-image/medal1.png" alt="" />
+            <img
+              id="rank2avatar"
+              src="/static/pic/HomePage-image/content-avatar2.png"
+              alt=""
+            />
+            <div class="rankAndposts">
+              <div>
+                <div id="rank2author"></div>
+                <img src="/static/pic/HomePage-image/medal1.png" alt="" />
+              </div>
+              <div id="rank2post" class="post-counts">post</div>
             </div>
             <div class="follow-user">
-              <a href="" class="default-button">Follow</a>
+              <button class="default-button">Follow</button>
             </div>
           </div>
           <div class="follow-area">
-            <img src="/static/pic/HomePage-image/content-avatar3.png" alt="" />
-            <div>
-              <div>Joey</div>
-              <img src="/static/pic/HomePage-image/medal1.png" alt="" />
+            <img
+              id="rank3avatar"
+              src="/static/pic/HomePage-image/content-avatar3.png"
+              alt=""
+            />
+            <div class="rankAndposts">
+              <div>
+                <div id="rank3author"></div>
+                <img src="/static/pic/HomePage-image/medal1.png" alt="" />
+              </div>
+              <div id="rank3post" class="post-counts">post</div>
             </div>
             <div class="follow-user">
-              <a href="" class="default-button">Follow</a>
+              <button class="default-button">Follow</button>
             </div>
           </div>
           <div id="showmore">Show more</div>
