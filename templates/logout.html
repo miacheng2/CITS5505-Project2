@@ -15,14 +15,24 @@
     window.onload = function () {
 
         var jwtToken = localStorage.getItem("token")
-
         var apiAddress = window.location.hostname
+        console.log(jwtToken)
+
+        if (!jwtToken) {
+            // 如果用户未登录，隐藏或修改显示的内容
+            document.getElementById('posts').style.display = 'none';
+            document.getElementById('replies').style.display = 'none';
+        } else {
+            // 可以加载用户数据的API调用
+            fetchPostsAndReplies(jwtToken);
+        }
+
         if (apiAddress == "") {
             apiAddress = "127.0.0.1"
         }
 
         fetch('http://' + apiAddress + ':5000/logout', {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Authorization': `Bearer ${jwtToken}`,
                 'Content-Type': 'application/json'
@@ -45,13 +55,13 @@
                     localStorage.removeItem('token');
                     localStorage.removeItem('userName');
                     localStorage.removeItem('userId');
-                    location.href = "./index.html";
+                    location.href = "/index";
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert('Logout Failed');
-                location.href = "./index.html";
+                location.href = "/index";
             });
 
     }

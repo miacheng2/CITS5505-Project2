@@ -1,9 +1,11 @@
 # models.py
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import UserMixin
 
 
 db = SQLAlchemy()
+migrate = Migrate()
 
 class Post(db.Model):
         __table_args__ = {'extend_existing': True}
