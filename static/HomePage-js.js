@@ -1,17 +1,17 @@
 // Asign avatar to each user
 
 const avatars = [
-  "../static/pic/HomePage-image/content-avatar1.png",
-  "../static/pic/HomePage-image/content-avatar2.png",
-  "../static/pic/HomePage-image/content-avatar3.png",
-  "../static/pic/HomePage-image/content-avatar4.png",
-  "../static/pic/HomePage-image/content-avatar5.png",
-  "../static/pic/HomePage-image/content-avatar6.png",
-  "../static/pic/HomePage-image/content-avatar7.png",
-  "../static/pic/HomePage-image/content-avatar8.png",
-  "../static/pic/HomePage-image/content-avatar9.png",
-  "../static/pic/HomePage-image/content-avatar10.png",
-  "../static/pic/HomePage-image/content-avatardefault.png",
+  "/static/pic/HomePage-image/content-avatar1.png",
+  "/static/pic/HomePage-image/content-avatar2.png",
+  "/static/pic/HomePage-image/content-avatar3.png",
+  "/static/pic/HomePage-image/content-avatar4.png",
+  "/static/pic/HomePage-image/content-avatar5.png",
+  "/static/pic/HomePage-image/content-avatar6.png",
+  "/static/pic/HomePage-image/content-avatar7.png",
+  "/static/pic/HomePage-image/content-avatar8.png",
+  "/static/pic/HomePage-image/content-avatar9.png",
+  "/static/pic/HomePage-image/content-avatar10.png",
+  "/static/pic/HomePage-image/content-avatardefault.png",
 ];
 
 const letterToAvatarIndex = {
@@ -108,7 +108,7 @@ window.onload = function () {
   var imgElements = document.getElementsByClassName("avatarImg");
   for (var i = 0; i < imgElements.length; i++) {
     imgElements[i].src =
-      "../static/pic/HomePage-image/content-avatar" + avatarIndex + ".png";
+      "/static/pic/HomePage-image/content-avatar" + avatarIndex + ".png";
   }
 
   if (jwtToken != null || jwtToken != undefined) {
@@ -177,7 +177,7 @@ window.onload = function () {
 
             authorDiv.innerHTML = `${authorName}`;
             postDiv.innerHTML = `${postCount} posts`;
-            avatarDiv.src = `../static/pic/HomePage-image/content-avatar${avatarIndex}.png`;
+            avatarDiv.src = `/static/pic/HomePage-image/content-avatar${avatarIndex}.png`;
           });
 
           // Asign avatar to each author
@@ -207,7 +207,7 @@ window.onload = function () {
                     <div class='user-name'>
                       ${result.data.post[i].authorName}
                       <div>
-                        <img src='../static/pic/HomePage-image/medal1.png' alt='' />
+                        <img src='/static/pic/HomePage-image/medal1.png' alt='' />
                       </div>
                     </div>
                     <div class='post-date'>
@@ -346,7 +346,6 @@ function sendReply(replyToPostId) {
 }
 // The following function works for posting the post.
 function sendPost() {
-  console.log("test")
   var jwtToken = localStorage.getItem("token");
 
   const authorId = localStorage.getItem("userId");
