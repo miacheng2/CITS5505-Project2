@@ -155,3 +155,48 @@ export function handleKeyPress(event) {
     }
 }
 
+export function deletePost(postId) {
+    var jwtToken = localStorage.getItem("token");
+    fetch(`/posts/${postId}`, {
+        method: 'DELETE', // 使用 DELETE 方法
+        headers: {
+            'Authorization': `Bearer ${jwtToken}`,
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("Post deleted successfully");
+                window.location.reload(); // 刷新页面以更新内容
+            } else {
+                console.error("Failed to delete post");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+export function deleteReply(replyId) {
+    var jwtToken = localStorage.getItem("token");
+
+    fetch(`/replies/${replyId}`, {
+        method: 'DELETE', // 使用 DELETE 方法
+        headers: {
+            'Authorization': `Bearer ${jwtToken}`,
+            'Content-Type': 'application/json'
+        }
+
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("Reply deleted successfully");
+                window.location.reload(); // 刷新页面以更新内容
+            } else {
+                console.error("Failed to delete reply");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}

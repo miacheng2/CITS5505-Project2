@@ -1,4 +1,4 @@
-import { jwtToken, userId, userName, post_array, getPost, sendReply, sendPost, searchArticles, handleKeyPress } from '../static/js_module.js';
+import { jwtToken, userId, userName, post_array, getPost, sendReply, sendPost, searchArticles, handleKeyPress, deletePost } from '../static/js_module.js';
 
 $(document).ready(function () {
     // Asign avatar to each user
@@ -174,6 +174,14 @@ $(document).ready(function () {
             } else {
                 console.error("authorName is empty");
             }
+
+            if (post_array[i].authorName == userName) {
+                var temp_deletePost = '<button onclick="deletePost(' + post_array[i].id + ')">Delete Post</button>';
+            }
+            else {
+                var temp_deletePost = "";
+            }
+
             var temp_content = `<article id='article${index}'>
                 <div id='content'>
                   <img src='${avatar}' alt='' />
@@ -195,16 +203,24 @@ $(document).ready(function () {
                 <div class='user-content'>
                   <p>${post_array[i].content}</p>
                 </div>
+                ${temp_deletePost}
               </article>`;
 
             var temp_input =
                 '<input type="text" class="comment-textbox" id=' +
                 post_array[i].id +
-                ' placeholder="Comment Here~" required/>';
+                ' placeholder="Comment Here~" >';
             var temp_btn =
                 '<button type="submit" class="default-button">Reply</button>';
             var temp_replys = "";
             for (var n = 0; n < post_array[i].replyData.length; n++) {
+                if (post_array[i].replyData[n].authorName == userName) {
+                    var deleteReply_btn = '<button onclick="deleteReply(' + post_array[i].replyData[n].id + ')">Delete Reply</button>';
+                }
+                else {
+                    var deleteReply_btn = "";
+                }
+
                 temp_replys += `
                 <div class='comment-area'>
 
@@ -216,7 +232,7 @@ $(document).ready(function () {
                           </div>
                         </div>
                         <div class='reply'><p class='comment-content'>"${post_array[i].replyData[n].content}" </p></div>
-
+                        ${deleteReply_btn}
                 </div>`;
             }
 
@@ -277,7 +293,9 @@ $(document).ready(function () {
 
     window.handleKeyPress = handleKeyPress;
 
+    window.deletePost = deletePost;
 
+    window.deleteReply = deleteReply;
     // subscribe function
     document.addEventListener("DOMContentLoaded", function () {
         document
