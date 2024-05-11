@@ -1,5 +1,6 @@
 from datetime import datetime
-from flask import Flask, request, jsonify, send_from_directory, render_template
+from operator import index
+from flask import Flask, request, jsonify, send_from_directory, render_template,redirect
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, set_access_cookies, get_jwt, get_jwt_identity
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
@@ -40,7 +41,7 @@ def create_app(test_config=False):
     @app.route('/', methods=['GET'])
     @app.route('/index', methods=['GET'])
     def testMsg():
-        return render_template('index_q.html')
+        return render_template('index.html')
 
 
     @login_manager.user_loader
@@ -184,6 +185,42 @@ def create_app(test_config=False):
     @app.route('/profile', methods=['GET'])
     def get_profile():
         return render_template('profile.html')
+    
+    @app.route('/posts/<int:post_id>', methods=['DELETE'])
+    @jwt_required()
+    def delete_post(post_id):
+
+        current_user = get_jwt_identity()
+        post = Post.query.get(post_id)
+
+        print(current_user)
+
+        if post is None:
+            return jsonify({'msg': 'Post not found'}), 404
+
+        if User.query.get(post.authorId).userName != current_user and current_user != 'admin':
+            return jsonify({'msg': 'Unauthorized'}), 403
+
+        db.session.delete(post)
+        db.session.commit()
+        return jsonify({'msg': 'Post deleted'}), 200
+
+    @app.route('/replies/<int:reply_id>', methods=['DELETE'])
+    @jwt_required()
+    def delete_reply(reply_id):
+        current_user = get_jwt_identity()
+        reply = Reply.query.get(reply_id)
+
+        print(User.query.get(reply.authorId).userName)
+
+        if reply is None:
+            return jsonify({'msg': 'Reply not found'}), 404
+        if User.query.get(reply.authorId).userName != current_user and current_user != 'admin':
+            return jsonify({'msg': 'Unauthorized'}), 403
+
+        db.session.delete(reply)
+        db.session.commit()
+        return jsonify({'msg': 'Reply deleted'}), 200
 
     def get_token():
         auth_header = request.headers.get('Authorization')

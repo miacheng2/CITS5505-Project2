@@ -1,242 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/HomePage-css.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="module" src="../static/HomePage_t.js"></script>
-    <title>Document</title>
-</head>
-
-<body>
-    <div id="navigation-area">
-        <div id="logo">
-            <img src="../static/pic/HomePage-image/logo.png" alt="" />
-        </div>
-        <div id="navigation">
-            <ul>
-                <li><img src="../static/pic/HomePage-image/home.png" alt="" />Home</li>
-                <li>
-                    <img src="../static/pic/HomePage-image/explore.png" alt="" />Explore
-                </li>
-                <li>
-                    <img src="../static/pic/HomePage-image/notification.png" alt="" />Notifications
-                </li>
-                <li>
-                    <img src="../static/pic/HomePage-image/message.png" alt="" />Messages
-                </li>
-                <li>
-                    <img src="../static/pic/HomePage-image/communities.png" alt="" />Communities
-                </li>
-                <li>
-                    <img src="../static/pic/HomePage-image/profile.png" alt="" /><a href="/profile">Profile</a>
-                </li>
-                <li><img src="../static/pic/HomePage-image/more.png" alt="" />More</li>
-            </ul>
-        </div>
-        <div id="post"><a href="" class="default-button">Post</a></div>
-        <div id="profile">
-            <a href="" class="default-button">
-                <div>
-                    <img class="avatarImg" src="" alt="" />
-                </div>
-                <div>
-                    <p id="currentUser"></p>
-                </div>
-                <div>
-                    <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
-                </div>
-            </a>
-        </div>
-        <div><a href="/login">Login</a></div>
-        <div id="homepagelogout"><a href="/logout">Logout</a></div>
+{% block content %}
+<div id="content-area">
+    <div id="header">
+        <div id="foryou">For you</div>
+        <div id="following">Following</div>
     </div>
-    <div id="content-area">
-        <div id="header">
-            <div id="foryou">For you</div>
-            <div id="following">Following</div>
-        </div>
-        <div id="header-post">
-            <form onsubmit="sendPost()" return false;>
-                <div>
-                    <img class="avatarImg" src="" alt="" />
-                    <input type="text" id="new_post_title" placeholder="Title Goes Here~" required />
-                </div>
-                <div>
-                    <input type="text" id="new_post_content" placeholder="Post Content Goes Here~" requied />
-                </div>
-                <div id="replyoption">
-                    <img src="../static/pic/HomePage-image/post-world.png" alt="" />
-                    <p>Everyone can reply</p>
-                </div>
-                <div>
-                    <img src="../static/pic/HomePage-image/post-picture.png" alt="" />
-                    <img src="../static/pic/HomePage-image/post-emoji.png" alt="" />
-                    <img src="../static/pic/HomePage-image/post-schedule.png" alt="" />
-                    <button type="submit" id="post_btn" class="default-button" disabled>
-                        Post
-                    </button>
-                </div>
-                <p id="login_warning">You have to login to Post!</p>
-            </form>
-        </div>
-        <div class="content">
+    <div id="header-post">
+        <form onsubmit="sendPost()" return false;>
             <div>
-                <img src="../static/pic/HomePage-image/content-avatar1.png" alt="" />
-                <div>
-                    <div class="user-name">
-                        Edward
-                        <div>
-                            <img src="../static/pic/HomePage-image/medal1.png" alt="" />
-                        </div>
+                <img class="avatarImg" src="" alt="" />
+                <input type="text" id="new_post_title" placeholder="Title Goes Here~" required />
+            </div>
+            <div>
+                <input type="text" id="new_post_content" placeholder="Post Content Goes Here~" requied />
+            </div>
+            <div id="replyoption">
+                <img src="../static/pic/HomePage-image/post-world.png" alt="" />
+                <p>Everyone can reply</p>
+            </div>
+            <div>
+                <img src="../static/pic/HomePage-image/post-picture.png" alt="" />
+                <img src="../static/pic/HomePage-image/post-emoji.png" alt="" />
+                <img src="../static/pic/HomePage-image/post-schedule.png" alt="" />
+                <button type="submit" id="post_btn" class="default-button" disabled>
+                    Post
+                </button>
+            </div>
+            <p id="login_warning">You have to login to Post!</p>
+        </form>
+    </div>
+    <div class="content">
+        <div>
+            <img src="../static/pic/HomePage-image/content-avatar1.png" alt="" />
+            <div>
+                <div class="user-name">
+                    Edward
+                    <div>
+                        <img src="../static/pic/HomePage-image/medal1.png" alt="" />
                     </div>
-                    <div class="post-date">14:12 Apr 27</div>
                 </div>
-            </div>
-            <div class="user-content">
-                <p>
-                    "Hey there! 😊 I'm having a bit of trouble with my TV—it's not
-                    working at the moment. 📺 I've tried a few things, but nothing seems
-                    to be fixing it. 🤔 I was wondering if there's anyone around who
-                    might be able to lend a hand and help me figure out what's going on.
-                    🙏 Any advice or assistance would be greatly appreciated! Thanks in
-                    advance for any help you can offer. 😊"
-                </p>
-                <video src="../static/pic/HomePage-video/video1.mp4" controls autoplay loop></video>
+                <div class="post-date">14:12 Apr 27</div>
             </div>
         </div>
-        <div id="postsBox"></div>
+        <div class="user-content">
+            <p>
+                "Hey there! 😊 I'm having a bit of trouble with my TV—it's not
+                working at the moment. 📺 I've tried a few things, but nothing seems
+                to be fixing it. 🤔 I was wondering if there's anyone around who
+                might be able to lend a hand and help me figure out what's going on.
+                🙏 Any advice or assistance would be greatly appreciated! Thanks in
+                advance for any help you can offer. 😊"
+            </p>
+            <video src="../static/pic/HomePage-video/video1.mp4" controls autoplay loop></video>
+        </div>
     </div>
-    <div id="side-area">
-        <div id="search">
+    <div id="postsBox"></div>
+</div>
+{% endblock %}
+
+{% block sideArea %}
+<div id="side-area">
+    <div id="search">
+        <div>
+            <img src="../static/pic/HomePage-image/magnifying-glass-white.png" alt="" />
+        </div>
+        <input type="text" id="searchInput" placeholder="search" onkeypress="handleKeyPress(event)" />
+    </div>
+    <div id="searchResults">
+        <!-- 搜索结果将显示在这里 -->
+    </div>
+    <div id="subscribe">
+        <h1>Subscribe to Premium</h1>
+        <p>Subscribe to unlock new features and never miss any news.</p>
+        <form id="subscribeForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+            <button type="submit" class="default-button">Subscribe</button>
+        </form>
+    </div>
+    <div id="whatshappening">
+        <h1>What's happening</h1>
+        <div id="rank1">
+            <div><img src="../static/pic/HomePage-image/hot.png" alt="" /></div>
             <div>
-                <img src="../static/pic/HomePage-image/magnifying-glass-white.png" alt="" />
+                <div id="topic1"></div>
+                <div id="topicPost1" class="post-counts"></div>
             </div>
-            <input type="text" id="searchInput" placeholder="search" onkeypress="handleKeyPress(event)" />
         </div>
-        <div id="searchResults">
-            <!-- 搜索结果将显示在这里 -->
+        <div class="rank">
+            <div>
+                <div id="topic2"></div>
+                <div id="topicPost2" class="post-counts"></div>
+            </div>
+            <div class="rank-more">
+                <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+            </div>
         </div>
-        <div id="subscribe">
-            <h1>Subscribe to Premium</h1>
-            <p>Subscribe to unlock new features and never miss any news.</p>
-            <form id="subscribeForm">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required />
-                <button type="submit" class="default-button">Subscribe</button>
-            </form>
+        <div class="rank">
+            <div>
+                <div id="topic3"></div>
+                <div id="topicPost3" class="post-counts"></div>
+            </div>
+            <div class="rank-more">
+                <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+            </div>
         </div>
-        <div id="whatshappening">
-            <h1>What's happening</h1>
-            <div id="rank1">
-                <div><img src="../static/pic/HomePage-image/hot.png" alt="" /></div>
-                <div>
-                    <div id="topic1"></div>
-                    <div id="topicPost1" class="post-counts"></div>
+        <div class="rank">
+            <div>
+                <div id="topic4"></div>
+                <div id="topicPost4" class="post-counts"></div>
+            </div>
+            <div class="rank-more">
+                <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+            </div>
+        </div>
+        <div class="rank">
+            <div>
+                <div id="topic5"></div>
+                <div id="topicPost5" class="post-counts"></div>
+            </div>
+            <div class="rank-more">
+                <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+            </div>
+        </div>
+        <div class="rank">
+            <div>
+                <div id="topic6"></div>
+                <div id="topicPost6" class="post-counts"></div>
+            </div>
+            <div class="rank-more">
+                <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+            </div>
+        </div>
+        <div id="showmore">Show more</div>
+    </div>
+    <div id="follow">
+        <div>
+            <h1>Who to follow</h1>
+            <div class="follow-area">
+                <img id="rank1avatar" src="../static/pic/HomePage-image/content-avatar1.png" alt="" />
+                <div class="rankAndposts">
+                    <div>
+                        <div id="rank1author"></div>
+                        <img src="../static/pic/HomePage-image/medal1.png" alt="" />
+                    </div>
+                    <div id="rank1post" class="post-counts">post</div>
+                </div>
+                <div class="follow-user">
+                    <button class="default-button">Follow</button>
                 </div>
             </div>
-            <div class="rank">
-                <div>
-                    <div id="topic2"></div>
-                    <div id="topicPost2" class="post-counts"></div>
+            <div class="follow-area">
+                <img id="rank2avatar" src="../static/pic/HomePage-image/content-avatar2.png" alt="" />
+                <div class="rankAndposts">
+                    <div>
+                        <div id="rank2author"></div>
+                        <img src="../static/pic/HomePage-image/medal1.png" alt="" />
+                    </div>
+                    <div id="rank2post" class="post-counts">post</div>
                 </div>
-                <div class="rank-more">
-                    <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
-                </div>
-            </div>
-            <div class="rank">
-                <div>
-                    <div id="topic3"></div>
-                    <div id="topicPost3" class="post-counts"></div>
-                </div>
-                <div class="rank-more">
-                    <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+                <div class="follow-user">
+                    <button class="default-button">Follow</button>
                 </div>
             </div>
-            <div class="rank">
-                <div>
-                    <div id="topic4"></div>
-                    <div id="topicPost4" class="post-counts"></div>
+            <div class="follow-area">
+                <img id="rank3avatar" src="../static/pic/HomePage-image/content-avatar3.png" alt="" />
+                <div class="rankAndposts">
+                    <div>
+                        <div id="rank3author"></div>
+                        <img src="../static/pic/HomePage-image/medal1.png" alt="" />
+                    </div>
+                    <div id="rank3post" class="post-counts">post</div>
                 </div>
-                <div class="rank-more">
-                    <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
-                </div>
-            </div>
-            <div class="rank">
-                <div>
-                    <div id="topic5"></div>
-                    <div id="topicPost5" class="post-counts"></div>
-                </div>
-                <div class="rank-more">
-                    <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
-                </div>
-            </div>
-            <div class="rank">
-                <div>
-                    <div id="topic6"></div>
-                    <div id="topicPost6" class="post-counts"></div>
-                </div>
-                <div class="rank-more">
-                    <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+                <div class="follow-user">
+                    <button class="default-button">Follow</button>
                 </div>
             </div>
             <div id="showmore">Show more</div>
         </div>
-        <div id="follow">
-            <div>
-                <h1>Who to follow</h1>
-                <div class="follow-area">
-                    <img id="rank1avatar" src="../static/pic/HomePage-image/content-avatar1.png" alt="" />
-                    <div class="rankAndposts">
-                        <div>
-                            <div id="rank1author"></div>
-                            <img src="../static/pic/HomePage-image/medal1.png" alt="" />
-                        </div>
-                        <div id="rank1post" class="post-counts">post</div>
-                    </div>
-                    <div class="follow-user">
-                        <button class="default-button">Follow</button>
-                    </div>
-                </div>
-                <div class="follow-area">
-                    <img id="rank2avatar" src="../static/pic/HomePage-image/content-avatar2.png" alt="" />
-                    <div class="rankAndposts">
-                        <div>
-                            <div id="rank2author"></div>
-                            <img src="../static/pic/HomePage-image/medal1.png" alt="" />
-                        </div>
-                        <div id="rank2post" class="post-counts">post</div>
-                    </div>
-                    <div class="follow-user">
-                        <button class="default-button">Follow</button>
-                    </div>
-                </div>
-                <div class="follow-area">
-                    <img id="rank3avatar" src="../static/pic/HomePage-image/content-avatar3.png" alt="" />
-                    <div class="rankAndposts">
-                        <div>
-                            <div id="rank3author"></div>
-                            <img src="../static/pic/HomePage-image/medal1.png" alt="" />
-                        </div>
-                        <div id="rank3post" class="post-counts">post</div>
-                    </div>
-                    <div class="follow-user">
-                        <button class="default-button">Follow</button>
-                    </div>
-                </div>
-                <div id="showmore">Show more</div>
-            </div>
-            <div id="about-us">
-                <div>Terms of Service</div>
-                <div>Privacy Policy</div>
-                <div>Cookie Policy</div>
-                <div>More...</div>
-                <div>© 2024 Group Project.</div>
-            </div>
+        <div id="about-us">
+            <div>Terms of Service</div>
+            <div>Privacy Policy</div>
+            <div>Cookie Policy</div>
+            <div>More...</div>
+            <div>© 2024 Group Project.</div>
         </div>
     </div>
-</body>
-
-</html>
+</div>
+{% endblock %}
