@@ -5,6 +5,8 @@ from flask_jwt_extended import JWTManager, jwt_required, create_access_token, se
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 from config import Config, TestConfig
 from models import db, User, Post, Reply
+from jinja2 import Environment, FileSystemLoader
+
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pagedata.db'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -38,7 +40,7 @@ def create_app(test_config=False):
     @app.route('/', methods=['GET'])
     @app.route('/index', methods=['GET'])
     def testMsg():
-        return render_template('index.html')
+        return render_template('index_q.html')
 
 
     @login_manager.user_loader

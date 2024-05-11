@@ -1,11 +1,11 @@
-import { jwtToken, userId, userName, post_array, getPost, sendReply, sendPost } from '../static/js_module.js';
+import { jwtToken, userId, userName, post_array, getPost, sendReply, sendPost, searchArticles, handleKeyPress } from '../static/js_module.js';
 
 $(document).ready(function () {
     // Asign avatar to each user
 
     document.getElementById("post_btn").disabled = false;
     document.getElementById("login_warning").style.display = "none";
-    document.getElementById("currentUser").innerHTML = "Hi," + userName
+
 
     const avatars = [
         "/static/pic/HomePage-image/content-avatar1.png",
@@ -265,6 +265,7 @@ $(document).ready(function () {
                 "</form></div>";
         }
     })
+
     // The following function works for posting the reply.
     window.sendReply = sendReply;
 
@@ -272,36 +273,10 @@ $(document).ready(function () {
     window.sendPost = sendPost;
 
     // Search
+    window.searchArticles = searchArticles;
 
-    function handleKeyPress(event) {
-        if (event.key === "Enter") {
-            searchArticles();
-        }
-    }
+    window.handleKeyPress = handleKeyPress;
 
-    function searchArticles() {
-        const searchInput = document
-            .getElementById("searchInput")
-            .value.toLowerCase();
-        const searchResults = document.getElementById("searchResults");
-        searchResults.innerHTML = "";
-
-        const articles = document.querySelectorAll("article");
-
-        articles.forEach((article, index) => {
-            const title = article.querySelector(".user-title").textContent.trim();
-            const content = article.querySelector("p").textContent.trim();
-
-            if (
-                title.toLowerCase().includes(searchInput) ||
-                content.toLowerCase().includes(searchInput)
-            ) {
-                const articleElement = document.createElement("div");
-                articleElement.innerHTML = `<h3><a href="#article${index}">${title}</a></h3><p>${content}</p>`;
-                searchResults.appendChild(articleElement);
-            }
-        });
-    }
 
     // subscribe function
     document.addEventListener("DOMContentLoaded", function () {

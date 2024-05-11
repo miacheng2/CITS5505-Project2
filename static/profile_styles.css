@@ -5,40 +5,17 @@
     src: url("static/Dosis-Bold.ttf");
 }
 
-/* initialization */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-a {
-    color: black;
-    text-decoration: none;
-}
-
-.pro_body {
-    background-color: #f4f4f4;
-    display: flex;
-    height: 100vh;
-}
 
 /* style the front color of small ones */
 .small_color {
     color: rgb(124 136 146);
 }
 
-.sidebar {
-    width: 30%;
-    height: 100vh;
-    background-color: #f8f9fa;
-    padding: 20px;
-    overflow: hidden;
-}
 
 /* set the style of right part in profile page */
 .main {
-    width: 70%;
+    margin-left: calc(100vw - 1400px);
+    width: 1100px;
     height: 100vh;
     background-color: #fff;
     padding: 20px;

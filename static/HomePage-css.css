@@ -12,20 +12,25 @@ body * {
     color: black;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
 button {
     border: none;
-  }
+}
 
-  input {
+input {
     border: none;
     border-radius: 20px 20px 20px 0;
-  }
+}
 
 #navigation-area {
     position: fixed;
     margin-left: auto;
     margin-right: 1100px;
-    height:100vh;
+    height: 100vh;
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -59,8 +64,9 @@ button {
     font-family: Arial, sans-serif;
     cursor: pointer;
 }
+
 .default-button:hover {
-background-color: lightblue;
+    background-color: lightblue;
 }
 
 #profile {
@@ -77,7 +83,7 @@ background-color: lightblue;
     background-color: lightpink;
 }
 
-#profile a  div{
+#profile a div {
     display: flex;
     align-items: center;
 }
@@ -138,7 +144,7 @@ background-color: lightblue;
     border-radius: 0 0 20px 20px;
 }
 
-#replyoption img{
+#replyoption img {
     width: 20px;
     height: 20px;
     margin-right: 10px;
@@ -249,7 +255,7 @@ background-color: lightblue;
 }
 
 
-.reply-avatar{
+.reply-avatar {
     width: 40px !important;
     height: 40px !important;
 }
@@ -315,7 +321,7 @@ background-color: lightblue;
     font-size: 30px;
 }
 
-#subscribe .default-button{
+#subscribe .default-button {
     padding: 10px 20px;
 }
 
@@ -346,6 +352,7 @@ background-color: lightblue;
 .rank-more {
     margin-left: auto;
 }
+
 .rank img {
     width: 30px;
 }
@@ -359,7 +366,7 @@ background-color: lightblue;
     margin-bottom: 3px;
 }
 
-.follow-area img{
+.follow-area img {
     width: 50px;
 }
 
@@ -388,6 +395,6 @@ background-color: lightblue;
 }
 
 
-#about-us div{
+#about-us div {
     color: gray;
 }

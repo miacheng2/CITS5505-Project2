@@ -7,9 +7,7 @@ export let post_array = []
 export function getPost(jwtToken) {
     return new Promise((resolve, reject) => {
         if (jwtToken != null || jwtToken != undefined) {
-            // document.getElementById("post_btn").disabled = false;
-            // document.getElementById("login_warning").style.display = "none";
-            // document.getElementById("currentUser").innerHTML = "Hi," + userName
+
 
             let apiAddress = window.location.hostname
             if (apiAddress == "") {
@@ -127,5 +125,33 @@ export function sendPost() {
         });
 }
 
+export function searchArticles() {
+    const searchInput = document
+        .getElementById("searchInput")
+        .value.toLowerCase();
+    const searchResults = document.getElementById("searchResults");
+    searchResults.innerHTML = "";
 
+    const articles = document.querySelectorAll("article");
+
+    articles.forEach((article, index) => {
+        const title = article.querySelector(".user-title").textContent.trim();
+        const content = article.querySelector("p").textContent.trim();
+
+        if (
+            title.toLowerCase().includes(searchInput) ||
+            content.toLowerCase().includes(searchInput)
+        ) {
+            const articleElement = document.createElement("div");
+            articleElement.innerHTML = `<h3><a href="#article${index}">${title}</a></h3><p>${content}</p>`;
+            searchResults.appendChild(articleElement);
+        }
+    });
+}
+
+export function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        searchArticles();
+    }
+}
 
