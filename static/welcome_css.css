@@ -1,0 +1,106 @@
+.open::before {
+    content: '';
+    background-image: url(../static/pic/intro-back.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    width: 1159px;
+    height: 797px;
+    z-index: -1;
+}
+
+.open {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 226px 0px 120px 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+.introduct-item {
+    padding: 60px 30px;
+    border: 2px solid #f7f7f7;
+    border-radius: 5px;
+    transition: all .3s;
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+  
+.introduct-item:hover {
+    background-color: #fff;
+    border: 2px solid transparent;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  }
+  
+.header {
+    background-color: #f2f2f2;
+    padding: 25px;
+    text-align: center;
+    background-color: #ffa530;
+}
+
+#doc1, #doc2 {
+    padding-top: 10px;
+    font-size: 20px;
+    color:#000000
+}
+
+#title {
+    margin-left: 5vw;
+}
+
+h1, h2, h3, h4 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; }
+h1 { font-size: 70px; }
+h2 { font-size: 50px; }
+h4 { font-size: 40px; }
+
+a {
+    text-decoration: none !important;
+}
+
+p {
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+    color: #2a2a2a;
+}
+
+#homePageLink { 
+    font-size: 20px;
+    text-align: right;
+    text-decoration: none; 
+    color: #4471b8; 
+}
+
+.mt-number-animate {
+    font-family: 'Lucida Sans';
+    line-height: 40px;
+    height: 40px;
+    font-size: 36px;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+}
+
+.mt-number-animate .mt-number-animate-dot {
+    width: 15px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
+}
+
+.mt-number-animate .mt-number-animate-dom {
+    width: 20px;
+    text-align: center;
+    float: left;
+    position: relative;
+    top: 0;
+}
+
+.mt-number-animate .mt-number-animate-dom .mt-number-animate-span {
+    width: 100%;
+    float: left;
+}
