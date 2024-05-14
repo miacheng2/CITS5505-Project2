@@ -227,6 +227,33 @@ def create_app(test_config=False):
         if auth_header and auth_header.startswith('Bearer '):
             return auth_header.split(" ")[1]  # Get the token part after 'Bearer'
         return None
+
+    @app.route('/getStatistics', methods=['GET'])
+    @jwt_required()
+    def get_statistics():
+        current_user = get_jwt_identity()
+        user = User.query.filter_by(userName=current_user).first()
+        if user:
+            #register_days = (datetime.now() - user.registerDate).days
+            user_posts = Post.query.filter_by(authorId=user.id).count()
+            user_comments = Reply.query.filter_by(authorId=user.id).count()
+            total_users = User.query.count()
+            total_posts = Post.query.count()
+            total_comments = Reply.query.count()
+            
+            statistics = {
+                #'username': user.userName,
+                #'register_days': register_days,
+                'user_posts': user_posts,
+                'user_comments': user_comments,
+                'total_users': total_users,
+                'total_posts': total_posts,
+                'total_comments': total_comments
+            }
+            return jsonify(statistics), 200
+        else:
+            return jsonify({'msg': 'Error'}), 404
+    
     return app
 
 
