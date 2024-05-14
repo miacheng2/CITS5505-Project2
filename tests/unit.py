@@ -1,5 +1,4 @@
 import unittest, json
-from unittest.mock import patch
 from app import create_app, db
 from models import User
 
