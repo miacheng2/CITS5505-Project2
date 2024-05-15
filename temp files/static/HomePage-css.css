@@ -1,0 +1,400 @@
+body {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 18px;
+}
+
+body * {
+    box-sizing: border-box;
+    /* border: white solid 1px; */
+    color: black;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+button {
+    border: none;
+}
+
+input {
+    border: none;
+    border-radius: 20px 20px 20px 0;
+}
+
+#navigation-area {
+    position: fixed;
+    margin-left: auto;
+    margin-right: 1100px;
+    height: 100vh;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+#navigation-area img {
+    width: 50px;
+}
+
+#navigation ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#navigation li {
+    display: flex;
+    align-items: center;
+}
+
+#navigation li img {
+    margin-right: 10px;
+}
+
+.default-button {
+    display: inline-block;
+    padding: 15px 90px;
+    background-color: pink;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+
+.default-button:hover {
+    background-color: lightblue;
+}
+
+#profile {
+    margin-top: auto;
+}
+
+#profile a {
+    display: flex;
+    padding: 15px 50px;
+    background-color: lightgrey;
+}
+
+#profile a:hover {
+    background-color: lightpink;
+}
+
+#profile a div {
+    display: flex;
+    align-items: center;
+}
+
+#homepagelogout {
+    margin-bottom: 20px;
+}
+
+/* contentarea */
+
+#content-area {
+    height: 100%;
+    width: 800px;
+}
+
+#content-area img {
+    width: 50px;
+}
+
+#header {
+    display: flex;
+}
+
+#header div {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+#header-post div:nth-child(1) {
+    display: flex
+}
+
+#header-post div:nth-child(2) {
+    margin-left: 50px;
+}
+
+#header-post input {
+    width: 100%;
+    background-color: pink;
+    margin-bottom: 3px;
+}
+
+#new_post_title {
+    border-radius: 20px 20px 0 0;
+}
+
+#new_post_content {
+    border-radius: 0 0 0 0;
+}
+
+#replyoption {
+    display: none;
+    position: relative;
+    align-items: center;
+    margin-left: 50px;
+    background-color: pink;
+    border-radius: 0 0 20px 20px;
+}
+
+#replyoption img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#header-post div:nth-child(4) {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#header-post div:nth-child(4) img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#header-post div:nth-child(4) button {
+    padding: 10px 20px;
+    font-size: 15px;
+    margin-left: auto;
+}
+
+/* temp */
+
+.content div:nth-child(1) {
+    display: flex;
+}
+
+.user-name {
+    display: flex;
+    align-items: center;
+}
+
+.user-name div {
+    width: 20px;
+    height: 20px;
+}
+
+.post-date {
+    color: gray;
+    font-size: 15px;
+}
+
+.user-content {
+    margin-left: 50px;
+}
+
+
+#postsBox h2 {
+    color: yellow;
+}
+
+
+#postsBox div:nth-child(1) {
+    display: flex;
+}
+
+.user-name {
+    display: flex;
+    align-items: center;
+}
+
+.user-name div {
+    width: 20px;
+    height: 20px;
+}
+
+.post-date {
+    color: gray;
+    font-size: 15px;
+}
+
+.user-title {
+    color: black;
+    font-size: 35px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+.user-content {
+    margin-left: 50px;
+}
+
+.user-content p {
+    color: grey;
+    margin: 0;
+}
+
+.comment-area {
+    margin-left: 50px;
+    width: 750px;
+}
+
+.comment-id-date {
+    display: flex;
+}
+
+
+.comment-content {
+    margin: 0;
+    padding: 0;
+}
+
+
+.comment-area p {
+    overflow-wrap: break-word;
+}
+
+
+.reply-avatar {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+
+.comment-content {
+    color: grey;
+}
+
+.comment-textbox {
+    margin-left: 50px;
+    background-color: pink;
+    height: 50px;
+    width: 750px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#postsBox .default-button {
+    margin-left: 50px;
+    width: auto;
+    padding: 10px 20px;
+}
+
+
+
+#side-area {
+    position: fixed;
+    margin-left: 1100px;
+    height: 100%;
+    width: 300px;
+}
+
+#search {
+    display: flex;
+    flex-direction: row;
+}
+
+#search div {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px 0 0 20px;
+    /* background-color: rgb(32,34,38); */
+    background-color: pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search img {
+    width: 100%;
+}
+
+#search input {
+    outline: none;
+    width: 100%;
+    height: 50px;
+    background-color: pink;
+    border-radius: 0 20px 20px 0;
+}
+
+#subscribe h1 {
+    font-size: 30px;
+}
+
+#subscribe .default-button {
+    padding: 10px 20px;
+}
+
+
+#email {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 1px;
+}
+
+#rank1 {
+    display: flex;
+}
+
+#rank1 img {
+    width: 70px;
+}
+
+.post-counts {
+    font-size: 15px;
+    color: gray;
+}
+
+.rank {
+    display: flex;
+}
+
+.rank-more {
+    margin-left: auto;
+}
+
+.rank img {
+    width: 30px;
+}
+
+#showmore {
+    color: blue;
+}
+
+.follow-area {
+    display: flex;
+    margin-bottom: 3px;
+}
+
+.follow-area img {
+    width: 50px;
+}
+
+.follow-area div {
+    display: flex;
+}
+
+.follow-area div img {
+    width: 20px;
+    height: 20px;
+}
+
+.follow-area .default-button {
+    padding: 15px 15px;
+    color: black;
+    background-color: white;
+}
+
+.rankAndposts {
+    display: flex;
+    flex-direction: column;
+}
+
+.follow-user {
+    margin-left: auto;
+}
+
+
+#about-us div {
+    color: gray;
+}
