@@ -1,201 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/HomePage-css.css" />
-    <link rel="stylesheet" href="../static/profile_styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="../static/profile_styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="../static/HomePage_js.js"></script>
     <script type="module" src="../static/profile_js.js"></script>
     <script>
-        function deletePost(postId) {
-            var jwtToken = localStorage.getItem("token");
-            fetch(`/posts/${postId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        console.log("Post deleted successfully");
-                        window.location.reload(); 
-                    } else {
-                        console.error("Failed to delete post");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
-        // 
-        function deleteReply(replyId) {
-            var jwtToken = localStorage.getItem("token");
-
-            fetch(`/replies/${replyId}`, {
-                method: 'DELETE', 
-                headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                    'Content-Type': 'application/json'
-                }
-
-            })
-                .then(response => {
-                    if (response.ok) {
-                        console.log("Reply deleted successfully");
-                        window.location.reload();
-                    } else {
-                        console.error("Failed to delete reply");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
-
-        // The following function works for posting the reply.
-        function sendReply(replyToPostId) {
-            var jwtToken = localStorage.getItem("token")
-
-            const authorId = localStorage.getItem("userId");
-            const content = document.getElementById(replyToPostId).value;
-            const data = { authorId: authorId, replyToPostId: replyToPostId, content: content };
-            // <!--If your flask server is running on different device, your apiAdress should be the remote server address.Otherwise, it should be the loopback address. -->
-            var apiAddress = window.location.hostname
-            if (apiAddress == "") {
-                apiAddress = "127.0.0.1"
+      function deletePost(postId) {
+        var jwtToken = localStorage.getItem("token");
+        fetch(`/posts/${postId}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log("Post deleted successfully");
+              window.location.reload();
+            } else {
+              console.error("Failed to delete post");
             }
-            fetch('http://' + apiAddress + ':5000/postReply', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => {
-                    return response.json().then(data => {
-                        return { status: response.status, data: data };
-                    });
-                })
-                .then(result => {
-                    if (result.status === 200) {
-                        console.log('Success:', result.data);
-                        location.href = "/index";
-                    } else {
-                        console.log('Failed:', result.data);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Reply Failed');
-                });
-        }
-        // The following function works for posting the post.
-        function sendPost() {
-            var jwtToken = localStorage.getItem("token")
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
 
-            const authorId = localStorage.getItem("userId");
-            const title = document.getElementById("new_post_title").value;
-            const content = document.getElementById("new_post_content").value;
+      //
+      function deleteReply(replyId) {
+        var jwtToken = localStorage.getItem("token");
 
-            const data = { authorId: authorId, title: title, content: content };
-            var apiAddress = window.location.hostname
-            if (apiAddress == "") {
-                apiAddress = "127.0.0.1"
+        fetch(`/replies/${replyId}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log("Reply deleted successfully");
+              window.location.reload();
+            } else {
+              console.error("Failed to delete reply");
             }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
 
-            fetch('http://' + apiAddress + ':5000/postPost', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => {
-                    return response.json().then(data => {
-                        return { status: response.status, data: data };
-                    });
-                })
-                .then(result => {
-                    if (result.status === 200) {
-                        console.log('Success:', result.data);
-                    } else {
-                        console.log('Failed:', result.data);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+      // The following function works for posting the reply.
+      function sendReply(replyToPostId) {
+        var jwtToken = localStorage.getItem("token");
+
+        const authorId = localStorage.getItem("userId");
+        const content = document.getElementById(replyToPostId).value;
+        const data = {
+          authorId: authorId,
+          replyToPostId: replyToPostId,
+          content: content,
+        };
+        // <!--If your flask server is running on different device, your apiAdress should be the remote server address.Otherwise, it should be the loopback address. -->
+        var apiAddress = window.location.hostname;
+        if (apiAddress == "") {
+          apiAddress = "127.0.0.1";
         }
-
-        function logout() {
-
-            var jwtToken = localStorage.getItem("token")
-            var apiAddress = window.location.hostname
-            console.log(jwtToken)
-
-            if (apiAddress == "") {
-                apiAddress = "127.0.0.1"
+        fetch("http://" + apiAddress + ":5000/postReply", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => {
+            return response.json().then((data) => {
+              return { status: response.status, data: data };
+            });
+          })
+          .then((result) => {
+            if (result.status === 200) {
+              console.log("Success:", result.data);
+              location.href = "/index";
+            } else {
+              console.log("Failed:", result.data);
             }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Reply Failed");
+          });
+      }
+      // The following function works for posting the post.
+      function sendPost() {
+        var jwtToken = localStorage.getItem("token");
 
-            fetch('/logout', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                    'Content-Type': 'application/json'
-                },
-            })
-                .then(response => {
-                    return response.json().then(data => {
-                        return { status: response.status, data: data };
-                    });
-                })
-                .then(result => {
-                    if (result.status === 200) {
-                        console.log('Success:', result.data);
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('userName');
-                        localStorage.removeItem('userId');
-                        location.href = "./index.html";
-                    } else {
-                        console.log('Failed:', result.data);
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('userName');
-                        localStorage.removeItem('userId');
-                        location.href = "/index";
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('userName');
-                    localStorage.removeItem('userId');
-                    location.href = "/index";
-                });
+        const authorId = localStorage.getItem("userId");
+        const title = document.getElementById("new_post_title").value;
+        const content = document.getElementById("new_post_content").value;
+
+        const data = { authorId: authorId, title: title, content: content };
+        var apiAddress = window.location.hostname;
+        if (apiAddress == "") {
+          apiAddress = "127.0.0.1";
         }
+
+        fetch("http://" + apiAddress + ":5000/postPost", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => {
+            return response.json().then((data) => {
+              return { status: response.status, data: data };
+            });
+          })
+          .then((result) => {
+            if (result.status === 200) {
+              console.log("Success:", result.data);
+            } else {
+              console.log("Failed:", result.data);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      function logout() {
+        var jwtToken = localStorage.getItem("token");
+        var apiAddress = window.location.hostname;
+        console.log(jwtToken);
+
+        if (apiAddress == "") {
+          apiAddress = "127.0.0.1";
+        }
+
+        fetch("/logout", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            return response.json().then((data) => {
+              return { status: response.status, data: data };
+            });
+          })
+          .then((result) => {
+            if (result.status === 200) {
+              console.log("Success:", result.data);
+              localStorage.removeItem("token");
+              localStorage.removeItem("userName");
+              localStorage.removeItem("userId");
+              location.href = "./index.html";
+            } else {
+              console.log("Failed:", result.data);
+              localStorage.removeItem("token");
+              localStorage.removeItem("userName");
+              localStorage.removeItem("userId");
+              location.href = "/index";
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            localStorage.removeItem("token");
+            localStorage.removeItem("userName");
+            localStorage.removeItem("userId");
+            location.href = "/index";
+          });
+      }
     </script>
 
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="navigation-area">
-        <div id="logo">
-            <img src="../static/pic/HomePage-image/logo.png" alt="" />
-        </div>
-        <div id="navigation">
-            <ul>
-                <li><img src="../static/pic/HomePage-image/home.png" alt="" /><a href="/index">Home</a></li>
-                <li>
+      <div id="logo">
+        <img src="../static/pic/HomePage-image/logo.png" alt="" />
+      </div>
+      <div id="navigation">
+        <ul>
+          <li>
+            <img src="../static/pic/HomePage-image/home.png" alt="" /><a
+              href="/index"
+              >Home</a
+            >
+          </li>
+          <!-- <li>
                     <img src="../static/pic/HomePage-image/explore.png" alt="" />Explore
                 </li>
                 <li>
@@ -206,36 +214,36 @@
                 </li>
                 <li>
                     <img src="../static/pic/HomePage-image/communities.png" alt="" />Communities
-                </li>
-                <li>
-                    <img src="../static/pic/HomePage-image/profile.png" alt="" /><a href="/profile">Profile</a>
-                </li>
-                <li><img src="../static/pic/HomePage-image/more.png" alt="" />More</li>
-            </ul>
-        </div>
-        <div id="post"><a href="" class="default-button">Post</a></div>
-        <div id="profile">
-            <a href="" class="default-button">
-                <div>
-                    <img class="avatarImg" src="" alt="" />
-                </div>
-                <div>
-                    <p class="currentUser"></p>
-                </div>
-                <div>
-                    <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
-                </div>
-            </a>
-        </div>
-        <div><a href="/login">Login</a></div>
-        <div id="homepagelogout"><a onclick="return logout()">Logout</a></div>
+                </li> -->
+          <li>
+            <img src="../static/pic/HomePage-image/profile.png" alt="" /><a
+              href="/profile"
+              >Profile</a
+            >
+          </li>
+          <li>
+            <img src="../static/pic/HomePage-image/more.png" alt="" />More
+          </li>
+        </ul>
+      </div>
+      <div id="post"><a href="" class="default-button">Post</a></div>
+      <div id="profile">
+        <a href="" class="default-button">
+          <div>
+            <img class="avatarImg" src="" alt="" />
+          </div>
+          <div>
+            <p class="currentUser"></p>
+          </div>
+          <div>
+            <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+          </div>
+        </a>
+      </div>
+      <div><a href="/login">Login</a></div>
+      <div id="homepagelogout"><a onclick="return logout()">Logout</a></div>
     </div>
 
-    {% block content %}
-    {% endblock %}
-
-    {% block sideArea %}
-    {% endblock %}
-</body>
-
+    {% block content %} {% endblock %} {% block sideArea %} {% endblock %}
+  </body>
 </html>
