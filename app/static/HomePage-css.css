@@ -17,8 +17,18 @@ button {
 
 
 .delete-button {
-    background-color: red;
+    display: inline-block;
+    background-color: #003853;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
 }
+
+.delete-button:hover {
+    background-color: #3D82AB;
+    }
 
   input {
     border: none;
