@@ -187,7 +187,7 @@ $(document).ready(function () {
       console.log(userName);
       if (post_array[i].authorName == userName || "admin") {
         var temp_deletePost =
-          '<button onclick="deletePost(' +
+          '<button class="delete-button" onclick="deletePost(' +
           post_array[i].id +
           ')">Delete Post</button>';
       } else {
@@ -228,7 +228,7 @@ $(document).ready(function () {
       for (var n = 0; n < post_array[i].replyData.length; n++) {
         if (post_array[i].replyData[n].authorName == userName || "admin") {
           var deleteReply_btn =
-            '<button onclick="deleteReply(' +
+            '<button class="delete-button" onclick="deleteReply(' +
             post_array[i].replyData[n].id +
             ')">Delete Reply</button>';
         } else {

@@ -15,6 +15,11 @@ button {
     border: none;
   }
 
+
+.delete-button {
+    background-color: red;
+}
+
   input {
     border: none;
     border-radius: 20px 20px 20px 0;
