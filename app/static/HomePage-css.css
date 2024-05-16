@@ -17,6 +17,7 @@ button {
 
 
 .delete-button {
+    margin-top: 10px;
     display: inline-block;
     background-color: #003853;
     border-radius: 30px;
@@ -259,10 +260,17 @@ input#new_post_content {
 
 form {
     padding: 10px;
+    margin-bottom: 20px;
+}
+
+
+.eachPost {
+    padding: 10px;
     border: 2px solid #3D82AB;
     border-radius: 20px;
     margin-bottom: 20px;
 }
+
 
 #postsBox h2 {
     color: yellow;
@@ -271,6 +279,7 @@ form {
 
 #postsBox div:nth-child(1) {
     display: flex;
+
 }
 
 .user-name {

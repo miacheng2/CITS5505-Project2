@@ -283,7 +283,7 @@ $(document).ready(function () {
       });
 
       document.getElementById("postsBox").innerHTML +=
-        '<div style="display: block">' +
+        '<div class="eachPost" style="display: block">' +
         temp_content +
         '<form onsubmit="sendReply(' +
         post_array[i].id +
