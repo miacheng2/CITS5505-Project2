@@ -542,6 +542,14 @@ form {
     background-color: #3D82AB;
     }
 
+
+.follow-space {
+    padding: 10px;
+    border: 2px solid #3D82AB;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
 .rankAndposts {
     display: flex;
     flex-direction: column;
