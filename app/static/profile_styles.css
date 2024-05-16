@@ -124,6 +124,17 @@
     cursor: pointer;
 }
 
+.pro_block {
+    border: solid #4682aa 2px;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.pro_titles {
+    color: #44a6e7;
+}
+
 /* style of edit profile part */
 .pro_edit {
     position: fixed;

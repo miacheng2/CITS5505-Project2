@@ -11,30 +11,30 @@ $(document).ready(function () {
         }
 
         for (let i = 0; i < post_array.length; i++) {
-            let temp_content = '<h3> Title: ' + post_array[i].title + '</h3>'
+            let temp_content = '<h3 class = "pro_titles"> Title: ' + post_array[i].title + '</h3>'
             let temp_replys = ''
             let reply_replys = ''
             let reply_titles = ''
             if (post_array[i].authorName === userName) {
                 for (let n = 0; n < post_array[i].replyData.length; n++) {
-                    temp_replys += '<p>' + post_array[i].replyData[n].authorName + ' commented:<span class = "pro_date"> (' + post_array[i].replyData[n].date + ')' + '</span></p> <p>' + post_array[i].replyData[n].content + '</p>'
+                    temp_replys += '<div class = "pro_block"><p>' + post_array[i].replyData[n].authorName + ' commented:<span class = "pro_date"> (' + post_array[i].replyData[n].date + ')' + '</span></p> <p>' + post_array[i].replyData[n].content + '</p></div>'
                 }
                 var pro_postsBox = document.getElementById("pro_postsBox")
-                if (pro_postsBox != null){
+                if (pro_postsBox != null) {
                     pro_postsBox.innerHTML += '<div class = "pro_post">' + temp_content + temp_replys + '</div>'
                 }
                 post_num++
             }
             for (let n = 0; n < post_array[i].replyData.length; n++) {
                 if (userName === post_array[i].replyData[n].authorName) {
-                    reply_replys += '<p>' + post_array[i].replyData[n].authorName + ' commented:<span class = "pro_date"> (' + post_array[i].replyData[n].date + ')' + '</span></p> <p>' + post_array[i].replyData[n].content + '</p>'
+                    reply_replys += '<div class = "pro_block"><p>' + post_array[i].replyData[n].authorName + ' commented:<span class = "pro_date"> (' + post_array[i].replyData[n].date + ')' + '</span></p> <p>' + post_array[i].replyData[n].content + '</p></div>'
                     reply_titles = temp_content
                     document.getElementById("pro_replybox").innerHTML += '<div class = "pro_post">' + reply_titles + reply_replys + '</div>'
                     console.log(reply_titles)
                 }
             }
         }
-        if (document.getElementById("pro_postNum") != null){
+        if (document.getElementById("pro_postNum") != null) {
             document.getElementById("pro_postNum").innerHTML += post_num + " posts"
         }
     }).catch(error => {
