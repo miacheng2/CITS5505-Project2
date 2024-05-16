@@ -14,6 +14,9 @@ app = Blueprint('main', __name__)
 blacklist = set()  #logged out users
 
 @app.route('/', methods=['GET'])
+def welcome():
+    return render_template('welcome.html')
+
 @app.route('/index', methods=['GET'])
 #@app.route('/login', methods=['POST'])
 def index_route():
