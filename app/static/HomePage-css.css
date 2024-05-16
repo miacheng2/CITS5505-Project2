@@ -260,6 +260,8 @@ input#new_post_content {
 
 form {
     padding: 10px;
+    border: 2px solid #3D82AB;
+    border-radius: 20px;
     margin-bottom: 20px;
 }
 
