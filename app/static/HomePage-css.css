@@ -95,7 +95,9 @@ background-color: #3D82AB;
 }
 
 #homepagelogout {
+    cursor: pointer;
     margin-bottom: 20px;
+    text-decoration: underline;
 }
 
 /* contentarea */
