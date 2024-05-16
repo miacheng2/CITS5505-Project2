@@ -174,9 +174,9 @@ $(document).ready(function () {
             } else {
                 console.error("authorName is empty");
             }
-            console.log(post_array[i].authorName )
+            console.log(post_array[i].authorName)
             console.log(userName)
-            if (post_array[i].authorName == userName) {
+            if (post_array[i].authorName == userName || 'admin') {
                 var temp_deletePost = '<button onclick="deletePost(' + post_array[i].id + ')">Delete Post</button>';
             }
             else {
@@ -215,7 +215,7 @@ $(document).ready(function () {
                 '<button type="submit" class="default-button">Reply</button>';
             var temp_replys = "";
             for (var n = 0; n < post_array[i].replyData.length; n++) {
-                if (post_array[i].replyData[n].authorName == userName) {
+                if (post_array[i].replyData[n].authorName == userName || 'admin') {
                     var deleteReply_btn = '<button onclick="deleteReply(' + post_array[i].replyData[n].id + ')">Delete Reply</button>';
                 }
                 else {
