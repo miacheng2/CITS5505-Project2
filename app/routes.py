@@ -77,6 +77,9 @@ def check_if_token_in_blacklist(decrypted_token):
     else:
         return False
     
+@app.route('/profile', methods=['GET'])
+def get_profile():
+    return render_template('profile.html')
 
 # Get post and reply data return to front-end
 @app.route('/getPosts', methods=['GET'])
