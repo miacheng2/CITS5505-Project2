@@ -112,7 +112,7 @@
 /* style function elements */
 .profile_function * {
     display: block;
-    width: 33.33%;
+    width: 50%;
     text-align: center;
     line-height: 3rem;
     transition: background 0.3s, color 0.3s;
