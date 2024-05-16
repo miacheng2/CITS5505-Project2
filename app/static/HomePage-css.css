@@ -39,6 +39,21 @@ input:-webkit-autofill {
 -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
+
+/* navigation-area */
+
+#logo {
+    display: flex;
+}
+
+#logo div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 #navigation-area {
     position: fixed;
     margin-left: auto;
@@ -49,7 +64,6 @@ input:-webkit-autofill {
     flex-direction: column;
 
 
-    
 }
 
 #navigation-area img {
