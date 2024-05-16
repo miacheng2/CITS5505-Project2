@@ -318,6 +318,7 @@ $(document).ready(function () {
       .addEventListener("click", function () {
         // document.getElementById("closesearchResults").style.display = "none";
         document.getElementById("searchResults-area").style.display = "none";
+        console.log("success!");
       });
   });
 
