@@ -253,6 +253,10 @@ input#new_post_content {
     margin-left: 50px;
 }
 
+.special-content img{
+    width: 400px !important;
+}
+
 form {
     padding: 10px;
     border: 2px solid #3D82AB;
@@ -289,6 +293,10 @@ form {
     font-size: 35px;
     font-weight: bold;
     margin-left: 50px;
+}
+
+.special-title {
+    margin-left: 0px;
 }
 
 .user-content {
