@@ -316,7 +316,6 @@ $(document).ready(function () {
     document
       .getElementById("closesearchResults")
       .addEventListener("click", function () {
-        // document.getElementById("closesearchResults").style.display = "none";
         document.getElementById("searchResults-area").style.display = "none";
         console.log("success!");
       });
