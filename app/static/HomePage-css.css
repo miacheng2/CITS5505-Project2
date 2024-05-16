@@ -516,9 +516,13 @@ form {
 
 .follow-area .default-button {
     padding: 15px 15px;
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: #003853;
 }
+
+.follow-area .default-button:hover {
+    background-color: #3D82AB;
+    }
 
 .rankAndposts {
     display: flex;
