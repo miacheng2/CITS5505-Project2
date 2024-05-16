@@ -165,6 +165,13 @@ background-color: #3D82AB;
     margin-bottom: 3px;
 }
 
+#header-post form{
+    padding: 10px;
+    border: 2px solid #3D82AB;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
 #new_post_title {
     border-radius: 20px;
     width: 700px !important;
@@ -260,8 +267,8 @@ input#new_post_content {
 
 form {
     padding: 10px;
-    border: 2px solid #3D82AB;
-    border-radius: 20px;
+    /* border: 2px solid #3D82AB;
+    border-radius: 20px; */
     margin-bottom: 20px;
 }
 
