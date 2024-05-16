@@ -2,33 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block homePage %}
-    {% endblock %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% block homePage %}
+  {% endblock %}
 
-    {% block profile %}
-    {% endblock %}
-    <link rel="stylesheet" href="../static/base.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  {% block profile %}
+  {% endblock %}
+  <link rel="stylesheet" href="../static/base.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
-    <title>Document</title>
+  <title>Document</title>
 </head>
 
 <body>
-    <div id="navigation-area">
-        <div id="logo">
-            <div><img src="../static/pic/HomePage-image/logo.png" alt="" /></div>
-            <div>「CITS5505 Help Forum」</div>
-        </div>
-        <div id="navigation">
-            <ul>
-                <li>
-                    <img src="../static/pic/HomePage-image/home.png" alt="" /><a href="/index">Home</a>
-                </li>
-                <!-- <li>
+  <div id="navigation-area">
+    <div id="logo">
+      <div><img src="../static/pic/HomePage-image/logo.png" alt="" /></div>
+      <div>「CITS5505 Help Forum」</div>
+    </div>
+    <div id="navigation">
+      <ul>
+        <li>
+          <img src="../static/pic/HomePage-image/home.png" alt="" /><a href="/index">Home</a>
+        </li>
+        <!-- <li>
                         <img src="../static/pic/HomePage-image/explore.png" alt="" />Explore
                     </li>
                     <li>
@@ -40,39 +40,39 @@
                     <li>
                         <img src="../static/pic/HomePage-image/communities.png" alt="" />Communities
                     </li> -->
-                <li>
-                    <img src="../static/pic/HomePage-image/profile.png" alt="" /><a href="/profile">Profile</a>
-                </li>
-                <li>
-                    <img src="../static/pic/HomePage-image/more.png" alt="" />Introduction
-                </li>
-            </ul>
-        </div>
-        <div id="post">
-            <a href="#new_post_title" class="default-button">Post</a>
-        </div>
-        <div id="profile">
-            <a href="" class="default-button">
-                <div>
-                    <img class="avatarImg" src="" alt="" />
-                </div>
-                <div>
-                    <p class="currentUser"></p>
-                </div>
-                <div>
-                    <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
-                </div>
-            </a>
-        </div>
-        <div><a href="/login">Login</a></div>
-        <div id="homepagelogout"><a onclick="return logout()">Logout</a></div>
+        <li>
+          <img src="../static/pic/HomePage-image/profile.png" alt="" /><a href="/profile">Profile</a>
+        </li>
+        <li>
+          <img src="../static/pic/HomePage-image/more.png" alt="" />Introduction
+        </li>
+      </ul>
     </div>
+    <div id="post">
+      <a href="#new_post_title" class="default-button">Post</a>
+    </div>
+    <div id="profile">
+      <a href="" class="default-button">
+        <div>
+          <img class="avatarImg" src="" alt="" />
+        </div>
+        <div>
+          <p class="currentUser"></p>
+        </div>
+        <div>
+          <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+        </div>
+      </a>
+    </div>
+    <div><a href="/login">Login</a></div>
+    <div id="homepagelogout"><a onclick="return logout()">Logout</a></div>
+  </div>
 
-    {% block content %}
-    {% endblock %}
+  {% block content %}
+  {% endblock %}
 
-    {% block sideArea %}
-    {% endblock %}
+  {% block sideArea %}
+  {% endblock %}
 </body>
 
 </html>

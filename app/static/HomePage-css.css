@@ -185,10 +185,19 @@ form {
 
 .eachPost {
     padding: 10px;
+    /* border: 2px solid #3D82AB;
+    border-radius: 20px; */
+    margin-bottom: 20px;
+}
+
+
+.eachPost {
+    padding: 10px;
     border: 2px solid #3D82AB;
     border-radius: 20px;
     margin-bottom: 20px;
 }
+
 
 
 #postsBox h2 {
@@ -198,6 +207,7 @@ form {
 
 #postsBox div:nth-child(1) {
     display: flex;
+
 
 }
 
@@ -221,6 +231,10 @@ form {
     font-size: 35px;
     font-weight: bold;
     margin-left: 50px;
+}
+
+.special-title {
+    margin-left: 0px;
 }
 
 .special-title {
