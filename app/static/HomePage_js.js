@@ -60,46 +60,44 @@ $(document).ready(function () {
     Z: 6,
   };
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // When the textbox is clicked, the reply option is displayed.
-    document
-      .getElementById("new_post_content")
-      .addEventListener("click", function () {
-        document.getElementById("replyoption").style.display = "flex";
-      });
+  // When the textbox is clicked, the reply option is displayed.
+  document
+    .getElementById("new_post_content")
+    .addEventListener("click", function () {
+      document.getElementById("replyoption").style.display = "flex";
+    });
 
-    document.addEventListener("click", function (event) {
-      var replyoption = document.getElementById("replyoption");
-      var textbox = document.getElementById("new_post_content");
-      if (event.target !== replyoption && event.target !== textbox) {
-        replyoption.style.display = "none";
+  document.addEventListener("click", function (event) {
+    var replyoption = document.getElementById("replyoption");
+    var textbox = document.getElementById("new_post_content");
+    if (event.target !== replyoption && event.target !== textbox) {
+      replyoption.style.display = "none";
+    }
+  });
+
+  //   When the page loads, the video plays automatically.
+  const videos = document.querySelectorAll(".video");
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.7,
+  };
+
+  const callback = (entries, observer) => {
+    entries.forEach((entry) => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play();
+      } else {
+        video.pause();
       }
     });
+  };
 
-    //   When the page loads, the video plays automatically.
-    const videos = document.querySelectorAll(".video");
-
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.7,
-    };
-
-    const callback = (entries, observer) => {
-      entries.forEach((entry) => {
-        const video = entry.target;
-        if (entry.isIntersecting) {
-          video.play();
-        } else {
-          video.pause();
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-    videos.forEach((video) => {
-      observer.observe(video);
-    });
+  const observer = new IntersectionObserver(callback, options);
+  videos.forEach((video) => {
+    observer.observe(video);
   });
 
   //When the user loginin his account, assign his avatar
@@ -311,15 +309,12 @@ $(document).ready(function () {
 
   window.deleteReply = deleteReply;
 
-  // Search
-  document.addEventListener("DOMContentLoaded", function () {
-    document
-      .getElementById("closesearchResults")
-      .addEventListener("click", function () {
-        document.getElementById("searchResults-area").style.display = "none";
-        console.log("success!");
-      });
-  });
+  document
+    .getElementById("closesearchResults")
+    .addEventListener("click", function () {
+      document.getElementById("searchResults-area").style.display = "none";
+      console.log("success!");
+    });
 
   function handleKeyPress(event) {
     if (event.key === "Enter") {
@@ -354,17 +349,13 @@ $(document).ready(function () {
   }
 
   // subscribe function
-  document.addEventListener("DOMContentLoaded", function () {
-    document
-      .getElementById("subscribeForm")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
+  document
+    .getElementById("subscribeForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
 
-        var email = document.getElementById("email").value;
+      var email = document.getElementById("email").value;
 
-        // some functions
-
-        alert("Thank you for subscribing!");
-      });
-  });
+      alert("Thank you for subscribing!");
+    });
 });
