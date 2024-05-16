@@ -248,3 +248,56 @@ export function logout() {
             location.href = "/index";
         });
 }
+
+export const letterToAvatarIndex = {
+    A: 1,
+    B: 2,
+    C: 3,
+    D: 4,
+    E: 5,
+    F: 6,
+    G: 7,
+    H: 8,
+    I: 9,
+    J: 10,
+    K: 1,
+    L: 2,
+    M: 3,
+    N: 4,
+    O: 5,
+    P: 6,
+    Q: 7,
+    R: 8,
+    S: 9,
+    T: 10,
+    U: 1,
+    V: 2,
+    W: 3,
+    X: 4,
+    Y: 5,
+    Z: 6,
+};
+
+export const avatars = [
+    "/static/pic/HomePage-image/content-avatar1.png",
+    "/static/pic/HomePage-image/content-avatar2.png",
+    "/static/pic/HomePage-image/content-avatar3.png",
+    "/static/pic/HomePage-image/content-avatar4.png",
+    "/static/pic/HomePage-image/content-avatar5.png",
+    "/static/pic/HomePage-image/content-avatar6.png",
+    "/static/pic/HomePage-image/content-avatar7.png",
+    "/static/pic/HomePage-image/content-avatar8.png",
+    "/static/pic/HomePage-image/content-avatar9.png",
+    "/static/pic/HomePage-image/content-avatar10.png",
+    "/static/pic/HomePage-image/content-avatardefault.png",
+];
+
+export function getAvatarIndex(userName) {
+    //When the user loginin his account, assign his avatar
+    var firstLetter = userName.charAt(0).toUpperCase();
+    if (letterToAvatarIndex.hasOwnProperty(firstLetter)) {
+        return letterToAvatarIndex[firstLetter];
+    } else {
+        return "default";
+    }
+}

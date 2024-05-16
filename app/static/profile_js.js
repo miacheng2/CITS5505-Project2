@@ -1,7 +1,15 @@
-import { jwtToken, userId, userName, post_array, getPost, logout } from '../static/js_module.js';
+import { jwtToken, userId, userName, post_array, getPost, logout, avatars, letterToAvatarIndex, getAvatarIndex } from '../static/js_module.js';
 $(document).ready(function () {
 
     let post_num = 0
+
+    var avatarIndex = getAvatarIndex(userName);
+
+    var imgElements = document.getElementsByClassName("avatarImg");
+    for (var i = 0; i < imgElements.length; i++) {
+        imgElements[i].src =
+            "/static/pic/HomePage-image/content-avatar" + avatarIndex + ".png";
+    }
 
     getPost(jwtToken).then(() => {
         let pro_name = document.getElementsByClassName("currentUser")
