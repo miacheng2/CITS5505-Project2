@@ -13,52 +13,12 @@ body * {
 
 button {
     border: none;
-  }
-
-  input {
-    border: none;
-    border-radius: 20px 20px 20px 0;
-  }
-
-input:-webkit-autofill {
--webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
-#navigation-area {
-    position: fixed;
-    margin-left: auto;
-    margin-right: 1110px;
-    height:100vh;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
 
-
-    
-}
-
-#navigation-area img {
-    width: 50px;
-}
-
-#navigation ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#navigation li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-#navigation li img {
-    margin-right: 10px;
-}
-
-.default-button {
+.delete-button {
+    margin-top: 10px;
     display: inline-block;
-    padding: 15px 90px;
     background-color: #003853;
     border-radius: 30px;
     text-decoration: none;
@@ -66,38 +26,18 @@ input:-webkit-autofill {
     font-family: Arial, sans-serif;
     cursor: pointer;
 }
-.default-button:hover {
-background-color: #3D82AB;
-}
 
-#profile {
-    margin-top: auto;
-}
-
-#profile a {
-    display: flex;
-    padding: 15px 50px;
-}
-
-#profile a:hover {
+.delete-button:hover {
     background-color: #3D82AB;
 }
 
-#profile a  div{
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    margin-right: 10px;
+input {
+    border: none;
+    border-radius: 20px 20px 20px 0;
 }
 
-#profile p {
-    color: white;
-}
-
-#homepagelogout {
-    cursor: pointer;
-    margin-bottom: 20px;
-    text-decoration: underline;
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
 /* contentarea */
@@ -135,6 +75,13 @@ background-color: #3D82AB;
     margin-bottom: 3px;
 }
 
+#header-post form {
+    padding: 10px;
+    border: 2px solid #3D82AB;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
 #new_post_title {
     border-radius: 20px;
     width: 700px !important;
@@ -147,9 +94,9 @@ background-color: #3D82AB;
 }
 
 input#new_post_content {
-    border-radius:20px;
+    border-radius: 20px;
 
-  }
+}
 
 
 #replyoption {
@@ -165,7 +112,7 @@ input#new_post_content {
     color: #003853;
 }
 
-#replyoption img{
+#replyoption img {
     width: 20px;
     height: 20px;
     margin-right: 10px;
@@ -224,12 +171,25 @@ input#new_post_content {
     margin-left: 50px;
 }
 
+.special-content img {
+    width: 400px !important;
+}
+
 form {
+    padding: 10px;
+    /* border: 2px solid #3D82AB;
+    border-radius: 20px; */
+    margin-bottom: 20px;
+}
+
+
+.eachPost {
     padding: 10px;
     border: 2px solid #3D82AB;
     border-radius: 20px;
     margin-bottom: 20px;
 }
+
 
 #postsBox h2 {
     color: yellow;
@@ -238,6 +198,7 @@ form {
 
 #postsBox div:nth-child(1) {
     display: flex;
+
 }
 
 .user-name {
@@ -260,6 +221,10 @@ form {
     font-size: 35px;
     font-weight: bold;
     margin-left: 50px;
+}
+
+.special-title {
+    margin-left: 0px;
 }
 
 .user-content {
@@ -292,7 +257,7 @@ form {
 }
 
 
-.reply-avatar{
+.reply-avatar {
     width: 40px !important;
     height: 40px !important;
 }
@@ -331,7 +296,7 @@ form {
     width: 39px;
 }
 
-#closesearchResults img{
+#closesearchResults img {
     width: 100%;
 }
 
@@ -370,7 +335,7 @@ form {
 }
 
 #search input:-webkit-autofill {
--webkit-box-shadow: 0 0 0 1000px #003853 inset;
+    -webkit-box-shadow: 0 0 0 1000px #003853 inset;
 }
 
 #searchResults-area {
@@ -402,7 +367,7 @@ form {
     font-size: 30px;
 }
 
-#subscribe .default-button{
+#subscribe .default-button {
     padding: 10px 20px;
 }
 
@@ -442,6 +407,7 @@ form {
 .rank-more {
     margin-left: auto;
 }
+
 .rank img {
     width: 30px;
 }
@@ -464,7 +430,7 @@ form {
     margin-bottom: 3px;
 }
 
-.follow-area img{
+.follow-area img {
     width: 50px;
 }
 
@@ -479,8 +445,20 @@ form {
 
 .follow-area .default-button {
     padding: 15px 15px;
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: #003853;
+}
+
+.follow-area .default-button:hover {
+    background-color: #3D82AB;
+}
+
+
+.follow-space {
+    padding: 10px;
+    border: 2px solid #3D82AB;
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .rankAndposts {
@@ -493,6 +471,6 @@ form {
 }
 
 
-#about-us div{
+#about-us div {
     color: gray;
 }

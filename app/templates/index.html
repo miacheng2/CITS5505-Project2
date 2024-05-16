@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block homePage %}
+<link rel="stylesheet" href="../static/HomePage-css.css" />
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<script type="module" src="../static/HomePage_js.js"></script>
+
+{% endblock %}
+
 {% block content %}
 <div id="content-area">
     <div id="header">
@@ -40,34 +47,45 @@
                         <img src="../static/pic/HomePage-image/medal1.png" alt="" />
                     </div>
                 </div>
-                <div class="post-date">14:12 Apr 27</div>
+                <div class="post-date">Thu, 16 Apr 2024 13:10:15 GMT</div>
             </div>
         </div>
-        <div class="user-content">
+        <div class="user-content special-content">
+            <div class="user-title special-title">
+                Seeking Assistance with JavaScript Snag
+            </div>
             <p>
-                "Hey there! 😊 I'm having a bit of trouble with my TV—it's not
-                working at the moment. 📺 I've tried a few things, but nothing seems
-                to be fixing it. 🤔 I was wondering if there's anyone around who
-                might be able to lend a hand and help me figure out what's going on.
-                🙏 Any advice or assistance would be greatly appreciated! Thanks in
-                advance for any help you can offer. 😊"
+                "Hello! 😊 I'm facing a bit of a snag with my JavaScript code—it's not
+                behaving as expected. 💻 I've tried troubleshooting on my own, but so
+                far, no luck. 🤔 I was hoping someone could lend a hand and help me
+                figure out what's causing the issue. 🙏 Any advice or assistance would
+                be immensely appreciated! Thanks a bunch in advance for any help you can
+                provide. 😊"
             </p>
-            <video src="../static/pic/HomePage-video/video1.mp4" controls autoplay loop></video>
+            <img src="../static/pic/HomePage-image/js-meme.png" alt="" />
         </div>
     </div>
     <div id="postsBox"></div>
 </div>
-{% endblock %}
-
-{% block sideArea %}
+{% endblock %} {% block sideArea %}
 <div id="side-area">
     <div id="search">
         <div>
             <img src="../static/pic/HomePage-image/magnifying-glass-white.png" alt="" />
         </div>
-        <input type="text" id="searchInput" placeholder="search" onkeypress="handleKeyPress(event)" />
+        <input type="text" id="searchInput" placeholder="search posts and press enter"
+            onkeypress="handleKeyPress(event)" />
     </div>
-    <div id="searchResults">
+    <div id="searchResults-area">
+        <div id="searchAndClose">
+            <div>
+                <p>Search Results:</p>
+            </div>
+            <div id="closesearchResults">
+                <img src="/static/pic/HomePage-image/close.png" alt="" />
+            </div>
+        </div>
+        <div id="searchResults"></div>
     </div>
     <div id="subscribe">
         <h1>Subscribe to Premium</h1>
@@ -135,7 +153,7 @@
         <div id="showmore">Show more</div>
     </div>
     <div id="follow">
-        <div>
+        <div class="follow-space">
             <h1>Who to follow</h1>
             <div class="follow-area">
                 <img id="rank1avatar" src="../static/pic/HomePage-image/content-avatar1.png" alt="" />

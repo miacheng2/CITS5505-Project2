@@ -160,22 +160,22 @@ export function handleKeyPress(event) {
 export function deletePost(postId) {
     var jwtToken = localStorage.getItem("token");
     fetch(`/posts/${postId}`, {
-        method: 'DELETE', 
+        method: "DELETE",
         headers: {
-            'Authorization': `Bearer ${jwtToken}`,
-            'Content-Type': 'application/json'
-        }
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+        },
     })
-        .then(response => {
+        .then((response) => {
             if (response.ok) {
                 console.log("Post deleted successfully");
-                window.location.reload(); 
+                window.location.reload();
             } else {
                 console.error("Failed to delete post");
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
+        .catch((error) => {
+            console.error("Error:", error);
         });
 }
 
@@ -183,22 +183,68 @@ export function deleteReply(replyId) {
     var jwtToken = localStorage.getItem("token");
 
     fetch(`/replies/${replyId}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-            'Authorization': `Bearer ${jwtToken}`,
-            'Content-Type': 'application/json'
-        }
-
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+        },
     })
-        .then(response => {
+        .then((response) => {
             if (response.ok) {
                 console.log("Reply deleted successfully");
-                window.location.reload(); 
+                window.location.reload();
             } else {
                 console.error("Failed to delete reply");
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
+export function logout() {
+    var jwtToken = localStorage.getItem("token");
+    var apiAddress = window.location.hostname;
+    let userName = localStorage.getItem("userName");
+
+    console.log(jwtToken);
+
+    if (apiAddress == "") {
+        apiAddress = "127.0.0.1";
+    }
+
+    fetch("/logout", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+        },
+    })
+        .then((response) => {
+            return response.json().then((data) => {
+                return { status: response.status, data: data };
+            });
+        })
+        .then((result) => {
+            if (result.status === 200) {
+                console.log("Success:", result.data);
+                localStorage.removeItem("token");
+                localStorage.removeItem("userName");
+                localStorage.removeItem("userId");
+                location.href = "./index.html";
+            } else {
+                console.log("Failed:", result.data);
+                localStorage.removeItem("token");
+                localStorage.removeItem("userName");
+                localStorage.removeItem("userId");
+                location.href = "/index";
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            localStorage.removeItem("token");
+            localStorage.removeItem("userName");
+            localStorage.removeItem("userId");
+            location.href = "/index";
         });
 }

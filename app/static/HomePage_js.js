@@ -1,11 +1,22 @@
-import { jwtToken, userId, userName, post_array, getPost, sendReply, sendPost, searchArticles, handleKeyPress, deletePost } from '../static/js_module.js';
+import {
+    jwtToken,
+    userId,
+    userName,
+    post_array,
+    getPost,
+    sendReply,
+    sendPost,
+    searchArticles,
+    handleKeyPress,
+    deletePost,
+    deleteReply
+} from "../static/js_module.js";
 
 $(document).ready(function () {
     // Asign avatar to each user
 
     document.getElementById("post_btn").disabled = false;
     document.getElementById("login_warning").style.display = "none";
-
 
     const avatars = [
         "/static/pic/HomePage-image/content-avatar1.png",
@@ -50,46 +61,44 @@ $(document).ready(function () {
         Z: 6,
     };
 
-    document.addEventListener("DOMContentLoaded", function () {
-        // When the textbox is clicked, the reply option is displayed.
-        document
-            .getElementById("new_post_content")
-            .addEventListener("click", function () {
-                document.getElementById("replyoption").style.display = "flex";
-            });
+    // When the textbox is clicked, the reply option is displayed.
+    document
+        .getElementById("new_post_content")
+        .addEventListener("click", function () {
+            document.getElementById("replyoption").style.display = "flex";
+        });
 
-        document.addEventListener("click", function (event) {
-            var replyoption = document.getElementById("replyoption");
-            var textbox = document.getElementById("new_post_content");
-            if (event.target !== replyoption && event.target !== textbox) {
-                replyoption.style.display = "none";
+    document.addEventListener("click", function (event) {
+        var replyoption = document.getElementById("replyoption");
+        var textbox = document.getElementById("new_post_content");
+        if (event.target !== replyoption && event.target !== textbox) {
+            replyoption.style.display = "none";
+        }
+    });
+
+    //   When the page loads, the video plays automatically.
+    const videos = document.querySelectorAll(".video");
+
+    const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.7,
+    };
+
+    const callback = (entries, observer) => {
+        entries.forEach((entry) => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
             }
         });
+    };
 
-        //   When the page loads, the video plays automatically.
-        const videos = document.querySelectorAll(".video");
-
-        const options = {
-            root: null,
-            rootMargin: "0px",
-            threshold: 0.7,
-        };
-
-        const callback = (entries, observer) => {
-            entries.forEach((entry) => {
-                const video = entry.target;
-                if (entry.isIntersecting) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(callback, options);
-        videos.forEach((video) => {
-            observer.observe(video);
-        });
+    const observer = new IntersectionObserver(callback, options);
+    videos.forEach((video) => {
+        observer.observe(video);
     });
 
     //When the user loginin his account, assign his avatar
@@ -109,7 +118,6 @@ $(document).ready(function () {
         imgElements[i].src =
             "/static/pic/HomePage-image/content-avatar" + avatarIndex + ".png";
     }
-
 
     getPost(jwtToken).then(() => {
         // Count Author Posts
@@ -174,12 +182,14 @@ $(document).ready(function () {
             } else {
                 console.error("authorName is empty");
             }
-            console.log(post_array[i].authorName)
-            console.log(userName)
-            if (post_array[i].authorName == userName || 'admin') {
-                var temp_deletePost = '<button onclick="deletePost(' + post_array[i].id + ')">Delete Post</button>';
-            }
-            else {
+            console.log(post_array[i].authorName);
+            console.log(userName);
+            if (post_array[i].authorName == userName || "admin") {
+                var temp_deletePost =
+                    '<button class="delete-button" onclick="deletePost(' +
+                    post_array[i].id +
+                    ')">Delete Post</button>';
+            } else {
                 var temp_deletePost = "";
             }
 
@@ -215,10 +225,12 @@ $(document).ready(function () {
                 '<button type="submit" class="default-button">Reply</button>';
             var temp_replys = "";
             for (var n = 0; n < post_array[i].replyData.length; n++) {
-                if (post_array[i].replyData[n].authorName == userName || 'admin') {
-                    var deleteReply_btn = '<button onclick="deleteReply(' + post_array[i].replyData[n].id + ')">Delete Reply</button>';
-                }
-                else {
+                if (post_array[i].replyData[n].authorName == userName || "admin") {
+                    var deleteReply_btn =
+                        '<button class="delete-button" onclick="deleteReply(' +
+                        post_array[i].replyData[n].id +
+                        ')">Delete Reply</button>';
+                } else {
                     var deleteReply_btn = "";
                 }
 
@@ -272,8 +284,9 @@ $(document).ready(function () {
             });
 
             document.getElementById("postsBox").innerHTML +=
-                '<div style="display: block">' +
-                temp_content + '<form onsubmit="sendReply(' +
+                '<div class="eachPost" style="display: block">' +
+                temp_content +
+                '<form onsubmit="sendReply(' +
                 post_array[i].id +
                 '); return false;">' +
                 temp_replys +
@@ -281,7 +294,7 @@ $(document).ready(function () {
                 temp_btn +
                 "</form></div>";
         }
-    })
+    });
 
     // The following function works for posting the reply.
     window.sendReply = sendReply;
@@ -289,7 +302,6 @@ $(document).ready(function () {
     // The following function works for posting the post.
     window.sendPost = sendPost;
 
-    // Search
     window.searchArticles = searchArticles;
 
     window.handleKeyPress = handleKeyPress;
@@ -297,21 +309,54 @@ $(document).ready(function () {
     window.deletePost = deletePost;
 
     window.deleteReply = deleteReply;
+
+    document
+        .getElementById("closesearchResults")
+        .addEventListener("click", function () {
+            document.getElementById("searchResults-area").style.display = "none";
+            console.log("success!");
+        });
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            searchArticles();
+            document.getElementById("closesearchResults").style.display = "flex";
+            document.getElementById("searchResults-area").style.display = "block";
+        }
+    }
+
+    function searchArticles() {
+        const searchInput = document
+            .getElementById("searchInput")
+            .value.toLowerCase();
+        const searchResults = document.getElementById("searchResults");
+        searchResults.innerHTML = "";
+
+        const articles = document.querySelectorAll("article");
+
+        articles.forEach((article, index) => {
+            const title = article.querySelector(".user-title").textContent.trim();
+            const content = article.querySelector("p").textContent.trim();
+
+            if (
+                title.toLowerCase().includes(searchInput) ||
+                content.toLowerCase().includes(searchInput)
+            ) {
+                const articleElement = document.createElement("div");
+                articleElement.innerHTML = `<h3><a href="#article${index}">${title}</a></h3><p>${content}</p>`;
+                searchResults.appendChild(articleElement);
+            }
+        });
+    }
+
     // subscribe function
-    document.addEventListener("DOMContentLoaded", function () {
-        document
-            .getElementById("subscribeForm")
-            .addEventListener("submit", function (event) {
-                event.preventDefault();
+    document
+        .getElementById("subscribeForm")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
 
-                var email = document.getElementById("email").value;
+            var email = document.getElementById("email").value;
 
-                // some functions
-
-                alert("Thank you for subscribing!");
-            });
-    });
-
-})
-
-
+            alert("Thank you for subscribing!");
+        });
+});

@@ -1,4 +1,4 @@
-import { jwtToken, userId, userName, post_array, getPost } from '../static/js_module.js';
+import { jwtToken, userId, userName, post_array, getPost, logout } from '../static/js_module.js';
 $(document).ready(function () {
 
     let post_num = 0
@@ -79,7 +79,7 @@ $(document).ready(function () {
                 'z-index': -1
             })
         }
-        console.log("What")
-
     })
+
+    window.logout = logout;
 })
