@@ -6,7 +6,7 @@
     right: 0;
     top: 0px;
     width: 1159px;
-    height: 797px;
+    height: 707px;
     z-index: -1;
 }
 
@@ -14,12 +14,45 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    padding: 226px 0px 120px 0px;
+    padding: 80px 0px 40px 0px;
     position: relative;
     overflow: hidden;
 }
 
-.introduct-item {
+.title {
+    margin-left: 2vw;
+    margin-top: 25vh;
+}
+
+#loginlink {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mid {
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
+
+.mid img {
+    width: 100%; 
+    height: 100%; 
+}
+
+.mid-line {
+    background-color: #f2f2f2;
+    padding: 25px;
+    text-align: center;
+    background-color: #ffad42;
+}
+
+.intro-item {
     padding: 60px 30px;
     border: 2px solid #f7f7f7;
     border-radius: 5px;
@@ -27,94 +60,40 @@
     margin-top: 15px;
     margin-bottom: 30px;
 }
-
-.introduct-item:hover {
+  
+.intro-item:hover {
     background-color: #fff;
     border: 2px solid transparent;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  }
+
+.intro-doc {
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 26px;
+    line-height: 38px;
+    color: #434795;
 }
 
-.header {
-    background-color: #f2f2f2;
-    padding: 25px;
-    text-align: center;
-    background-color: #ffa530;
-}
-
-#doc1,
-#doc2 {
-    padding-top: 10px;
+#sm {
     font-size: 20px;
-    color: #000000
+    line-height: 20px;
 }
 
-#title {
-    margin-left: 5vw;
+.number {
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 48px;
+    line-height: 60px;
+    color: #434795;
 }
 
-h1,
-h2,
-h3,
-h4 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-h1 {
-    font-size: 70px;
-}
-
-h2 {
-    font-size: 50px;
-}
-
-h4 {
-    font-size: 40px;
-}
+h1, h2, h3, h4 {
+    font-family: Impact, Arial;
+    color: #434795; }
+h1 { font-size: 96px; }
+h2 { font-size: 60px; }
+h3 { font-size: 48px; color:#f2f2f2; }
+h4 { font-size: 36px; }
 
 a {
     text-decoration: none !important;
-}
-
-p {
-    font-family: 'Lucida Sans', sans-serif;
-    font-size: 20px;
-    line-height: 30px;
-    color: #2a2a2a;
-}
-
-#homePageLink {
-    font-size: 20px;
-    text-align: right;
-    text-decoration: none;
-    color: #4471b8;
-}
-
-.mt-number-animate {
-    font-family: 'Lucida Sans';
-    line-height: 40px;
-    height: 40px;
-    font-size: 36px;
-    overflow: hidden;
-    display: inline-block;
-    position: relative;
-}
-
-.mt-number-animate .mt-number-animate-dot {
-    width: 15px;
-    line-height: 40px;
-    float: left;
-    text-align: center;
-}
-
-.mt-number-animate .mt-number-animate-dom {
-    width: 20px;
-    text-align: center;
-    float: left;
-    position: relative;
-    top: 0;
-}
-
-.mt-number-animate .mt-number-animate-dom .mt-number-animate-span {
-    width: 100%;
-    float: left;
 }

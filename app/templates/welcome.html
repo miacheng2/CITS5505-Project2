@@ -1,84 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <link rel="stylesheet" href="../static/bootstrap.min.css">
     <link rel="stylesheet" href="../static/welcome_css.css">
     <link rel="stylesheet" href="../static/animated.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>Welcome Page</title>
+    <title>Welcome to Help5505</title>
 </head>
-
 <body>
     <div class="open wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="title wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+            <h1>HELP5505</h1>
+            <h2>SEEK ASSISTANCE</h2>
+            <h2>EMBRACE WISDOM</h2>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="wow fadeInRight" data-wow-duration="1s" data-wow-delay="1s">
+            <img src="../static/pic/intro-gallery.png" alt="">
+            <a id="loginlink" href="/login"><h3>LOGIN</h3></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mid wow fadeIn" data-wow-duration="3s" data-wow-delay="1s"><img src="../static/pic/chevron.gif" alt="">
+    </div>
+      <div class="mid-line wow slideInUp" data-wow-duration="1s" data-wow-delay="0.1s"">
+          <h4>Introductory</h4>
+      </div>
+    </div>
+    <div class="intro">
+      <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 align-self-center">
-                <div class="left-content header-text wow fadeInLeft" id="title" data-wow-duration="1s"
-                    data-wow-delay="1s">
-                    <h4>Welcome to</h4>
-                    <h1>Help5505</h1>
-                    <h2>Study Forum</h2>
-                </div>
+          <div class="col-lg-8">
+            <div class="intro-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.5s">
+              <div class="intro-doc">
+                <h4><span><a href="/signup">SIGN UP</a></span> if you do not have an account!🚀</h4><br>
+                <p>Help5505 forum is designed to facilitate connections among individuals related to CITS5505 Agile Web Development.</p>
+                <p>In addition to receiving support from instructors and fellow students, you can also gain a rich experience in your web development study journey.</p>
+              </div>
             </div>
-            <div class="col-lg-6">
-                <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="1s">
-                    <img src="../static/pic/intro-gallery.png" alt="">
-                </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="intro-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="1s">
+              <div class="intro-doc" id="sm">
+                <h4>Fun Fact!🌟</h4>
+                <p>So far, we already have <span class="number"> </span> users, </p>
+                <p><span class="number"></span> topic posts, and <span class="number"></span> comments.</p><br>
+                <p>The forum is thriving via everyone's contributions and dedication.</p><br>
+                <p>TOGETHER WE CAN DO BETTER!</p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="header section-heading wow slideInUp" data-wow-duration="1s" data-wow-delay="0.1s"">
-        <h3>Forum Introductory</h3>
-    </div>
-
-    </div>
-    <div id=" introduct">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="introduct-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <div id="doc1">
-                            <p>This forum is provided to promote discussion amongst students enrolled in CITS5505 Agile
-                                Web Development. Here you can discuss any concerns relevant to the course content!</p>
-                            <p>But before creating a new post, it's recommended to search for existing posts that may
-                                provide a solution to your question.</p>
-                            <p>When providing details along with your questions, try your best to include only necessary
-                                information.</p>
-                            <p>Please consider offering suggestions but not giving straight answers to help other
-                                students!</p>
-                            <p>If you solve a problem with others' help here, it would be great if other interested
-                                students could see a short "Great, fixed it!" follow-up message.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="introduct-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="1s">
-                        <div id="doc2">
-                            <p>Until now: </p>
-                            <p>This forum has a total of <span class="numberRun" id="totalUsersAnimate"
-                                    data-animate="false"> </span> users, </p>
-                            <p><span class="numberRun" id="totalPostsAnimate" data-animate="false"></span> topic posts,
-                            </p>
-                            <p>and <span class="numberRun" id="totalCommentsAnimate" data-animate="false"></span> reply
-                                comments.</p>
-                            <p>You have contribute <span class="numberRun" id="userPostsAnimate"
-                                    data-animate="false"></span> posts and <span class="numberRun"
-                                    id="userCommentsAnimate" data-animate="false"> comments.</span></p>
-                            <p>Great job for everyone of you!</p>
-                            <p> </p>
-                            <div class="fadeIn" id="homePageLink">
-                                <a href="/index">HomePage</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../static/bootstrap.bundle.min.js"></script>
     <script src="../static/welcome_js.js"></script>
     <script src="../static/animation.js"></script>
-
+  </body>
 </html>
