@@ -12,7 +12,8 @@ import {
     deleteReply,
     getAvatarIndex,
     avatars,
-    letterToAvatarIndex
+    letterToAvatarIndex,
+    logout
 } from "../static/js_module.js";
 
 $(document).ready(function () {
@@ -139,13 +140,14 @@ $(document).ready(function () {
             }
             console.log(post_array[i].authorName);
             console.log(userName);
-            if (post_array[i].authorName == userName || "admin") {
+            if (post_array[i].authorName === userName || userName === "admin") {
                 var temp_deletePost =
                     '<button class="delete-button" onclick="deletePost(' +
                     post_array[i].id +
                     ')">Delete Post</button>';
             } else {
                 var temp_deletePost = "";
+                console.log("created")
             }
 
             var temp_content = `<article id='article${index}'>
@@ -180,7 +182,7 @@ $(document).ready(function () {
                 '<button type="submit" class="default-button">Reply</button>';
             var temp_replys = "";
             for (var n = 0; n < post_array[i].replyData.length; n++) {
-                if (post_array[i].replyData[n].authorName == userName || "admin") {
+                if (post_array[i].authorName === userName || userName === "admin") {
                     var deleteReply_btn =
                         '<button class="delete-button" onclick="deleteReply(' +
                         post_array[i].replyData[n].id +
@@ -264,6 +266,8 @@ $(document).ready(function () {
     window.deletePost = deletePost;
 
     window.deleteReply = deleteReply;
+
+    window.logout = logout;
 
     document
         .getElementById("closesearchResults")

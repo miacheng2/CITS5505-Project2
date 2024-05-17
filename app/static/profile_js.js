@@ -11,6 +11,8 @@ $(document).ready(function () {
             "/static/pic/HomePage-image/content-avatar" + avatarIndex + ".png";
     }
 
+    console.log(userName)
+
     getPost(jwtToken).then(() => {
         let pro_name = document.getElementsByClassName("currentUser")
 
