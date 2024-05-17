@@ -64,7 +64,7 @@ button {
 
 /* change background color of arrow */
 .arrow_i:hover {
-    background-color: rgb(144, 144, 228);
+    background-color: rgb(144, 189, 228);
     color: white;
 }
 
@@ -73,7 +73,7 @@ button {
 .pro_selfi {
     position: relative;
     margin-top: 1rem;
-    background-color: rgba(196, 226, 26, 0.199);
+    background-color: rgba(94, 197, 252, 0.306);
     height: 12rem;
 }
 
@@ -144,7 +144,7 @@ button {
 }
 
 .profile_function *:hover {
-    background-color: rgb(144, 144, 228);
+    background-color: rgb(115, 147, 202);
     color: white;
     cursor: pointer;
 }

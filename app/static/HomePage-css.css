@@ -19,7 +19,7 @@ button {
 .delete-button {
     margin-top: 10px;
     display: inline-block;
-    background-color: #003853;
+    background-color: #2b416d;
     border-radius: 30px;
     text-decoration: none;
     color: white;
@@ -109,7 +109,7 @@ input#new_post_content {
 }
 
 #replyoption p {
-    color: #003853;
+    color: #13296d;
 }
 
 #replyoption img {
@@ -182,17 +182,8 @@ form {
     margin-bottom: 20px;
 }
 
-
 .eachPost {
-    padding: 10px;
-    /* border: 2px solid #3D82AB;
-    border-radius: 20px; */
-    margin-bottom: 20px;
-}
-
-
-.eachPost {
-    padding: 10px;
+    padding: 20px;
     border: 2px solid #3D82AB;
     border-radius: 20px;
     margin-bottom: 20px;
@@ -261,8 +252,8 @@ form {
 
 
 .comment-content {
-    margin: 0;
-    padding: 0;
+    margin-right: 40px;
+    padding-right: 20px;
 }
 
 
@@ -298,7 +289,6 @@ form {
 }
 
 
-
 #side-area {
     position: fixed;
     margin-left: 1120px;
@@ -327,7 +317,7 @@ form {
     width: 50px;
     height: 50px;
     border-radius: 20px 0 0 20px;
-    background-color: #003853;
+    background-color: #2b416d;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -342,14 +332,14 @@ form {
     outline: none;
     width: 100%;
     height: 50px;
-    background-color: #003853;
+    background-color: #2b416d;
     border-radius: 0 20px 20px 0;
     margin-bottom: 10px;
     color: white;
 }
 
 #search input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #003853 inset;
+    -webkit-box-shadow: 0 0 0 1000px #2b416d inset;
 }
 
 #searchResults-area {
@@ -427,7 +417,7 @@ form {
 }
 
 #showmore {
-    color: #003853;
+    color: #2b416d;
 }
 
 
@@ -460,7 +450,7 @@ form {
 .follow-area .default-button {
     padding: 15px 15px;
     color: white;
-    background-color: #003853;
+    background-color: #2b416d;
 }
 
 .follow-area .default-button:hover {
