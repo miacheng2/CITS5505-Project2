@@ -6,7 +6,7 @@ The application is a study help forum, which named "Help5505", is designed to be
 
 ### Home Page
 
-The home page serves as an introductory interface, featuring the site’s name “HELP5505” and the slogan “SEEK ASSISTANCE EMBRACE WISDOM” on the left. A login button is located on the right side. Scrolling down reveals two content blocks: the left block provides a brief introduction to the app with a registration link, while the right block displays real-time backend data to convey a thriving community feel.
+The home page serves as an introductory interface, featuring the site’s name “HELP5505” and the slogan on the left. A login button is located on the right side. Scrolling down reveals two content blocks: the left block provides a brief introduction to the app with a registration link, while the right block displays real-time backend data to convey a thriving community feel.
 
 ### User Registration and Login
 
@@ -14,7 +14,7 @@ Registered users can click the login button to navigate to the login page. Incor
 
 ### Index Page
 
-The index page is the main interface of the forum, where users can post, browse, or comment on others’ posts. Clicking the input box at the top displays a prompt, guiding users to click the tips in the left navbar for detailed guidance. Posting updates the information stream below with the new post, which users can delete along with any replies. An admin account is built into the backend with permissions to delete any posts and replies.
+The index page is the main interface of the forum, where users can post, browse, or comment on others’ posts. Clicking the input box at the top displays a prompt, guiding users to click the tips in the left navbar for detailed guidance. Create a new post updates the information stream below. Users can delete the posts which is created by them, along with its replies. An admin account is built into the backend with permissions to delete any posts and replies.
 
 ### Search and Discover
 
@@ -22,7 +22,7 @@ Users can search for posts containing specific keywords using the search box in 
 
 ### Navigation
 
-Clicking the navbar on the left allows for navigation. The Home button navigates back to the index page, Profile navigates to the user’s profile page, and Tips triggers a guidance popup. Clicking the post button enters input mode at the top post block, while clicking the large button at the bottom navigates to the profile page.
+Clicking the navbar on the left allows for navigation. The Home button navigates back to the index page, Profile navigates to the user’s profile page, and Tips triggers a guidance popup. Clicking the post button enters input mode at the top post block. Clicking the large button at the bottom navigates to the profile page.
 
 ### Profile Page
 
