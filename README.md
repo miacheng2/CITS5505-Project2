@@ -1,75 +1,262 @@
-# CITS5505-Project2
+# CITS5505 Group Project
 
-# This is the group project, 
-It is a forum-like website allowing user to register, login, post posts, and post replys to the existing posts. 
-This project contains the following folders and files:
+## Purpose of the application
 
--rootDir
+The application is a study help forum, which named "Help5505", is designed to be a platform that associate CITS5505's teachers and students with teaching management, study assistance, technical exchange and sharing.
 
-|-/deliverables
+### Home Page
 
-|--(This is the folder that is the requirement of the submission for tracking the project progress.)
+The home page serves as an introductory interface, featuring the site’s name “HELP5505” and the slogan “SEEK ASSISTANCE EMBRACE WISDOM” on the left. A login button is located on the right side. Scrolling down reveals two content blocks: the left block provides a brief introduction to the app with a registration link, while the right block displays real-time backend data to convey a thriving community feel.
 
-|-/instance
+### User Registration and Login
 
-|--(This is the folder contains the database file which stores all posts, replys, and user details)
+Registered users can click the login button to navigate to the login page. Incorrect username or password entries trigger corresponding prompts. Successful login redirects to the index page, opening the forum. Clicking the registration link leads to the registration page, where users can sign up by entering their username and password twice. Errors or already used usernames prompt alerts. Upon successful registration, user data is added to the backend database, and the user is redirected to the index page.
 
-|--pagedata.db
+### Index Page
 
-|-/static
+The index page is the main interface of the forum, where users can post, browse, or comment on others’ posts. Clicking the input box at the top displays a prompt, guiding users to click the tips in the left navbar for detailed guidance. Posting updates the information stream below with the new post, which users can delete along with any replies. An admin account is built into the backend with permissions to delete any posts and replies.
 
-|--(This is the folder for the static medias, js, and css files.)
+### Search and Discover
 
-|--/pic
+Users can search for posts containing specific keywords using the search box in the upper right corner and close the search results by clicking the eye icon. The discover section on the right highlights current trends, such as recent posts with the most comments or users with the highest number of posts.
 
-|-/templates
+### Navigation
 
-|--(This folder contains all front-end files, such as index.html, login, and logout pages)
+Clicking the navbar on the left allows for navigation. The Home button navigates back to the index page, Profile navigates to the user’s profile page, and Tips triggers a guidance popup. Clicking the post button enters input mode at the top post block, while clicking the large button at the bottom navigates to the profile page.
 
-|-- index.html
+### Profile Page
 
-|-- login.html
+The profile page is the user’s personal information interface. Users can click on the ‘POSTS’ and ‘REPLIES’ tabs in the middle of the page to view their previously published posts and replies.
 
-|-- logout.html
+### Logout and Login
 
-|-- signup.html
+Users can log out by clicking logout at the bottom of the left navbar or re-login by clicking login.
 
-|-- ... Others to be updated
+## Group Member Information Table
 
-|-.gitignore
+| UWA ID   | Student name    | Github user name |
+|----------|-----------------|------------------|
+| 23891727 | Tang Fung Leung | morepresent      |
+| 24155751 | Haozhi Lian     | haozhil          |
+| 24061397 | Xia Cheng       | miacheng2        |
+| 24041794 | Qianping Wang   | whatthehiao      |
 
-|--(This is the file that specify which directories or files to be ignored while pushing the files to Github)
+## Architecture of the application
 
-|--(It mainly used for ignoring large envrionment-related packages, which can be installed based on the requirement.txt)
+CITS5505-Project2-main
 
-|-app.py
+│ .DS_Store
 
-|--(The backend file based on flask, which requires packages from requirement.txt to execute.)
+│ .gitignore
 
-|-README.md
+│ README.md
 
-|--(This file, explaing everything of this project)
+│ requirement.txt
 
-|-requirement.txt
+│ run.py
 
-|--(This file is a record of used packages with their version details. For first-time runners, you have to run "pip install -r requirement.txt" to install these packages for running the backend file.)
+│
 
-## To run this project:
-1. Download the whole repo from main branch. Or use clone or pull command if you are authroised.
-2. Unzip the downloaded file and navigate to the root dir of the project in CMD (Windows) or terminal (MacOS)
-3. If you do not have a virtual environment, you better to create one at this stage, to create:
-    "python -m venv venv"
-4. Once the virtual environment is created, for Windows users, run: "/venv/Scripts/activate", for MacOS users run "source ./venv/bin/activate"
-5. Run flask by using "flask run". Ps, if you wish to test the server on different devices in the same local network, you may run "flask run -host=0.0.0.0". This way, you will be able to access the backend API via "http://<YOUR LAPTOP IP ADDRESS>:5000/<APIs>"
+├─app ---------------------------- // Flask application components
 
-## Flask testing command:
-1. init-db
-    
--if you with to recreate the database file and add some testing data, you can run "flask init-db" to create the database and some sample posts, replys and 1 admin user with login credential as follows "Username: admin; Password: admin123". 
+│ │ config.py
 
-REMEBER: only run this command if there is no existing pagedata.db in the /instance folder. Otherwise, sample data and user will be added to exisiting db file.
+│ │ models.py
 
-## Add function
-1. delete the post by creater
-2. delete the reply by replayer
-3. addd admin account to delete any post and reply.
+│ │ routes.p
+
+│ │ \_*init*\_.py
+
+│ │
+
+│ ├─static ---------------------- // Static files like media, JavaScript, and CSS
+
+│ │ │ animated.css
+
+│ │ │ animation.js
+
+│ │ │ base.css
+
+│ │ │ bootstrap.bundle.min.js
+
+│ │ │ bootstrap.bundle.min.js.map
+
+│ │ │ bootstrap.min.css
+
+│ │ │ bootstrap.min.css.map
+
+│ │ │ Dosis-Bold.ttf
+
+│ │ │ index_css.css
+
+│ │ │ index_js.js
+
+│ │ │ js_module.js
+
+│ │ │ profile_js.js
+
+│ │ │ profile_styles.css
+
+│ │ │ welcome_css.css
+
+│ │ │ welcome_js.js
+
+│ │ │
+
+│ │ └─pic --------------------- // Pictures used in the application
+
+│ │ │ chevron.gif
+
+│ │ │ intro-back.png
+
+│ │ │ intro-gallery.png
+
+│ │ │ signPic.png
+
+│ │ │
+
+│ │ └─HomePage-image
+
+│ │ close.png
+
+│ │ clothes.png
+
+│ │ communities.png
+
+│ │ content-avatar0.png
+
+│ │ content-avatar1.png
+
+│ │ content-avatar2.png
+
+│ │ content-avatar3.png
+
+│ │ content-avatar4.png
+
+│ │ content-avatar5.png
+
+│ │ content-avatar6.png
+
+│ │ content-avatar7.png
+
+│ │ content-avatar8.png
+
+│ │ content-avatar9.png
+
+│ │ dotdotdot.png
+
+│ │ explore.png
+
+│ │ home.png
+
+│ │ hot.png
+
+│ │ js-meme.png
+
+│ │ logo.png
+
+│ │ magnifying-glass-white.png
+
+│ │ magnifying-glass.png
+
+│ │ medal1.png
+
+│ │ message.png
+
+│ │ more.png
+
+│ │ notification.png
+
+│ │ post-emoji.png
+
+│ │ post-picture.png
+
+│ │ post-schedule.png
+
+│ │ post-world.png
+
+│ │ profile.png
+
+│ │
+
+│ ├─systemTest -------------- // Pytest system test files
+
+│ │ test_app.py
+
+│ │ \_*init*\_.py
+
+│ │
+
+│ ├─templates ---------------- // HTML templates for the application
+
+│ │ base.html
+
+│ │ index.html
+
+│ │ login.html
+
+│ │ logout.html
+
+│ │ profile.html
+
+│ │ search.html
+
+│ │ signup.html
+
+│ │ welcome.html
+
+│ │
+
+│ └─unitTest ------------------ // Pytest unit test files
+
+│ test_app.py
+
+│ \_*init*\_.py
+
+│
+
+├─deliverables ----------------- // Media files for tracking project progress
+
+│ testResult.png...
+
+│
+
+└─instance ---------------------- // Database with posts, replies, and user details
+
+pagedata.db
+
+## Launch the application
+
+### Step 1
+
+For first-time users, execute `pip install -r requirements.txt` to install all the necessary dependency packages for running the backend file.
+
+### Step 2
+
+Download the entire repository from the main branch. Alternatively, use the `git clone` or `git pull `command if you have the necessary permissions.
+
+### Step 3
+
+Unzip the downloaded file and navigate to the root directory of the project in CMD (Windows) or Terminal (macOS).
+
+### Step 4
+
+If you do not have a virtual environment, it is advisable to create one at this stage. To do so, run `python -m venv venv.`
+
+### Step 5
+
+After creation, activate the virtual environment. For Windows users, execute `\venv\Scripts\activate`. For macOS users, run `source /venv/bin/activate`.
+
+### Step 6
+
+Launch Flask with the command `flask run`. If you wish to test the server on different devices within the same local network, execute `flask run --host=0.0.0.0`. This will allow the backend API access via `http://<your-local-ip>:5000/`.
+
+## Run the tests for the application
+
+### unit test
+
+A suite of 20 unit tests is available. To initiate the unit tests, run `pytest app/unitTest`.
+
+### system test
+
+A suite of 4 system tests is available. To initiate the system tests, run `pytest app/systemTest`.

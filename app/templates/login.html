@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" href="../static/pic/HomePage-image/logo.png">
     <title>Login Page</title>
     <style>
         body {
@@ -38,12 +38,14 @@
         }
 
         label {
+            font-size: 20px;
             display: block;
             margin-bottom: 5px;
         }
 
         input[type="text"],
         input[type="password"] {
+            font-size: 18px;
             width: 100%;
             padding: 8px;
             margin-bottom: 20px;
@@ -52,8 +54,10 @@
         }
 
         button {
-            margin: 1em;
-            width: 100%;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            width: 105%;
+            font-size: 18px;
             padding: 10px;
             background-color: #007BFF;
             color: white;
@@ -88,9 +92,8 @@
 </head>
 
 <body>
-    <h2 style="text-align: center;">Help 5505</h2>
     <form method="post" onsubmit="sendData(); return false;" id="login_form">
-
+        <h2 style="text-align: center;">Help5505</h2>
         <h2>Login</h2>
         <div>
             <label for="username">Username:</label>

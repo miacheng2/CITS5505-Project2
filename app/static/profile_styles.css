@@ -74,13 +74,13 @@ button {
     position: relative;
     margin-top: 1rem;
     background-color: rgba(94, 197, 252, 0.306);
-    height: 12rem;
+    height: 10rem;
 }
 
 /* selfi image */
 .img_container {
     position: absolute;
-    top: 8rem;
+    top: 6rem;
     margin-left: 2rem;
     background-color: white;
     height: 8rem;
@@ -89,6 +89,10 @@ button {
     border-radius: 50%;
     object-fit: cover;
     background-color: aquamarine;
+}
+
+.currentUser {
+    font-size: 20px;
 }
 
 #pro_pro {
@@ -104,7 +108,8 @@ button {
     align-items: center;
     justify-content: space-between;
     margin-top: 1rem;
-    height: 12rem;
+    margin-left: 2rem;
+    height: 10rem;
 }
 
 /*style edit profile button */

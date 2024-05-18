@@ -86,7 +86,7 @@ def get_profile():
 
 # Get post and reply data return to front-end
 @app.route('/getPosts', methods=['GET'])
-#@jwt_required()
+@jwt_required()
 def getPosts():
     #Avatar bug is because of this method
     allPost = db.session.query(Post)
