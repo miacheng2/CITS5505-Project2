@@ -290,6 +290,10 @@ form {
     width: 300px;
 }
 
+#searchInput::placeholder {
+    color: #ffffff
+}
+
 #closesearchResults {
     width: 39px;
 }
