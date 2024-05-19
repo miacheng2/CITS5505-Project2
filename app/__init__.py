@@ -16,9 +16,9 @@ login_manager = LoginManager()
 jwt = JWTManager()
    
 def create_app(test_config=False):
-    if os.getenv('FLASK_TEST_CONFIG') == 'True' and test_config:
+    if os.getenv('FLASK_TEST_CONFIG') == 'True' or test_config:
         test_config =  True  ##configure the test_flag for testing
-    elif os.getenv('FLASK_TEST_CONFIG') == 'False' and test_config: 
+    elif os.getenv('FLASK_TEST_CONFIG') == 'False' or test_config: 
         test_config = True
     app = Flask(__name__)
     CORS(app)

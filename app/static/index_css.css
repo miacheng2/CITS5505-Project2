@@ -7,7 +7,6 @@ body {
 
 body * {
     box-sizing: border-box;
-    /* border: white solid 1px; */
     color: black;
 }
 
@@ -17,9 +16,9 @@ button {
 
 
 .delete-button {
-    margin-top: 10px;
+    margin: 5px;
     display: inline-block;
-    background-color: #003853;
+    background-color: #2b416d;
     border-radius: 30px;
     text-decoration: none;
     color: white;
@@ -109,7 +108,7 @@ input#new_post_content {
 }
 
 #replyoption p {
-    color: #003853;
+    color: #13296d;
 }
 
 #replyoption img {
@@ -163,7 +162,7 @@ input#new_post_content {
 }
 
 .post-date {
-    color: gray;
+    color: #404040;
     font-size: 15px;
 }
 
@@ -179,20 +178,10 @@ form {
     padding: 10px;
     /* border: 2px solid #3D82AB;
     border-radius: 20px; */
-    margin-bottom: 20px;
 }
 
-
 .eachPost {
-    padding: 10px;
-    /* border: 2px solid #3D82AB;
-    border-radius: 20px; */
-    margin-bottom: 20px;
-}
-
-
-.eachPost {
-    padding: 10px;
+    padding: 20px;
     border: 2px solid #3D82AB;
     border-radius: 20px;
     margin-bottom: 20px;
@@ -205,10 +194,12 @@ form {
 }
 
 
-#postsBox div:nth-child(1) {
+#postsBox div:first-child {
     display: flex;
+}
 
-
+.author-text {
+    margin-left: 10px;
 }
 
 .user-name {
@@ -222,7 +213,7 @@ form {
 }
 
 .post-date {
-    color: gray;
+    color: #404040;
     font-size: 15px;
 }
 
@@ -243,10 +234,11 @@ form {
 
 .user-content {
     margin-left: 50px;
+    margin-top: 5px;
 }
 
 .user-content p {
-    color: grey;
+    color: #606060;
     margin: 0;
 }
 
@@ -255,55 +247,50 @@ form {
     width: 750px;
 }
 
-.comment-id-date {
-    display: flex;
-}
-
-
-.comment-content {
-    margin: 0;
-    padding: 0;
-}
-
-
-.comment-area p {
-    overflow-wrap: break-word;
-}
-
-
 .reply-avatar {
     width: 40px !important;
     height: 40px !important;
 }
 
-
-.comment-content {
-    color: grey;
-
-}
-
 .comment-textbox {
-    margin-left: 50px;
     border: 2px solid #3D82AB;
     height: 50px;
-    width: 700px;
+    width: 660px;
     margin-top: 2px;
     margin-bottom: 2px;
+    margin-left: 50px;
 }
 
-#postsBox .default-button {
+.comment-id-date {
+    display: flex;
+    margin-top: 10px;
+}
+
+.comment-content {
+    margin-right: 50px;
+    padding-right: 20px;
+    color: #606060;
+}
+
+.comment-area p {
+    overflow-wrap: break-word;
+}
+
+#postsBox .button-middle {
     margin-left: 50px;
     width: auto;
     padding: 10px 20px;
 }
 
-
-
 #side-area {
     position: fixed;
-    margin-left: 1120px;
+    margin-left: 1200px;
     height: 100%;
     width: 300px;
+}
+
+#searchInput::placeholder {
+    color: #ffffff
 }
 
 #closesearchResults {
@@ -327,7 +314,7 @@ form {
     width: 50px;
     height: 50px;
     border-radius: 20px 0 0 20px;
-    background-color: #003853;
+    background-color: #2b416d;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -342,14 +329,14 @@ form {
     outline: none;
     width: 100%;
     height: 50px;
-    background-color: #003853;
+    background-color: #2b416d;
     border-radius: 0 20px 20px 0;
     margin-bottom: 10px;
     color: white;
 }
 
 #search input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #003853 inset;
+    -webkit-box-shadow: 0 0 0 1000px #2b416d inset;
 }
 
 #searchResults-area {
@@ -381,7 +368,7 @@ form {
     font-size: 30px;
 }
 
-#subscribe .default-button {
+#subscribe .button-middle {
     padding: 10px 20px;
 }
 
@@ -394,7 +381,7 @@ form {
     margin-bottom: 5px;
 }
 
-#whatshappening {
+#trend {
     padding: 10px;
     border: 2px solid #3D82AB;
     border-radius: 20px;
@@ -406,12 +393,13 @@ form {
 }
 
 #rank1 img {
+    margin-left: 67px;
     width: 70px;
 }
 
 .post-counts {
     font-size: 15px;
-    color: gray;
+    color: #404040;
 }
 
 .rank {
@@ -427,7 +415,7 @@ form {
 }
 
 #showmore {
-    color: #003853;
+    color: #2b416d;
 }
 
 
@@ -457,10 +445,10 @@ form {
     height: 20px;
 }
 
-.follow-area .default-button {
+.follow-area .button-middle {
     padding: 15px 15px;
     color: white;
-    background-color: #003853;
+    background-color: #2b416d;
 }
 
 .follow-area .default-button:hover {
@@ -486,5 +474,5 @@ form {
 
 
 #about-us div {
-    color: gray;
+    color: #404040;
 }

@@ -1,69 +1,38 @@
 {% extends "base.html" %}
 
 {% block homePage %}
-<link rel="stylesheet" href="../static/HomePage-css.css" />
-<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-<script type="module" src="../static/HomePage_js.js"></script>
+<link rel="stylesheet" href="../static/index_css.css">
+<script type="module" src="../static/index_js.js"></script>
+<link rel="icon" href="../static/pic/HomePage-image/logo.png">
+<title>Help5505 - Forum</title>
 
 {% endblock %}
 
 {% block content %}
 <div id="content-area">
-  <div id="header">
-    <div id="foryou">For you</div>
-    <div id="following">Following</div>
-  </div>
   <div id="header-post">
     <form onsubmit="sendPost()" return false;>
       <div>
         <img class="avatarImg" src="" alt="" />
-        <input type="text" id="new_post_title" placeholder="Title Goes Here~" required />
+        <input type="text" id="new_post_title" placeholder="Title Goes Here" required />
       </div>
       <div>
-        <input type="text" id="new_post_content" placeholder="Post Content Goes Here~" required />
+        <input type="text" id="new_post_content" placeholder="Post Content Goes Here" required />
       </div>
       <div id="replyoption">
-        <img src="../static/pic/HomePage-image/post-world.png" alt="" />
-        <p>Everyone can reply</p>
+        <img src="../static/pic/HomePage-image/explore.png" alt="" />
+        <p>Not sure how to post? Click 'Tips' in the left navbar for guidance!</p>
       </div>
       <div>
         <img src="../static/pic/HomePage-image/post-picture.png" alt="" />
         <img src="../static/pic/HomePage-image/post-emoji.png" alt="" />
         <img src="../static/pic/HomePage-image/post-schedule.png" alt="" />
-        <button type="submit" id="post_btn" class="default-button" disabled>
+        <button type="submit" id="post_btn" class="button-middle" disabled>
           Post
         </button>
       </div>
       <p id="login_warning">You have to login to Post!</p>
     </form>
-  </div>
-  <div class="content">
-    <div>
-      <img src="../static/pic/HomePage-image/content-avatar1.png" alt="" />
-      <div>
-        <div class="user-name">
-          Edward
-          <div>
-            <img src="../static/pic/HomePage-image/medal1.png" alt="" />
-          </div>
-        </div>
-        <div class="post-date">Thu, 16 Apr 2024 13:10:15 GMT</div>
-      </div>
-    </div>
-    <div class="user-content special-content">
-      <div class="user-title special-title">
-        Seeking Assistance with JavaScript Snag
-      </div>
-      <p>
-        "Hello! 😊 I'm facing a bit of a snag with my JavaScript code—it's not
-        behaving as expected. 💻 I've tried troubleshooting on my own, but so
-        far, no luck. 🤔 I was hoping someone could lend a hand and help me
-        figure out what's causing the issue. 🙏 Any advice or assistance would
-        be immensely appreciated! Thanks a bunch in advance for any help you can
-        provide. 😊"
-      </p>
-      <img src="../static/pic/HomePage-image/js-meme.png" alt="" />
-    </div>
   </div>
   <div id="postsBox"></div>
 </div>
@@ -87,23 +56,14 @@
     </div>
     <div id="searchResults"></div>
   </div>
-  <div id="subscribe">
-    <h1>Subscribe to Premium</h1>
-    <p>Subscribe to unlock new features and never miss any news.</p>
-    <form id="subscribeForm">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
-      <button type="submit" class="default-button">Subscribe</button>
-    </form>
-  </div>
-  <div id="whatshappening">
-    <h1>What's happening</h1>
+  <div id="trend">
+    <h1>Trending</h1>
     <div id="rank1">
-      <div><img src="../static/pic/HomePage-image/hot.png" alt="" /></div>
       <div>
         <div id="topic1"></div>
         <div id="topicPost1" class="post-counts"></div>
       </div>
+      <div><img src="../static/pic/HomePage-image/hot.png" alt="" /></div>
     </div>
     <div class="rank">
       <div>
@@ -165,7 +125,7 @@
           <div id="rank1post" class="post-counts">post</div>
         </div>
         <div class="follow-user">
-          <button class="default-button">Follow</button>
+          <button class="button-middle">Follow</button>
         </div>
       </div>
       <div class="follow-area">
@@ -178,7 +138,7 @@
           <div id="rank2post" class="post-counts">post</div>
         </div>
         <div class="follow-user">
-          <button class="default-button">Follow</button>
+          <button class="button-middle">Follow</button>
         </div>
       </div>
       <div class="follow-area">
@@ -191,10 +151,19 @@
           <div id="rank3post" class="post-counts">post</div>
         </div>
         <div class="follow-user">
-          <button class="default-button">Follow</button>
+          <button class="button-middle">Follow</button>
         </div>
       </div>
       <div id="showmore">Show more</div>
+    </div>
+    <div id="subscribe">
+      <h1>Subscribe</h1>
+      <p>Subscribe and never miss any news!</p>
+      <form id="subscribeForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <button type="submit" class="button-middle">Subscribe</button>
+      </form>
     </div>
     <div id="about-us">
       <div>Terms of Service</div>
