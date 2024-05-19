@@ -12,6 +12,18 @@
     width: 50px;
 }
 
+#logoAndTopic {
+    display: flex;
+}
+
+#topic {
+    justify-content: center;
+}
+
+#topic p{
+    font-weight: bold;
+}
+
 #navigation ul {
     list-style-type: none;
     padding: 0;

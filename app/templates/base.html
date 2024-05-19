@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block homePage %} {% endblock %} {% block profile %} {% endblock %}
+    <link rel="stylesheet" href="../static/base.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  {% block homePage %}
-  {% endblock %}
-
-  {% block profile %}
-  {% endblock %}
-  <link rel="stylesheet" href="../static/base.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
-
-<body>
-  <div id="navigation-area">
-    <div id="logo">
-      <div><img src="../static/pic/HomePage-image/logo.png" alt="" /></div>
-      <div>「CITS5505 Help Forum」</div>
-    </div>
-    <div id="navigation">
-      <ul>
-        <li>
-          <img src="../static/pic/HomePage-image/home.png" alt="" /><a href="/index">Home</a>
-        </li>
-    <!-- <li>
+  <body>
+    <div id="navigation-area">
+      <div id="logo">
+        <div id="logoAndTopic">
+          <div><img src="../static/pic/HomePage-image/logo.png" alt="" /></div>
+          <div id="topic"><p>「CITS5505 Help Forum」</p></div>
+        </div>
+      </div>
+      <div id="navigation">
+        <ul>
+          <li>
+            <img src="../static/pic/HomePage-image/home.png" alt="" /><a
+              href="/index"
+              >Home</a
+            >
+          </li>
+          <!-- <li>
             <img src="../static/pic/HomePage-image/explore.png" alt="" />Explore
           </li>
           <li>
@@ -38,55 +41,75 @@
             <img src="../static/pic/HomePage-image/communities.png" alt="" />Communities
           </li> -->
           <li>
-            <img src="../static/pic/HomePage-image/profile.png" alt="" /><a href="/profile">Profile</a>
+            <img src="../static/pic/HomePage-image/profile.png" alt="" /><a
+              href="/profile"
+              >Profile</a
+            >
           </li>
           <li>
-          <img src="../static/pic/HomePage-image/message.png" alt="" /><a href="#" onclick="openTips(); return false;">Tips</a> 
-        </li>
-
-      </ul>
+            <img src="../static/pic/HomePage-image/message.png" alt="" /><a
+              href="#"
+              onclick="openTips(); return false;"
+              >Tips</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div id="post">
+        <a href="#new_post_title" class="button-middle">Post</a>
+      </div>
+      <div id="profile">
+        <a href="/profile" class="button-bottom">
+          <div>
+            <img class="avatarImg" src="" alt="" />
+          </div>
+          <div>
+            <p class="currentUser"></p>
+          </div>
+          <div>
+            <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
+          </div>
+        </a>
+      </div>
+      <div><a href="/login">Login</a></div>
+      <div id="homepagelogout"><a onclick="return logout()">Logout</a></div>
     </div>
-    <div id="post">
-      <a href="#new_post_title" class="button-middle">Post</a>
+    <div class="tips-background" id="tipsBackground">
+      <div class="tips-content" onclick="event.stopPropagation();">
+        <p class="tips-text">
+          - Before creating a new post, it's recommended to search for existing
+          posts that may provide a solution to your question.<br />
+          - When providing details along with your questions, try your best to
+          include only necessary information.<br />
+          - Please consider offering suggestions but not giving straight answers
+          to help other students.<br />
+          - If you solve a problem with others' help here, it would be great if
+          other interested students could see a short 'Great, fixed it!'
+          follow-up message.
+        </p>
+        <script>
+          function openTips() {
+            document.getElementById("tipsBackground").style.display = "block";
+          }
+          function closeTips() {
+            document.getElementById("tipsBackground").style.display = "none";
+          }
+          document
+            .getElementById("tipsBackground")
+            .addEventListener("click", function (event) {
+              if (event.target === this) {
+                closeTips();
+              }
+            });
+          document
+            .querySelector(".tips-content")
+            .addEventListener("click", function (event) {
+              event.stopPropagation();
+            });
+        </script>
+      </div>
     </div>
-    <div id="profile">
-      <a href="/profile" class="button-bottom">
-        <div>
-          <img class="avatarImg" src="" alt="" />
-        </div>
-        <div>
-          <p class="currentUser"></p>
-        </div>
-        <div>
-          <img src="../static/pic/HomePage-image/dotdotdot.png" alt="" />
-        </div>
-      </a>
-    </div>
-    <div><a href="/login">Login</a></div>
-    <div id="homepagelogout"><a onclick="return logout()">Logout</a></div>
-  </div>
-  <div class="tips-background" id="tipsBackground">
-    <div class="tips-content" onclick="event.stopPropagation();">
-      <p class="tips-text"> - Before creating a new post, it's recommended to search for existing posts that may provide a solution to your question.<br> - When providing details along with your questions, try your best to include only necessary information.<br> - Please consider offering suggestions but not giving straight answers to help other students.<br> - If you solve a problem with others' help here, it would be great if other interested students could see a short 'Great, fixed it!' follow-up message.</p>
-      <script>
-        function openTips() {
-          document.getElementById('tipsBackground').style.display = 'block';
-        }
-        function closeTips() {
-          document.getElementById('tipsBackground').style.display = 'none';
-        }
-        document.getElementById('tipsBackground').addEventListener('click', function(event) {
-          if (event.target === this) {closeTips();}});
-        document.querySelector('.tips-content').addEventListener('click', function(event) {event.stopPropagation();});
-      </script>
-    </div>
-  </div>
 
-  {% block content %}
-  {% endblock %}
-
-  {% block sideArea %}
-  {% endblock %}
-</body>
-
+    {% block content %} {% endblock %} {% block sideArea %} {% endblock %}
+  </body>
 </html>
