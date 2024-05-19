@@ -64,7 +64,7 @@ button {
 
 /* change background color of arrow */
 .arrow_i:hover {
-    background-color: rgb(144, 144, 228);
+    background-color: rgb(144, 189, 228);
     color: white;
 }
 
@@ -73,14 +73,14 @@ button {
 .pro_selfi {
     position: relative;
     margin-top: 1rem;
-    background-color: rgba(196, 226, 26, 0.199);
-    height: 12rem;
+    background-color: rgba(94, 197, 252, 0.306);
+    height: 10rem;
 }
 
 /* selfi image */
 .img_container {
     position: absolute;
-    top: 8rem;
+    top: 6rem;
     margin-left: 2rem;
     background-color: white;
     height: 8rem;
@@ -89,6 +89,10 @@ button {
     border-radius: 50%;
     object-fit: cover;
     background-color: aquamarine;
+}
+
+.currentUser {
+    font-size: 20px;
 }
 
 #pro_pro {
@@ -104,7 +108,8 @@ button {
     align-items: center;
     justify-content: space-between;
     margin-top: 1rem;
-    height: 12rem;
+    margin-left: 2rem;
+    height: 10rem;
 }
 
 /*style edit profile button */
@@ -144,7 +149,7 @@ button {
 }
 
 .profile_function *:hover {
-    background-color: rgb(144, 144, 228);
+    background-color: rgb(115, 147, 202);
     color: white;
     cursor: pointer;
 }

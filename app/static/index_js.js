@@ -6,68 +6,47 @@ import {
     getPost,
     sendReply,
     sendPost,
+    authorId,
     searchArticles,
     handleKeyPress,
     deletePost,
     deleteReply,
     getAvatarIndex,
     avatars,
-    letterToAvatarIndex,
     logout
 } from "../static/js_module.js";
 
 $(document).ready(function () {
-    // Asign avatar to each user
 
     document.getElementById("post_btn").disabled = false;
     document.getElementById("login_warning").style.display = "none";
 
     // When the textbox is clicked, the reply option is displayed.
     document
-        .getElementById("new_post_content")
+        .getElementById("new_post_title")
         .addEventListener("click", function () {
             document.getElementById("replyoption").style.display = "flex";
         });
 
+    document
+        .getElementById("new_post_content")
+        .addEventListener("click", function () {
+            document.getElementById("replyoption").style.display = "flex";
+        });
+    
     document.addEventListener("click", function (event) {
         var replyoption = document.getElementById("replyoption");
-        var textbox = document.getElementById("new_post_content");
-        if (event.target !== replyoption && event.target !== textbox) {
+        var titlebox = document.getElementById("new_post_title");
+        var contentbox = document.getElementById("new_post_content");
+        if (event.target !== replyoption && event.target !== titlebox && event.target !== contentbox) {
             replyoption.style.display = "none";
         }
     });
 
-    //   When the page loads, the video plays automatically.
-    const videos = document.querySelectorAll(".video");
-
-    const options = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.7,
-    };
-
-    const callback = (entries, observer) => {
-        entries.forEach((entry) => {
-            const video = entry.target;
-            if (entry.isIntersecting) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-    videos.forEach((video) => {
-        observer.observe(video);
-    });
-
-    var avatarIndex = getAvatarIndex(userName);
-
+    var avatarIndex = getAvatarIndex(userId);
     var imgElements = document.getElementsByClassName("avatarImg");
     for (var i = 0; i < imgElements.length; i++) {
-        imgElements[i].src =
-            "/static/pic/HomePage-image/content-avatar" + avatarIndex + ".png";
+        imgElements[i].src = "../static/pic/HomePage-image/content-avatar" + avatarIndex + ".png";
     }
 
     getPost(jwtToken).then(() => {
@@ -82,11 +61,11 @@ $(document).ready(function () {
 
             posts.forEach((post) => {
                 const authorName = post.authorName;
-
-                if (authorPostsCount.hasOwnProperty(authorName)) {
-                    authorPostsCount[authorName]++;
+                const authorId = post.authorId;
+                if (authorPostsCount.hasOwnProperty(authorId)) {
+                    authorPostsCount[authorId][1]++;
                 } else {
-                    authorPostsCount[authorName] = 1;
+                    authorPostsCount[authorId] = [authorName, 1];
                 }
             });
 
@@ -98,13 +77,13 @@ $(document).ready(function () {
 
         const authorPostsArray = Object.entries(authorPostsCount);
 
-        authorPostsArray.sort((a, b) => b[1] - a[1]);
+       authorPostsArray.sort((a, b) => b[1][1] - a[1][1]);
 
         // console.log(authorPostsArray);
 
         const topAuthors = authorPostsArray.slice(0, 3);
 
-        topAuthors.forEach(([authorName, postCount], index) => {
+        topAuthors.forEach(([authorId, [authorName, postCount]], index) => {
             const authorDivId = `rank${index + 1}author`;
             const authorDiv = document.getElementById(authorDivId);
             const postDivId = `rank${index + 1}post`;
@@ -112,7 +91,8 @@ $(document).ready(function () {
             const avatarDivId = `rank${index + 1}avatar`;
             const avatarDiv = document.getElementById(avatarDivId);
 
-            var avatarIndex = getAvatarIndex(authorName);
+            var avatarIndex = getAvatarIndex(authorId);
+
 
             authorDiv.innerHTML = `${authorName}`;
             postDiv.innerHTML = `${postCount} posts`;
@@ -120,26 +100,13 @@ $(document).ready(function () {
         });
 
         // Asign avatar to each author
-        var avatar;
+        var avatar_poster, avatar_replyer;
         for (var i = post_array.length - 1; i >= 0; i--) {
             var index = post_array.length - 1 - i;
-            var name = post_array[i].authorName;
-
-            if (name.trim() !== "") {
-                let initial = name[0].toUpperCase();
-                let avatarIndex;
-
-                if (letterToAvatarIndex.hasOwnProperty(initial)) {
-                    avatarIndex = letterToAvatarIndex[initial];
-                } else {
-                    avatarIndex = avatars.length;
-                }
-                avatar = avatars[avatarIndex - 1];
-            } else {
-                console.error("authorName is empty");
-            }
-            console.log(post_array[i].authorName);
-            console.log(userName);
+            var poster_id = post_array[i].authorId;
+            var avatarIndex1 = getAvatarIndex(poster_id);
+            avatar_poster = avatars[avatarIndex1];
+            
             if (post_array[i].authorName === userName || userName === "admin") {
                 var temp_deletePost =
                     '<button class="delete-button" onclick="deletePost(' +
@@ -152,36 +119,38 @@ $(document).ready(function () {
 
             var temp_content = `<article id='article${index}'>
                 <div id='content'>
-                  <img src='${avatar}' alt='' />
-                  <div>
+                <img src='${avatar_poster}' alt='' />
+                <div class='author-text'>
                     <div class='user-name'>
-                      ${post_array[i].authorName}
-                      <div>
-                        <img src='/static/pic/HomePage-image/medal1.png' alt='' />
-                      </div>
+                    ${post_array[i].authorName}
                     </div>
                     <div class='post-date'>
-                      ${post_array[i].date}
+                    ${post_array[i].date}
                     </div>
-                  </div>
+                </div>
                 </div>
                 <div class='user-title'>
-                  ${post_array[i].title}
+                ${post_array[i].title}
                 </div>
                 <div class='user-content'>
-                  <p>${post_array[i].content}</p>
+                <p>${post_array[i].content}</p>
                 </div>
                 ${temp_deletePost}
-              </article>`;
+            </article>`;
 
             var temp_input =
                 '<input type="text" class="comment-textbox" id=' +
                 post_array[i].id +
-                ' placeholder="Comment Here~" required>';
+                ' placeholder="Comment Here" required>';
             var temp_btn =
-                '<button type="submit" class="default-button">Reply</button>';
+                '<button type="submit" class="button-middle">Reply</button>';
             var temp_replys = "";
+
             for (var n = 0; n < post_array[i].replyData.length; n++) {
+                var replyer_id = post_array[i].replyData[n].authorId;
+                var avatarIndex2 = getAvatarIndex(replyer_id);
+                avatar_replyer = avatars[avatarIndex2];
+                console.log()
                 if (post_array[i].authorName === userName || userName === "admin") {
                     var deleteReply_btn =
                         '<button class="delete-button" onclick="deleteReply(' +
@@ -190,18 +159,19 @@ $(document).ready(function () {
                 } else {
                     var deleteReply_btn = "";
                 }
-
+                
                 temp_replys += `
+
                 <div class='comment-area' style='display: block'>
 
                         <div class='comment-id-date'>
-                          <div><img class='reply-avatar' src='${avatar}' alt='' /></div>
-                          <div>
+                        <div><img class='reply-avatar' src='${avatar_replyer}' alt='' /></div>
+                        <div class='author-text'>
                             <div>${post_array[i].replyData[n].authorName} </div>
                             <div class='post-date'>At ${post_array[i].replyData[n].date} </div>
-                          </div>
                         </div>
-                        <div class='reply'><p class='comment-content'>"${post_array[i].replyData[n].content}" </p></div>
+                        </div>
+                        <div class='reply'><p class='comment-content'>${post_array[i].replyData[n].content} </p></div>
                         ${deleteReply_btn}
                 </div>`;
             }
@@ -249,14 +219,12 @@ $(document).ready(function () {
                 temp_replys +
                 temp_input +
                 temp_btn +
-                "</form></div>";
+                "</form></div>";        
         }
     });
 
-    // The following function works for posting the reply.
     window.sendReply = sendReply;
 
-    // The following function works for posting the post.
     window.sendPost = sendPost;
 
     window.searchArticles = searchArticles;

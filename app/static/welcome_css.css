@@ -3,41 +3,60 @@
     background-image: url(../static/pic/intro-back.png);
     background-repeat: no-repeat;
     position: absolute;
+    background-size: cover;
     right: 0;
     top: 0px;
-    width: 1159px;
-    height: 707px;
+    width: 100%;
+    height: 100%;
     z-index: -1;
 }
 
 .open {
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    background-position: right top;
     padding: 80px 0px 40px 0px;
-    position: relative;
     overflow: hidden;
 }
 
-.title {
-    margin-left: 2vw;
-    margin-top: 25vh;
+.open-elem{
+    padding-left: 3vw;
+    padding-right: 10vw;
+}
+
+.open-left{
+    padding-top: 35vh;
+
+}
+
+.open-right {
+    float: right;
 }
 
 #loginlink {
     position: absolute;
-    top: 90%;
+    font-family: Impact, Arial;
+    font-size: 4em;
+    color: #fd9a36; 
+    top: 99%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 5px solid #f7f7f7; 
+    border-radius: 20px;
+    padding: 10px; 
+    cursor: pointer;
+}
+
+#loginlink:hover {
+    color:#e1862a;
 }
 
 .mid {
     width: 10%;
     height: 10%;
-    position: absolute;
-    top: 90%;
+    position: relative;
+    z-index: 1;
     left: 50%;
-    transform: translate(-50%, -30%);
+    transform: translate(-50%, -10%);
 }
 
 .mid img {
@@ -46,10 +65,11 @@
 }
 
 .mid-line {
-    background-color: #f2f2f2;
+    margin-top: -1vh;
     padding: 25px;
     text-align: center;
     background-color: #ffad42;
+    position: relative;
 }
 
 .intro-item {
@@ -67,32 +87,36 @@
     box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
   }
 
-.intro-doc {
+.intro-doc-1 {
     font-family: 'Lucida Sans', sans-serif;
     font-size: 26px;
     line-height: 38px;
+    margin-left: 30px;
     color: #434795;
 }
 
-#sm {
+.intro-doc-2 {
+    font-family: 'Lucida Sans', sans-serif;
     font-size: 20px;
     line-height: 20px;
+    color: #434795;
 }
 
-.number {
-    font-family: 'Lucida Sans', sans-serif;
-    font-size: 48px;
+#totalUser, #totalPost, #totalReply {
+    font-family: Impact, Arial;
+    font-size: 2em;
     line-height: 60px;
     color: #434795;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     font-family: Impact, Arial;
     color: #434795; }
-h1 { font-size: 96px; }
-h2 { font-size: 60px; }
-h3 { font-size: 48px; color:#f2f2f2; }
-h4 { font-size: 36px; }
+h1 { font-size: 8em; }
+h2 { font-size: 5em; }
+h3 { font-size: 4em; }
+h4 { font-size: 3em; }
+h5 { font-size: 2em; }
 
 a {
     text-decoration: none !important;

@@ -1,9 +1,9 @@
-import { jwtToken, userId, userName, post_array, getPost, logout, avatars, letterToAvatarIndex, getAvatarIndex } from '../static/js_module.js';
+import { jwtToken, userId, userName, post_array, getPost, logout, avatars, getAvatarIndex} from '../static/js_module.js';
 $(document).ready(function () {
 
     let post_num = 0
 
-    var avatarIndex = getAvatarIndex(userName);
+    var avatarIndex = getAvatarIndex(userId);
 
     var imgElements = document.getElementsByClassName("avatarImg");
     for (var i = 0; i < imgElements.length; i++) {
@@ -11,13 +11,11 @@ $(document).ready(function () {
             "/static/pic/HomePage-image/content-avatar" + avatarIndex + ".png";
     }
 
-    console.log(userName)
-
     getPost(jwtToken).then(() => {
         let pro_name = document.getElementsByClassName("currentUser")
-
         for (let i = 0; i < pro_name.length; i++) {
-            pro_name[i].innerHTML = userName;
+            let textNode = document.createTextNode(userName);
+            pro_name[i].appendChild(textNode);
         }
 
         for (let i = 0; i < post_array.length; i++) {
@@ -40,7 +38,7 @@ $(document).ready(function () {
                     reply_replys += '<div class = "pro_block"><p>' + post_array[i].replyData[n].authorName + ' commented:<span class = "pro_date"> (' + post_array[i].replyData[n].date + ')' + '</span></p> <p>' + post_array[i].replyData[n].content + '</p></div>'
                     reply_titles = temp_content
                     document.getElementById("pro_replybox").innerHTML += '<div class = "pro_post">' + reply_titles + reply_replys + '</div>'
-                    console.log(reply_titles)
+                    //console.log(reply_titles)
                 }
             }
         }

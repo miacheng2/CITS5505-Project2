@@ -88,7 +88,7 @@ def get_profile():
 @app.route('/getPosts', methods=['GET'])
 @jwt_required()
 def getPosts():
-
+    #Avatar bug is because of this method
     allPost = db.session.query(Post)
     returnData = []
     for post in allPost:
@@ -96,10 +96,10 @@ def getPosts():
         replyData = []
         for reply in replysForCurrentPost:
             reply_author = db.session.query(User).filter_by(id=reply.authorId).first()
-            reply_data = {'id': reply.id, 'title': reply.title, 'authorName': reply_author.userName, 'date': reply.date, 'content': reply.content, "replyToPostId": reply.replyToPostId}
+            reply_data = {'id': reply.id, 'authorId':reply.authorId, 'authorName': reply_author.userName, 'date': reply.date, 'content': reply.content, "replyToPostId": reply.replyToPostId} 
             replyData.append(reply_data)
         post_author = db.session.query(User).filter_by(id=post.authorId).first()
-        post_data = {'id': post.id, 'title': post.title, 'authorName': post_author.userName, 'date': post.date, 'content': post.content, "replyData": replyData}
+        post_data = {'id': post.id, 'title': post.title, 'authorId':post.authorId, 'authorName': post_author.userName, 'date': post.date, 'content': post.content, "replyData": replyData}
         returnData.append(post_data)
     
     return jsonify({"post": returnData}), 200 
@@ -188,3 +188,15 @@ def get_token():
         return auth_header.split(" ")[1]  # Get the token part after 'Bearer'
     return None
 
+@app.route('/getStatistics', methods=['GET'])
+def get_statistics():
+    totalUser = db.session.query(User).count()
+    totalPost = db.session.query(Post).count()
+    totalReply = db.session.query(Reply).count()        
+    statistics = {
+        'totalUser': totalUser,
+        'totalPost': totalPost,
+        'totalReply': totalReply
+    }
+    return jsonify(statistics), 200
+    

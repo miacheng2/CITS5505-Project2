@@ -106,7 +106,7 @@ def test_send_post(driver):
     login_button = driver.find_element(By.XPATH, "//button[text()='Login']")
     login_button.click()
     
-    driver.get("http://127.0.0.1:5000/") 
+    driver.get("http://127.0.0.1:5000/index") 
     post_title = driver.find_element(By.ID, "new_post_title")
     post_content = driver.find_element(By.ID, "new_post_content")
 

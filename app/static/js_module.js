@@ -1,5 +1,6 @@
 export let jwtToken = localStorage.getItem("token");
 export let userId = localStorage.getItem("userId");
+export let authorId = localStorage.getItem("authorId");
 export let userName = localStorage.getItem("userName");
 export let apiAddress = window.location.hostname
 export let post_array = []
@@ -51,16 +52,15 @@ export function getPost(jwtToken) {
 }
 
 export function sendReply(replyToPostId) {
-    var jwtToken = localStorage.getItem("token")
+    var jwtToken = localStorage.getItem("token");
 
     const authorId = localStorage.getItem("userId");
     const content = document.getElementById(replyToPostId).value;
 
     const data = { authorId: authorId, replyToPostId: replyToPostId, content: content };
-    // <!--If your flask server is running on different device, your apiAdress should be the remote server address.Otherwise, it should be the loopback address. -->
-    var apiAddress = window.location.hostname
+    var apiAddress = window.location.hostname;
     if (apiAddress == "") {
-        apiAddress = "127.0.0.1"
+        apiAddress = "127.0.0.1";
     }
     fetch('http://' + apiAddress + ':5000/postReply', {
         method: 'POST',
@@ -90,16 +90,16 @@ export function sendReply(replyToPostId) {
 }
 
 export function sendPost() {
-    var jwtToken = localStorage.getItem("token")
+    var jwtToken = localStorage.getItem("token");
 
     const authorId = localStorage.getItem("userId");
     const title = document.getElementById("new_post_title").value;
     const content = document.getElementById("new_post_content").value;
 
     const data = { authorId: authorId, title: title, content: content };
-    var apiAddress = window.location.hostname
+    var apiAddress = window.location.hostname;
     if (apiAddress == "") {
-        apiAddress = "127.0.0.1"
+        apiAddress = "127.0.0.1";
     }
 
     fetch('http://' + apiAddress + ':5000/postPost', {
@@ -126,6 +126,7 @@ export function sendPost() {
             console.error('Error:', error);
         });
 }
+
 
 export function searchArticles() {
     const searchInput = document
@@ -249,36 +250,14 @@ export function logout() {
         });
 }
 
-export const letterToAvatarIndex = {
-    A: 1,
-    B: 2,
-    C: 3,
-    D: 4,
-    E: 5,
-    F: 6,
-    G: 7,
-    H: 8,
-    I: 9,
-    J: 10,
-    K: 1,
-    L: 2,
-    M: 3,
-    N: 4,
-    O: 5,
-    P: 6,
-    Q: 7,
-    R: 8,
-    S: 9,
-    T: 10,
-    U: 1,
-    V: 2,
-    W: 3,
-    X: 4,
-    Y: 5,
-    Z: 6,
-};
+export function getAvatarIndex(Id) {
+    return parseInt(Id) % 10; 
+}
+
+
 
 export const avatars = [
+    "/static/pic/HomePage-image/content-avatar0.png",
     "/static/pic/HomePage-image/content-avatar1.png",
     "/static/pic/HomePage-image/content-avatar2.png",
     "/static/pic/HomePage-image/content-avatar3.png",
@@ -288,16 +267,5 @@ export const avatars = [
     "/static/pic/HomePage-image/content-avatar7.png",
     "/static/pic/HomePage-image/content-avatar8.png",
     "/static/pic/HomePage-image/content-avatar9.png",
-    "/static/pic/HomePage-image/content-avatar10.png",
-    "/static/pic/HomePage-image/content-avatardefault.png",
 ];
 
-export function getAvatarIndex(userName) {
-    //When the user loginin his account, assign his avatar
-    var firstLetter = userName.charAt(0).toUpperCase();
-    if (letterToAvatarIndex.hasOwnProperty(firstLetter)) {
-        return letterToAvatarIndex[firstLetter];
-    } else {
-        return "default";
-    }
-}
