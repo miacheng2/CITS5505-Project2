@@ -233,7 +233,7 @@ For first-time users, execute `pip install -r requirements.txt` to install all t
 
 ### Step 2
 
-Download the entire repository from the main branch. Alternatively, use the `git clone` or `git pull `command if you have the necessary permissions.
+Download the entire repository from the main branch. Alternatively, use the `git clone` or `git pull` command if you have the necessary permissions.
 
 ### Step 3
 
@@ -245,7 +245,7 @@ If you do not have a virtual environment, it is advisable to create one at this 
 
 ### Step 5
 
-After creation, activate the virtual environment. For Windows users, execute `\venv\Scripts\activate`. For macOS users, run `source /venv/bin/activate`.
+After creation, activate the virtual environment. For Windows users, run `.\venv\Scripts\activate`. For macOS users, run `source /venv/bin/activate`.
 
 ### Step 6
 
