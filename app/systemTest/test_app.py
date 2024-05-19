@@ -126,5 +126,41 @@ def test_send_post(driver):
 
     assert title_text in inner_html, "The post title is not in the posts box."
 
+def test_send_reply(driver):
+    driver.get("http://127.0.0.1:5000/login")  
+    username_input = driver.find_element(By.NAME, "username")
+    password_input = driver.find_element(By.NAME, "password")
+    username_input.send_keys("admin")
+    password_input.send_keys("admin123")
+    login_button = driver.find_element(By.XPATH, "//button[text()='Login']")
+    login_button.click()
+    
+    driver.get("http://127.0.0.1:5000/index") 
+    post_title = driver.find_element(By.ID, "new_post_title")
+    post_content = driver.find_element(By.ID, "new_post_content")
+    title_text = "This is a testing post title by selenium kits"
+    content_text = "This is a testing post content by selenium kits"
+    post_title.send_keys(title_text)
+    post_content.send_keys(content_text)
+    post_btn = driver.find_element(By.ID, "post_btn")
+    post_btn.click()
+    try:
+        title_div = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//div[contains(text(), '" + title_text + "')]"))
+        )
+        form_element = title_div.find_element(By.XPATH, "ancestor::article/following-sibling::form")
+        input_element = form_element.find_element(By.XPATH, ".//input[@type='text']")
+        reply_button = form_element.find_element(By.XPATH, ".//button[@type='submit']")
 
+        reply_content = "Test reply!"
+        input_element.send_keys(reply_content)
+        reply_button.click()
+        reply_result = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//p[contains(text(), '" + reply_content + "')]"))
+        )
+
+        assert reply_content in reply_result.get_attribute('innerHTML'), "The reply is not in the reply box."
+    finally:
+        time.sleep(5)
+        driver.quit()
 
